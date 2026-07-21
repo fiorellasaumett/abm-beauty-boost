@@ -80,11 +80,15 @@ export const Route = createRootRouteWithContext<{ queryClient: QueryClient }>()(
       { title: "APEX BUSINESS MATRIX — ABM BPO | We connect people. We power businesses." },
       { name: "description", content: "Specialized BPO solutions in Customer Service, Sales and Collections for beauty and skincare brands. Human talent, technology and omnichannel." },
       { name: "author", content: "Apex Business Matrix" },
-      { property: "og:title", content: "APEX BUSINESS MATRIX — ABM BPO" },
-      { property: "og:description", content: "More than outsourcing processes, we build connections that generate results." },
+      { property: "og:title", content: "APEX BUSINESS MATRIX — ABM BPO | We connect people. We power businesses." },
+      { property: "og:description", content: "Specialized BPO solutions in Customer Service, Sales and Collections for beauty and skincare brands. Human talent, technology and omnichannel." },
       { property: "og:type", content: "website" },
       { name: "twitter:card", content: "summary_large_image" },
       { name: "twitter:site", content: "@Lovable" },
+      { name: "twitter:title", content: "APEX BUSINESS MATRIX — ABM BPO | We connect people. We power businesses." },
+      { name: "twitter:description", content: "Specialized BPO solutions in Customer Service, Sales and Collections for beauty and skincare brands. Human talent, technology and omnichannel." },
+      { property: "og:image", content: "https://pub-bb2e103a32db4e198524a2e9ed8f35b4.r2.dev/d60f1a73-a9f7-407b-b617-4c1671279c20/id-preview-34577d0b--f991f81c-fc54-4b5c-b798-ff44f4e68a82.lovable.app-1784665091626.png" },
+      { name: "twitter:image", content: "https://pub-bb2e103a32db4e198524a2e9ed8f35b4.r2.dev/d60f1a73-a9f7-407b-b617-4c1671279c20/id-preview-34577d0b--f991f81c-fc54-4b5c-b798-ff44f4e68a82.lovable.app-1784665091626.png" },
     ],
     links: [
       {
