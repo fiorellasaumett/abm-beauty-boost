@@ -21,13 +21,13 @@ export const Route = createFileRoute("/")({
 });
 
 const NAV = [
-  { href: "#inicio", label: "Inicio" },
-  { href: "#nosotros", label: "Nosotros" },
-  { href: "#servicios", label: "Servicios" },
-  { href: "#lushglow", label: "Caso LushGlow" },
-  { href: "#resultados", label: "Resultados" },
-  { href: "#porque", label: "Por qué ABM" },
-  { href: "#contacto", label: "Contacto" },
+  { href: "#inicio", label: "Home" },
+  { href: "#nosotros", label: "About" },
+  { href: "#servicios", label: "Services" },
+  { href: "#lushglow", label: "LushGlow Case" },
+  { href: "#resultados", label: "Results" },
+  { href: "#porque", label: "Why ABM" },
+  { href: "#contacto", label: "Contact" },
 ];
 
 function Index() {
@@ -83,7 +83,7 @@ function Navbar() {
           </nav>
           <div className="flex items-center gap-2">
             <a href="#contacto" className="hidden md:inline-flex items-center gap-2 rounded-full px-5 py-2.5 text-sm font-semibold text-white shadow-[var(--shadow-glow)] transition-transform hover:scale-[1.03]" style={{ backgroundImage: "var(--gradient-brand)" }}>
-              Solicitar asesoría <ArrowRight className="h-4 w-4" />
+              Request a consultation <ArrowRight className="h-4 w-4" />
             </a>
             <button onClick={() => setOpen((v) => !v)} className="lg:hidden shrink-0 rounded-lg p-2 text-abm-navy" aria-label="Menu">
               {open ? <X className="h-5 w-5" /> : <Menu className="h-5 w-5" />}
@@ -99,7 +99,7 @@ function Navbar() {
                 </a>
               ))}
               <a href="#contacto" onClick={() => setOpen(false)} className="mt-2 inline-flex items-center justify-center gap-2 rounded-full px-4 py-3 text-sm font-semibold text-white" style={{ backgroundImage: "var(--gradient-brand)" }}>
-                Solicitar asesoría <ArrowRight className="h-4 w-4" />
+                Request a consultation <ArrowRight className="h-4 w-4" />
               </a>
             </div>
           </div>
@@ -143,30 +143,30 @@ function Hero() {
             <div className="text-[10px] tracking-[0.4em] text-white/60">ABM BPO</div>
           </div>
           <h1 className="mt-4 text-4xl sm:text-5xl lg:text-6xl font-extrabold tracking-tight leading-[1.05]" style={{ fontFamily: "var(--font-display)" }}>
-            Conectamos personas.<br />
+            We connect people.<br />
             <span className="text-gradient-brand bg-clip-text" style={{ backgroundImage: "linear-gradient(120deg, oklch(0.85 0.15 90), oklch(0.75 0.18 155), oklch(0.7 0.2 285))", WebkitBackgroundClip: "text", color: "transparent" }}>
-              Impulsamos negocios.
+              We power businesses.
             </span>
           </h1>
           <p className="mt-5 max-w-xl text-base sm:text-lg text-white/75 leading-relaxed">
-            Soluciones BPO especializadas para transformar la experiencia del cliente, optimizar operaciones y generar crecimiento sostenible.
+            Specialized BPO solutions to transform customer experience, streamline operations and drive sustainable growth.
           </p>
           <div className="mt-8 flex flex-wrap gap-3">
             <a href="#servicios" className="inline-flex items-center gap-2 rounded-full px-6 py-3.5 text-sm font-semibold text-abm-navy bg-white hover:bg-white/90 transition-transform hover:scale-[1.03] shadow-[var(--shadow-soft)]">
-              Conoce nuestros servicios <ArrowRight className="h-4 w-4" />
+              Explore our services <ArrowRight className="h-4 w-4" />
             </a>
             <a href="#contacto" className="inline-flex items-center gap-2 rounded-full px-6 py-3.5 text-sm font-semibold text-white border border-white/25 hover:bg-white/10 transition-colors">
-              Solicita una asesoría
+              Request a consultation
             </a>
           </div>
           <p className="mt-8 max-w-md text-sm italic text-white/60">
-            "Más que tercerizar procesos, construimos conexiones que generan resultados."
+            "More than outsourcing processes, we build connections that generate results."
           </p>
         </div>
 
         <div className="relative animate-fade-up" style={{ animationDelay: "0.15s" }}>
           <div className="relative rounded-3xl overflow-hidden shadow-[var(--shadow-glow)] border border-white/10">
-            <img src={heroImg} alt="Centro de operaciones BPO conectado globalmente" width={1280} height={1024} className="w-full h-auto object-cover" />
+            <img src={heroImg} alt="Globally connected BPO operations center" width={1280} height={1024} className="w-full h-auto object-cover" />
             <div className="absolute inset-0 bg-gradient-to-tr from-abm-navy-deep/60 via-transparent to-abm-purple/20" />
           </div>
           {/* floating stat cards */}
@@ -176,7 +176,7 @@ function Hero() {
                 <Headphones className="h-4 w-4" />
               </div>
               <div>
-                <div className="text-[10px] uppercase tracking-wider text-muted-foreground">Nivel de servicio</div>
+                <div className="text-[10px] uppercase tracking-wider text-muted-foreground">Service level</div>
                 <div className="text-lg font-bold text-abm-navy">80%</div>
               </div>
             </div>
@@ -187,7 +187,7 @@ function Hero() {
                 <TrendingUp className="h-4 w-4" />
               </div>
               <div>
-                <div className="text-[10px] uppercase tracking-wider text-muted-foreground">CSAT mínimo</div>
+                <div className="text-[10px] uppercase tracking-wider text-muted-foreground">Minimum CSAT</div>
                 <div className="text-lg font-bold text-abm-navy">4.2 / 5</div>
               </div>
             </div>
@@ -201,20 +201,20 @@ function Hero() {
 /* ---------------- About ---------------- */
 function About() {
   const items = [
-    { icon: Users, color: "var(--abm-blue)", title: "Talento humano", text: "Agentes capacitados para ofrecer atención profesional y personalizada." },
-    { icon: Bot, color: "var(--abm-purple)", title: "Tecnología", text: "Uso estratégico de CRM, automatización e inteligencia artificial." },
-    { icon: Globe2, color: "var(--abm-green)", title: "Omnicanalidad", text: "Integración de voz, chat, correo electrónico y canales digitales." },
-    { icon: BarChart3, color: "var(--abm-yellow)", title: "Resultados", text: "Procesos orientados a indicadores, eficiencia y crecimiento." },
+    { icon: Users, color: "var(--abm-blue)", title: "Human talent", text: "Trained agents delivering professional, personalized service." },
+    { icon: Bot, color: "var(--abm-purple)", title: "Technology", text: "Strategic use of CRM, automation and artificial intelligence." },
+    { icon: Globe2, color: "var(--abm-green)", title: "Omnichannel", text: "Voice, chat, email and digital channels seamlessly integrated." },
+    { icon: BarChart3, color: "var(--abm-yellow)", title: "Results", text: "KPI-driven processes focused on efficiency and growth." },
   ];
   return (
     <section id="nosotros" className="relative py-24 lg:py-32">
       <div className="mx-auto max-w-7xl px-4 sm:px-6">
-        <SectionEyebrow>¿Quiénes somos?</SectionEyebrow>
+        <SectionEyebrow>Who we are</SectionEyebrow>
         <h2 className="mt-4 max-w-3xl text-3xl sm:text-4xl lg:text-5xl font-extrabold tracking-tight text-abm-navy" style={{ fontFamily: "var(--font-display)" }}>
-          Transformamos la experiencia del cliente a través de la <span className="text-gradient-brand">tecnología y el talento humano</span>.
+          We transform customer experience through <span className="text-gradient-brand">technology and human talent</span>.
         </h2>
         <p className="mt-6 max-w-3xl text-lg text-muted-foreground leading-relaxed">
-          Apex Business Matrix (ABM BPO) es una empresa especializada en soluciones de Business Process Outsourcing que optimiza la relación entre las empresas y sus clientes. Integramos talento humano altamente capacitado, tecnología, CRM, automatización e infraestructura omnicanal para ofrecer operaciones eficientes, confiables y centradas en el cliente.
+          Apex Business Matrix (ABM BPO) is a company specialized in Business Process Outsourcing solutions that optimize the relationship between brands and their customers. We combine highly trained human talent, technology, CRM, automation and omnichannel infrastructure to deliver efficient, reliable and customer-centric operations.
         </p>
         <div className="mt-14 grid gap-5 sm:grid-cols-2 lg:grid-cols-4">
           {items.map((it) => (
@@ -237,28 +237,28 @@ function About() {
 function Services() {
   const svcs = [
     {
-      icon: Headphones, title: "Atención al Cliente", tag: "Customer Service", color: "var(--abm-blue)",
-      desc: "Ofrecemos atención Tier 1 y soporte especializado para garantizar respuestas rápidas, claras y personalizadas.",
-      bullets: ["Atención inbound", "Resolución de inquietudes", "Asistencia con productos", "Gestión de solicitudes", "Soporte omnicanal", "Customer Experience"],
+      icon: Headphones, title: "Customer Service", tag: "Customer Service", color: "var(--abm-blue)",
+      desc: "We provide Tier 1 attention and specialized support to guarantee fast, clear and personalized responses.",
+      bullets: ["Inbound support", "Issue resolution", "Product assistance", "Request management", "Omnichannel support", "Customer Experience"],
     },
     {
-      icon: TrendingUp, title: "Ventas", tag: "Sales", color: "var(--abm-purple)",
-      desc: "Impulsamos el crecimiento comercial mediante estrategias de ventas outbound, cross-selling, up-selling y lead nurturing.",
-      bullets: ["Ventas outbound", "Cross-selling", "Up-selling", "Recomendación personalizada", "Lead nurturing", "Conversión de leads"],
+      icon: TrendingUp, title: "Sales", tag: "Sales", color: "var(--abm-purple)",
+      desc: "We drive commercial growth through outbound sales, cross-selling, up-selling and lead nurturing strategies.",
+      bullets: ["Outbound sales", "Cross-selling", "Up-selling", "Personalized recommendations", "Lead nurturing", "Lead conversion"],
     },
     {
-      icon: Wallet, title: "Gestión de Cobranzas", tag: "Collections", color: "var(--abm-green)",
-      desc: "Gestionamos procesos profesionales de recuperación de cartera mediante comunicación efectiva, negociación y seguimiento.",
-      bullets: ["Recordatorios de pago", "Negociación", "Acuerdos de pago", "Seguimiento de cuentas", "Recuperación de cartera", "Gestión profesional de clientes"],
+      icon: Wallet, title: "Collections", tag: "Collections", color: "var(--abm-green)",
+      desc: "We manage professional receivables recovery through effective communication, negotiation and follow-up.",
+      bullets: ["Payment reminders", "Negotiation", "Payment agreements", "Account follow-up", "Portfolio recovery", "Professional client management"],
     },
   ];
   return (
     <section id="servicios" className="relative py-24 lg:py-32" style={{ backgroundImage: "var(--gradient-soft)" }}>
       <div className="mx-auto max-w-7xl px-4 sm:px-6">
         <div className="max-w-3xl">
-          <SectionEyebrow>Servicios</SectionEyebrow>
+          <SectionEyebrow>Services</SectionEyebrow>
           <h2 className="mt-4 text-3xl sm:text-4xl lg:text-5xl font-extrabold tracking-tight text-abm-navy" style={{ fontFamily: "var(--font-display)" }}>
-            Soluciones diseñadas para hacer <span className="text-gradient-brand">crecer tu negocio</span>.
+            Solutions designed to <span className="text-gradient-brand">grow your business</span>.
           </h2>
         </div>
         <div className="mt-14 grid gap-6 lg:grid-cols-3">
@@ -281,7 +281,7 @@ function Services() {
                 ))}
               </ul>
               <a href="#contacto" className="mt-8 inline-flex items-center gap-2 self-start text-sm font-semibold text-abm-navy group/link">
-                Conocer servicio
+                Learn more
                 <ArrowRight className="h-4 w-4 transition-transform group-hover/link:translate-x-1" style={{ color: s.color }} />
               </a>
             </div>
@@ -299,20 +299,20 @@ function BeautyFocus() {
       <div className="mx-auto max-w-7xl px-4 sm:px-6 grid lg:grid-cols-2 gap-14 items-center">
         <div className="order-2 lg:order-1 relative">
           <div className="rounded-3xl overflow-hidden shadow-[var(--shadow-card)] border border-border">
-            <img src={beautyImg} alt="Productos skincare y tecnología" width={1280} height={960} loading="lazy" className="w-full h-auto" />
+            <img src={beautyImg} alt="Skincare products and technology" width={1280} height={960} loading="lazy" className="w-full h-auto" />
           </div>
           <div className="absolute -bottom-6 -right-4 rounded-2xl glass-card px-5 py-4 shadow-[var(--shadow-card)]">
-            <div className="text-[10px] uppercase tracking-widest text-muted-foreground">Industria</div>
+            <div className="text-[10px] uppercase tracking-widest text-muted-foreground">Industry</div>
             <div className="text-sm font-bold text-abm-navy">Beauty & Skincare</div>
           </div>
         </div>
         <div className="order-1 lg:order-2">
-          <SectionEyebrow>Especialización</SectionEyebrow>
+          <SectionEyebrow>Specialization</SectionEyebrow>
           <h2 className="mt-4 text-3xl sm:text-4xl lg:text-5xl font-extrabold tracking-tight text-abm-navy" style={{ fontFamily: "var(--font-display)" }}>
-            Especialistas en la industria <span className="text-gradient-brand">Beauty & Skincare</span>.
+            Specialists in the <span className="text-gradient-brand">Beauty & Skincare</span> industry.
           </h2>
           <p className="mt-6 text-lg text-muted-foreground leading-relaxed">
-            Nuestro enfoque está dirigido especialmente a empresas del sector de belleza, maquillaje y skincare, donde la rapidez, la personalización y la calidad de la atención son fundamentales para construir relaciones duraderas con los clientes.
+            Our focus is on beauty, makeup and skincare brands, where speed, personalization and quality of service are essential to build lasting customer relationships.
           </p>
           <div className="mt-8 grid grid-cols-3 gap-3">
             {[
@@ -335,9 +335,9 @@ function BeautyFocus() {
 /* ---------------- LushGlow Case ---------------- */
 function LushGlow() {
   const tabs = [
-    { key: "cs", label: "Atención al Cliente", icon: Headphones, text: "Atención personalizada, soporte sobre productos y resolución de inquietudes." },
-    { key: "sales", label: "Ventas", icon: TrendingUp, text: "Recomendación de productos, estrategias de cross-selling y up-selling y conversión de clientes." },
-    { key: "col", label: "Cobranzas", icon: Wallet, text: "Recordatorios, negociación y recuperación profesional de pagos pendientes." },
+    { key: "cs", label: "Customer Service", icon: Headphones, text: "Personalized attention, product support and issue resolution." },
+    { key: "sales", label: "Sales", icon: TrendingUp, text: "Product recommendations, cross-selling and up-selling strategies, and customer conversion." },
+    { key: "col", label: "Collections", icon: Wallet, text: "Reminders, negotiation and professional recovery of outstanding payments." },
   ];
   const [active, setActive] = useState(tabs[0].key);
   const cur = tabs.find((t) => t.key === active)!;
@@ -346,19 +346,19 @@ function LushGlow() {
       <div className="absolute inset-0 bg-grid opacity-30" />
       <div className="absolute -right-32 top-10 h-96 w-96 rounded-full bg-abm-purple/40 blur-3xl" />
       <div className="relative mx-auto max-w-7xl px-4 sm:px-6 text-white">
-        <SectionEyebrow tone="light">Caso de aplicación</SectionEyebrow>
+        <SectionEyebrow tone="light">Case study</SectionEyebrow>
         <h2 className="mt-4 max-w-3xl text-3xl sm:text-4xl lg:text-5xl font-extrabold tracking-tight" style={{ fontFamily: "var(--font-display)" }}>
-          Nuestro caso de aplicación: <span style={{ backgroundImage: "linear-gradient(120deg, oklch(0.85 0.15 90), oklch(0.75 0.2 300))", WebkitBackgroundClip: "text", color: "transparent" }}>LushGlow</span>
+          Our case study: <span style={{ backgroundImage: "linear-gradient(120deg, oklch(0.85 0.15 90), oklch(0.75 0.2 300))", WebkitBackgroundClip: "text", color: "transparent" }}>LushGlow</span>
         </h2>
         <p className="mt-6 max-w-2xl text-white/75 leading-relaxed">
-          LushGlow es una marca de maquillaje y skincare que busca ofrecer productos de alta calidad a precios accesibles. ABM BPO actúa como su socio estratégico para optimizar la atención al cliente, las ventas y la gestión de cobranzas.
+          LushGlow is a makeup and skincare brand offering high-quality products at accessible prices. ABM BPO acts as its strategic partner to optimize customer service, sales and collections management.
         </p>
 
         {/* Flow ABM -> LUSHGLOW -> CLIENTES */}
         <div className="mt-12 grid gap-4 md:grid-cols-3 items-stretch">
-          <FlowNode title="ABM BPO" sub="Socio estratégico" icon={Layers} color="var(--abm-blue)" />
-          <FlowNode title="LUSHGLOW" sub="Marca de belleza" icon={Sparkles} color="var(--abm-yellow)" />
-          <FlowNode title="CLIENTES" sub="Experiencia optimizada" icon={HeartHandshake} color="var(--abm-green)" />
+          <FlowNode title="ABM BPO" sub="Strategic partner" icon={Layers} color="var(--abm-blue)" />
+          <FlowNode title="LUSHGLOW" sub="Beauty brand" icon={Sparkles} color="var(--abm-yellow)" />
+          <FlowNode title="CUSTOMERS" sub="Optimized experience" icon={HeartHandshake} color="var(--abm-green)" />
         </div>
 
         {/* Tabs */}
@@ -388,7 +388,7 @@ function LushGlow() {
           </div>
           <div className="mt-8">
             <a href="#contacto" className="inline-flex items-center gap-2 rounded-full px-6 py-3 text-sm font-semibold text-abm-navy bg-white hover:scale-[1.03] transition-transform">
-              Ver estrategia completa <ArrowRight className="h-4 w-4" />
+              See full strategy <ArrowRight className="h-4 w-4" />
             </a>
           </div>
         </div>
@@ -458,22 +458,22 @@ function Results() {
         <div className="max-w-3xl">
           <SectionEyebrow>Dashboard</SectionEyebrow>
           <h2 className="mt-4 text-3xl sm:text-4xl lg:text-5xl font-extrabold tracking-tight text-abm-navy" style={{ fontFamily: "var(--font-display)" }}>
-            Resultados que podemos <span className="text-gradient-brand">medir</span>.
+            Results we can <span className="text-gradient-brand">measure</span>.
           </h2>
           <p className="mt-5 text-muted-foreground text-lg leading-relaxed">
-            Nuestro modelo de operación está orientado a resultados medibles, eficiencia operacional y satisfacción del cliente.
+            Our operating model is oriented toward measurable results, operational efficiency and customer satisfaction.
           </p>
         </div>
 
         <div className="mt-12 grid gap-5 sm:grid-cols-2 lg:grid-cols-4">
-          <Counter value={80} suffix="%" label="Nivel de servicio" sub="Objetivo operativo" color="var(--abm-blue)" />
-          <Counter value={5.5} decimals={1} suffix=" min" label="AHT objetivo" sub="Tiempo promedio de atención" color="var(--abm-purple)" />
-          <Counter value={80} suffix="%" label="FCR objetivo" sub="Resolución en primer contacto" color="var(--abm-green)" />
-          <Counter value={4.2} decimals={1} suffix=" / 5" label="CSAT mínimo" sub="Satisfacción del cliente" color="var(--abm-yellow)" />
-          <Counter value={500} suffix="+" label="Nuevos clientes" sub="Meta de adquisición" color="var(--abm-purple)" />
-          <Counter value={12} suffix="%" label="Conversión mínima" sub="Tasa de cierre" color="var(--abm-blue)" />
-          <Counter value={500} prefix="$" suffix="K USD" label="Recuperación mínima" sub="Meta financiera" color="var(--abm-green)" />
-          <Counter value={1200} label="Cuentas por recuperar" sub="Cartera vencida" color="var(--abm-yellow)" />
+          <Counter value={80} suffix="%" label="Service level" sub="Operational target" color="var(--abm-blue)" />
+          <Counter value={5.5} decimals={1} suffix=" min" label="AHT target" sub="Average handle time" color="var(--abm-purple)" />
+          <Counter value={80} suffix="%" label="FCR target" sub="First-contact resolution" color="var(--abm-green)" />
+          <Counter value={4.2} decimals={1} suffix=" / 5" label="Minimum CSAT" sub="Customer satisfaction" color="var(--abm-yellow)" />
+          <Counter value={500} suffix="+" label="New customers" sub="Acquisition goal" color="var(--abm-purple)" />
+          <Counter value={12} suffix="%" label="Minimum conversion" sub="Close rate" color="var(--abm-blue)" />
+          <Counter value={500} prefix="$" suffix="K USD" label="Minimum recovery" sub="Financial target" color="var(--abm-green)" />
+          <Counter value={1200} label="Accounts to recover" sub="Overdue portfolio" color="var(--abm-yellow)" />
         </div>
       </div>
     </section>
@@ -483,23 +483,23 @@ function Results() {
 /* ---------------- Why ABM ---------------- */
 function WhyAbm() {
   const items = [
-    { icon: Zap, title: "Respuesta rápida", text: "Optimización de tiempos de atención y respuesta.", color: "var(--abm-yellow)" },
-    { icon: HeartHandshake, title: "Atención personalizada", text: "Cada interacción busca generar confianza y satisfacción.", color: "var(--abm-purple)" },
-    { icon: Globe2, title: "Modelo omnicanal", text: "Voz, chat, email y canales digitales integrados.", color: "var(--abm-blue)" },
-    { icon: Bot, title: "Tecnología", text: "CRM, automatización e inteligencia artificial aplicada a procesos.", color: "var(--abm-purple)" },
-    { icon: Users, title: "Talento especializado", text: "Agentes capacitados en atención, ventas y comunicación digital.", color: "var(--abm-green)" },
-    { icon: Rocket, title: "Escalabilidad", text: "Soluciones adaptables al crecimiento y necesidades de cada empresa.", color: "var(--abm-blue)" },
+    { icon: Zap, title: "Fast response", text: "Optimized attention and response times.", color: "var(--abm-yellow)" },
+    { icon: HeartHandshake, title: "Personalized service", text: "Every interaction is built to generate trust and satisfaction.", color: "var(--abm-purple)" },
+    { icon: Globe2, title: "Omnichannel model", text: "Voice, chat, email and digital channels fully integrated.", color: "var(--abm-blue)" },
+    { icon: Bot, title: "Technology", text: "CRM, automation and AI applied to every process.", color: "var(--abm-purple)" },
+    { icon: Users, title: "Specialized talent", text: "Agents trained in customer service, sales and digital communication.", color: "var(--abm-green)" },
+    { icon: Rocket, title: "Scalability", text: "Solutions that adapt to each company's growth and needs.", color: "var(--abm-blue)" },
   ];
   return (
     <section id="porque" className="relative py-24 lg:py-32" style={{ backgroundImage: "var(--gradient-soft)" }}>
       <div className="mx-auto max-w-7xl px-4 sm:px-6 grid lg:grid-cols-[1fr_1.4fr] gap-14">
         <div className="lg:sticky lg:top-28 lg:self-start">
-          <SectionEyebrow>Por qué ABM</SectionEyebrow>
+          <SectionEyebrow>Why ABM</SectionEyebrow>
           <h2 className="mt-4 text-3xl sm:text-4xl lg:text-5xl font-extrabold tracking-tight text-abm-navy" style={{ fontFamily: "var(--font-display)" }}>
-            Tu operación.<br />Nuestra experiencia.<br /><span className="text-gradient-brand">Mejores resultados.</span>
+            Your operation.<br />Our expertise.<br /><span className="text-gradient-brand">Better results.</span>
           </h2>
           <div className="mt-8 overflow-hidden rounded-2xl border border-border shadow-[var(--shadow-card)]">
-            <img src={agentImg} alt="Agente profesional de contact center" width={1024} height={1024} loading="lazy" className="w-full h-64 object-cover" />
+            <img src={agentImg} alt="Professional contact center agent" width={1024} height={1024} loading="lazy" className="w-full h-64 object-cover" />
           </div>
         </div>
         <div className="grid gap-4 sm:grid-cols-2">
@@ -524,8 +524,8 @@ function MissionVision() {
     <section className="relative py-24 lg:py-32">
       <div className="mx-auto max-w-7xl px-4 sm:px-6 grid lg:grid-cols-2 gap-6">
         {[
-          { tag: "Misión", title: "Nuestra misión", color: "var(--abm-blue)", text: "Entregar soluciones integrales de Business Process Outsourcing de alta calidad que transformen la experiencia del cliente mediante inteligencia artificial, automatización, infraestructura omnicanal y talento humano altamente capacitado, generando reducción de costos, optimización de tiempos y maximización de la eficiencia." },
-          { tag: "Visión 2030", title: "Nuestra visión", color: "var(--abm-purple)", text: "Ser un referente nacional e internacional del sector BPO, alcanzando una posición destacada en servicios de outsourcing para empresas en crecimiento y siendo reconocidos por nuestra excelencia operacional, innovación tecnológica, adaptabilidad y desarrollo sostenible del talento humano." },
+          { tag: "Mission", title: "Our mission", color: "var(--abm-blue)", text: "To deliver high-quality, end-to-end Business Process Outsourcing solutions that transform customer experience through artificial intelligence, automation, omnichannel infrastructure and highly trained human talent — reducing costs, optimizing times and maximizing efficiency." },
+          { tag: "Vision 2030", title: "Our vision", color: "var(--abm-purple)", text: "To become a national and international benchmark in the BPO sector, reaching a leading position in outsourcing services for growing companies and being recognized for operational excellence, technological innovation, adaptability and sustainable talent development." },
         ].map((c) => (
           <div key={c.tag} className="relative overflow-hidden rounded-3xl p-8 lg:p-10 text-white shadow-[var(--shadow-card)]" style={{ backgroundImage: "var(--gradient-hero)" }}>
             <div className="absolute -top-16 -right-16 h-64 w-64 rounded-full blur-3xl opacity-40" style={{ backgroundColor: c.color }} />
@@ -544,21 +544,21 @@ function MissionVision() {
 /* ---------------- Values ---------------- */
 function Values() {
   const values = [
-    { l: "Confianza", i: ShieldCheck, c: "var(--abm-blue)" },
-    { l: "Innovación", i: Lightbulb, c: "var(--abm-purple)" },
-    { l: "Crecimiento", i: TrendingUp, c: "var(--abm-green)" },
-    { l: "Trabajo en equipo", i: Users, c: "var(--abm-yellow)" },
-    { l: "Optimismo", i: Sparkles, c: "var(--abm-yellow)" },
-    { l: "Conexión", i: Globe2, c: "var(--abm-blue)" },
-    { l: "Excelencia", i: Target, c: "var(--abm-purple)" },
-    { l: "Adaptabilidad", i: Layers, c: "var(--abm-green)" },
+    { l: "Trust", i: ShieldCheck, c: "var(--abm-blue)" },
+    { l: "Innovation", i: Lightbulb, c: "var(--abm-purple)" },
+    { l: "Growth", i: TrendingUp, c: "var(--abm-green)" },
+    { l: "Teamwork", i: Users, c: "var(--abm-yellow)" },
+    { l: "Optimism", i: Sparkles, c: "var(--abm-yellow)" },
+    { l: "Connection", i: Globe2, c: "var(--abm-blue)" },
+    { l: "Excellence", i: Target, c: "var(--abm-purple)" },
+    { l: "Adaptability", i: Layers, c: "var(--abm-green)" },
   ];
   return (
     <section className="relative py-24 lg:py-28" style={{ backgroundImage: "var(--gradient-soft)" }}>
       <div className="mx-auto max-w-7xl px-4 sm:px-6">
-        <SectionEyebrow>Valores</SectionEyebrow>
+        <SectionEyebrow>Values</SectionEyebrow>
         <h2 className="mt-4 max-w-2xl text-3xl sm:text-4xl font-extrabold tracking-tight text-abm-navy" style={{ fontFamily: "var(--font-display)" }}>
-          Los principios que nos <span className="text-gradient-brand">definen</span>.
+          The principles that <span className="text-gradient-brand">define us</span>.
         </h2>
         <div className="mt-12 grid gap-4 grid-cols-2 md:grid-cols-4">
           {values.map((v) => (
@@ -578,18 +578,18 @@ function Values() {
 /* ---------------- Process ---------------- */
 function Process() {
   const steps = [
-    { n: "01", t: "Analizamos", d: "Identificamos las necesidades y desafíos de la empresa." },
-    { n: "02", t: "Diseñamos", d: "Creamos una estrategia BPO adaptada al negocio." },
-    { n: "03", t: "Implementamos", d: "Integramos talento, tecnología y canales de comunicación." },
-    { n: "04", t: "Medimos", d: "Monitoreamos KPIs y resultados de la operación." },
-    { n: "05", t: "Optimizamos", d: "Mejoramos continuamente los procesos para generar mayor valor." },
+    { n: "01", t: "Analyze", d: "We identify the company's needs and challenges." },
+    { n: "02", t: "Design", d: "We build a BPO strategy tailored to the business." },
+    { n: "03", t: "Implement", d: "We integrate talent, technology and communication channels." },
+    { n: "04", t: "Measure", d: "We monitor KPIs and operational results." },
+    { n: "05", t: "Optimize", d: "We continuously improve processes to generate greater value." },
   ];
   return (
     <section className="relative py-24 lg:py-32">
       <div className="mx-auto max-w-7xl px-4 sm:px-6">
-        <SectionEyebrow>Metodología</SectionEyebrow>
+        <SectionEyebrow>Methodology</SectionEyebrow>
         <h2 className="mt-4 max-w-2xl text-3xl sm:text-4xl lg:text-5xl font-extrabold tracking-tight text-abm-navy" style={{ fontFamily: "var(--font-display)" }}>
-          ¿Cómo <span className="text-gradient-brand">trabajamos</span>?
+          How we <span className="text-gradient-brand">work</span>.
         </h2>
         <div className="relative mt-14">
           <div className="hidden lg:block absolute left-0 right-0 top-8 h-0.5" style={{ backgroundImage: "linear-gradient(90deg, var(--abm-blue), var(--abm-purple), var(--abm-green), var(--abm-yellow))" }} />
@@ -614,18 +614,18 @@ function Process() {
 /* ---------------- Tech Stack ---------------- */
 function TechStack() {
   const tech = [
-    { l: "CRM", i: Layers }, { l: "Inteligencia Artificial", i: Bot }, { l: "Automatización", i: Zap },
-    { l: "Omnicanalidad", i: Globe2 }, { l: "Analítica de datos", i: BarChart3 },
-    { l: "Chat", i: MessageSquare }, { l: "Email", i: Mail }, { l: "Telefonía", i: Phone },
+    { l: "CRM", i: Layers }, { l: "Artificial Intelligence", i: Bot }, { l: "Automation", i: Zap },
+    { l: "Omnichannel", i: Globe2 }, { l: "Data Analytics", i: BarChart3 },
+    { l: "Chat", i: MessageSquare }, { l: "Email", i: Mail }, { l: "Telephony", i: Phone },
   ];
   return (
     <section className="relative py-24 lg:py-32 overflow-hidden" style={{ backgroundImage: "var(--gradient-hero)" }}>
       <div className="absolute inset-0 bg-grid opacity-30" />
       <div className="absolute left-1/2 top-1/2 -translate-x-1/2 -translate-y-1/2 h-[500px] w-[500px] rounded-full bg-abm-purple/30 blur-3xl" />
       <div className="relative mx-auto max-w-7xl px-4 sm:px-6 text-white">
-        <SectionEyebrow tone="light">Tecnología</SectionEyebrow>
+        <SectionEyebrow tone="light">Technology</SectionEyebrow>
         <h2 className="mt-4 max-w-3xl text-3xl sm:text-4xl lg:text-5xl font-extrabold tracking-tight" style={{ fontFamily: "var(--font-display)" }}>
-          Tecnología que conecta. <span style={{ backgroundImage: "linear-gradient(120deg, oklch(0.85 0.15 90), oklch(0.75 0.2 300))", WebkitBackgroundClip: "text", color: "transparent" }}>Inteligencia que transforma</span>.
+          Technology that connects. <span style={{ backgroundImage: "linear-gradient(120deg, oklch(0.85 0.15 90), oklch(0.75 0.2 300))", WebkitBackgroundClip: "text", color: "transparent" }}>Intelligence that transforms</span>.
         </h2>
 
         <div className="relative mt-16">
@@ -659,18 +659,18 @@ function CtaBanner() {
           <div className="relative grid md:grid-cols-[1.4fr_1fr] gap-8 items-center">
             <div>
               <h3 className="text-3xl sm:text-4xl font-extrabold leading-tight" style={{ fontFamily: "var(--font-display)" }}>
-                ¿Listo para transformar la experiencia de tus clientes?
+                Ready to transform your customer experience?
               </h3>
               <p className="mt-4 text-white/85 max-w-xl">
-                Conversemos sobre cómo Apex Business Matrix puede ayudarte a optimizar tus procesos, reducir costos y generar mejores resultados.
+                Let's talk about how Apex Business Matrix can help you streamline processes, reduce costs and drive better results.
               </p>
             </div>
             <div className="flex flex-wrap gap-3 md:justify-end">
               <a href="#contacto" className="inline-flex items-center gap-2 rounded-full px-6 py-3.5 text-sm font-semibold text-abm-navy bg-white hover:scale-[1.03] transition-transform">
-                Solicitar asesoría <ArrowRight className="h-4 w-4" />
+                Request a consultation <ArrowRight className="h-4 w-4" />
               </a>
               <a href="#contacto" className="inline-flex items-center gap-2 rounded-full px-6 py-3.5 text-sm font-semibold text-white border border-white/40 hover:bg-white/10">
-                Hablar con ABM
+                Talk to ABM
               </a>
             </div>
           </div>
@@ -691,18 +691,18 @@ function Contact() {
     <section id="contacto" className="relative py-24 lg:py-32">
       <div className="mx-auto max-w-7xl px-4 sm:px-6 grid lg:grid-cols-2 gap-12">
         <div>
-          <SectionEyebrow>Contacto</SectionEyebrow>
+          <SectionEyebrow>Contact</SectionEyebrow>
           <h2 className="mt-4 text-3xl sm:text-4xl lg:text-5xl font-extrabold tracking-tight text-abm-navy" style={{ fontFamily: "var(--font-display)" }}>
-            Construyamos juntos <span className="text-gradient-brand">conexiones que generan resultados</span>.
+            Let's build <span className="text-gradient-brand">connections that generate results</span>.
           </h2>
           <p className="mt-6 text-lg text-muted-foreground leading-relaxed">
-            Cuéntanos sobre tu operación y te contactaremos con una propuesta hecha a la medida de tu marca.
+            Tell us about your operation and we'll reach out with a proposal tailored to your brand.
           </p>
           <div className="mt-8 space-y-4">
             {[
-              { i: Phone, t: "Atención comercial", s: "Barranquilla, Colombia" },
-              { i: Mail, t: "Correo corporativo", s: "contacto@abm-bpo.com" },
-              { i: MessageSquare, t: "Canales digitales", s: "Voz · Chat · Email · Redes" },
+              { i: Phone, t: "Commercial desk", s: "Barranquilla, Colombia" },
+              { i: Mail, t: "Corporate email", s: "contact@abm-bpo.com" },
+              { i: MessageSquare, t: "Digital channels", s: "Voice · Chat · Email · Social" },
             ].map((c) => (
               <div key={c.t} className="flex items-center gap-4 rounded-2xl bg-card border border-border p-4 shadow-[var(--shadow-soft)]">
                 <div className="grid h-11 w-11 place-items-center rounded-xl text-white" style={{ backgroundImage: "var(--gradient-brand)" }}>
@@ -723,40 +723,40 @@ function Contact() {
               <div className="grid h-16 w-16 place-items-center rounded-2xl text-white" style={{ backgroundImage: "var(--gradient-brand)" }}>
                 <CheckCircle2 className="h-8 w-8" />
               </div>
-              <h3 className="mt-6 text-2xl font-extrabold text-abm-navy" style={{ fontFamily: "var(--font-display)" }}>¡Gracias por contactarnos!</h3>
+              <h3 className="mt-6 text-2xl font-extrabold text-abm-navy" style={{ fontFamily: "var(--font-display)" }}>Thanks for reaching out!</h3>
               <p className="mt-3 text-muted-foreground max-w-sm">
-                ¡Gracias por contactar a Apex Business Matrix! Nuestro equipo se pondrá en contacto contigo próximamente.
+                Thank you for contacting Apex Business Matrix! Our team will get back to you shortly.
               </p>
               <button onClick={() => setSent(false)} className="mt-6 text-sm font-semibold text-abm-purple hover:underline">
-                Enviar otra solicitud
+                Send another request
               </button>
             </div>
           ) : (
             <form onSubmit={onSubmit} className="space-y-4">
               <div className="grid sm:grid-cols-2 gap-4">
-                <Field label="Nombre completo"><Input required maxLength={100} placeholder="Nombre y apellido" /></Field>
-                <Field label="Empresa"><Input required maxLength={100} placeholder="Nombre de tu empresa" /></Field>
+                <Field label="Full name"><Input required maxLength={100} placeholder="First and last name" /></Field>
+                <Field label="Company"><Input required maxLength={100} placeholder="Your company name" /></Field>
               </div>
               <div className="grid sm:grid-cols-2 gap-4">
-                <Field label="Correo electrónico"><Input required type="email" maxLength={200} placeholder="tu@empresa.com" /></Field>
-                <Field label="Teléfono"><Input required type="tel" maxLength={30} placeholder="+57 300 000 0000" /></Field>
+                <Field label="Email"><Input required type="email" maxLength={200} placeholder="you@company.com" /></Field>
+                <Field label="Phone"><Input required type="tel" maxLength={30} placeholder="+57 300 000 0000" /></Field>
               </div>
-              <Field label="Servicio de interés">
+              <Field label="Service of interest">
                 <Select>
-                  <SelectTrigger><SelectValue placeholder="Selecciona un servicio" /></SelectTrigger>
+                  <SelectTrigger><SelectValue placeholder="Select a service" /></SelectTrigger>
                   <SelectContent>
-                    <SelectItem value="cs">Atención al Cliente</SelectItem>
-                    <SelectItem value="sales">Ventas</SelectItem>
-                    <SelectItem value="col">Cobranzas</SelectItem>
-                    <SelectItem value="full">Solución BPO Integral</SelectItem>
+                    <SelectItem value="cs">Customer Service</SelectItem>
+                    <SelectItem value="sales">Sales</SelectItem>
+                    <SelectItem value="col">Collections</SelectItem>
+                    <SelectItem value="full">End-to-End BPO Solution</SelectItem>
                   </SelectContent>
                 </Select>
               </Field>
-              <Field label="Mensaje">
-                <Textarea required maxLength={1000} rows={5} placeholder="Cuéntanos sobre tu operación..." />
+              <Field label="Message">
+                <Textarea required maxLength={1000} rows={5} placeholder="Tell us about your operation..." />
               </Field>
               <Button type="submit" className="w-full rounded-full py-6 text-sm font-semibold text-white border-0" style={{ backgroundImage: "var(--gradient-brand)" }}>
-                Enviar solicitud <Send className="ml-2 h-4 w-4" />
+                Send request <Send className="ml-2 h-4 w-4" />
               </Button>
             </form>
           )}
@@ -791,7 +791,7 @@ function Footer() {
               </div>
             </div>
             <p className="mt-5 text-white/70 max-w-md">
-              Conectamos personas. Impulsamos negocios. Soluciones BPO especializadas en Customer Service, Sales y Collections para marcas de belleza y skincare.
+              We connect people. We power businesses. Specialized BPO solutions in Customer Service, Sales and Collections for beauty and skincare brands.
             </p>
             <div className="mt-6 flex gap-3">
               {["in", "ig", "fb", "tw"].map((s) => (
@@ -802,7 +802,7 @@ function Footer() {
             </div>
           </div>
           <div>
-            <div className="text-xs uppercase tracking-widest text-white/50">Navegación</div>
+            <div className="text-xs uppercase tracking-widest text-white/50">Navigation</div>
             <ul className="mt-4 space-y-2 text-sm">
               {NAV.map((n) => (
                 <li key={n.href}><a href={n.href} className="text-white/80 hover:text-white transition-colors">{n.label}</a></li>
@@ -810,18 +810,18 @@ function Footer() {
             </ul>
           </div>
           <div>
-            <div className="text-xs uppercase tracking-widest text-white/50">Servicios</div>
+            <div className="text-xs uppercase tracking-widest text-white/50">Services</div>
             <ul className="mt-4 space-y-2 text-sm text-white/80">
               <li>Customer Service</li>
               <li>Sales</li>
               <li>Collections</li>
-              <li>Solución BPO Integral</li>
+              <li>End-to-End BPO Solution</li>
             </ul>
           </div>
         </div>
         <div className="mt-14 pt-6 border-t border-white/10 flex flex-wrap items-center justify-between gap-4 text-xs text-white/50">
-          <div>© 2026 Apex Business Matrix. Todos los derechos reservados.</div>
-          <div>Barranquilla, Colombia · Proyecto académico SENA</div>
+          <div>© 2026 Apex Business Matrix. All rights reserved.</div>
+          <div>Barranquilla, Colombia · SENA academic project</div>
         </div>
       </div>
     </footer>
