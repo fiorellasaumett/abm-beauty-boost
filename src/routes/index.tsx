@@ -4,6 +4,7 @@ import {
   ArrowRight, Sparkles, Headphones, TrendingUp, Wallet, Bot, Zap, Globe2,
   MessageSquare, Mail, Phone, Users, BarChart3, ShieldCheck, Layers, Rocket,
   Target, HeartHandshake, Lightbulb, Menu, X, CheckCircle2, Send,
+  FileText, AlertTriangle, Gavel,
 } from "lucide-react";
 import heroImg from "@/assets/hero-bpo.jpg";
 import beautyImg from "@/assets/beauty-tech.jpg";
@@ -27,6 +28,7 @@ const NAV = [
   { href: "#lushglow", label: "LushGlow Case" },
   { href: "#resultados", label: "Results" },
   { href: "#porque", label: "Why ABM" },
+  { href: "#pqr", label: "PQR" },
   { href: "#contacto", label: "Contact" },
 ];
 
@@ -47,6 +49,7 @@ function Index() {
       <TechStack />
       <CtaBanner />
       <Contact />
+      <PQR />
       <Footer />
     </div>
   );
