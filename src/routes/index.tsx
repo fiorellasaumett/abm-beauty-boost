@@ -778,6 +778,148 @@ function Field({ label, children }: { label: string; children: React.ReactNode }
   );
 }
 
+/* ---------------- PQR ---------------- */
+function PQR() {
+  const [type, setType] = useState<"request" | "complaint" | "claim">("request");
+  const [sent, setSent] = useState<string | null>(null);
+  const types = [
+    {
+      id: "request" as const,
+      label: "Request",
+      short: "P",
+      icon: FileText,
+      desc: "Ask for information, documents or a specific action related to our services.",
+      sla: "Response within 5 business days",
+    },
+    {
+      id: "complaint" as const,
+      label: "Complaint",
+      short: "Q",
+      icon: AlertTriangle,
+      desc: "Report dissatisfaction with the service, an agent interaction or a process.",
+      sla: "Response within 10 business days",
+    },
+    {
+      id: "claim" as const,
+      label: "Claim",
+      short: "R",
+      icon: Gavel,
+      desc: "Formally request review of a case, refund, adjustment or contractual issue.",
+      sla: "Response within 15 business days",
+    },
+  ];
+  const onSubmit = (e: React.FormEvent) => {
+    e.preventDefault();
+    const id = `ABM-${type.slice(0, 3).toUpperCase()}-${Date.now().toString().slice(-6)}`;
+    setSent(id);
+  };
+  return (
+    <section id="pqr" className="relative py-24 lg:py-32 overflow-hidden" style={{ backgroundImage: "var(--gradient-soft)" }}>
+      <div className="absolute -right-32 top-10 h-80 w-80 rounded-full bg-abm-purple/15 blur-3xl" />
+      <div className="absolute -left-32 bottom-10 h-80 w-80 rounded-full bg-abm-blue/15 blur-3xl" />
+      <div className="relative mx-auto max-w-7xl px-4 sm:px-6">
+        <div className="max-w-3xl">
+          <SectionEyebrow>PQR Channel</SectionEyebrow>
+          <h2 className="mt-4 text-3xl sm:text-4xl lg:text-5xl font-extrabold tracking-tight text-abm-navy" style={{ fontFamily: "var(--font-display)" }}>
+            Requests, Complaints <span className="text-gradient-brand">& Claims</span>
+          </h2>
+          <p className="mt-6 text-lg text-muted-foreground leading-relaxed">
+            Your voice matters. Submit a PQR and our Customer Experience team will track, respond and resolve every case within our service commitments.
+          </p>
+        </div>
+
+        <div className="mt-12 grid lg:grid-cols-[1.05fr_1fr] gap-8">
+          {/* Type selector cards */}
+          <div className="grid sm:grid-cols-3 gap-4 lg:col-span-1">
+            {types.map((t) => {
+              const active = type === t.id;
+              return (
+                <button
+                  key={t.id}
+                  type="button"
+                  onClick={() => setType(t.id)}
+                  className={`text-left rounded-2xl p-5 border transition-all ${active ? "bg-card border-transparent shadow-[var(--shadow-card)] -translate-y-1" : "bg-card/60 border-border hover:-translate-y-0.5"}`}
+                  style={active ? { backgroundImage: "linear-gradient(180deg, color-mix(in oklab, var(--abm-purple) 8%, white), white)" } : undefined}
+                >
+                  <div className="flex items-center justify-between">
+                    <div className="grid h-11 w-11 place-items-center rounded-xl text-white" style={{ backgroundImage: "var(--gradient-brand)" }}>
+                      <t.icon className="h-5 w-5" />
+                    </div>
+                    <span className="text-xs font-bold tracking-[0.3em] text-abm-purple">{t.short}</span>
+                  </div>
+                  <div className="mt-4 text-lg font-bold text-abm-navy" style={{ fontFamily: "var(--font-display)" }}>{t.label}</div>
+                  <p className="mt-2 text-sm text-muted-foreground leading-relaxed">{t.desc}</p>
+                  <div className="mt-4 inline-flex items-center gap-1.5 text-[11px] font-semibold text-abm-navy/80">
+                    <CheckCircle2 className="h-3.5 w-3.5 text-abm-purple" /> {t.sla}
+                  </div>
+                </button>
+              );
+            })}
+          </div>
+
+          {/* Form */}
+          <div className="rounded-3xl bg-card border border-border p-8 shadow-[var(--shadow-card)]">
+            {sent ? (
+              <div className="flex flex-col items-center justify-center text-center py-10 animate-fade-up">
+                <div className="grid h-16 w-16 place-items-center rounded-2xl text-white" style={{ backgroundImage: "var(--gradient-brand)" }}>
+                  <CheckCircle2 className="h-8 w-8" />
+                </div>
+                <h3 className="mt-6 text-2xl font-extrabold text-abm-navy" style={{ fontFamily: "var(--font-display)" }}>PQR received</h3>
+                <p className="mt-3 text-muted-foreground max-w-sm">
+                  Your case has been registered. Please keep this ticket ID for follow-up:
+                </p>
+                <div className="mt-4 rounded-xl bg-muted px-4 py-2 font-mono text-sm font-semibold text-abm-navy">{sent}</div>
+                <button onClick={() => setSent(null)} className="mt-6 text-sm font-semibold text-abm-purple hover:underline">
+                  Submit another PQR
+                </button>
+              </div>
+            ) : (
+              <form onSubmit={onSubmit} className="space-y-4">
+                <div className="flex items-center gap-2 rounded-full bg-muted px-3 py-1.5 w-fit text-xs font-semibold text-abm-navy">
+                  <span className="inline-block h-2 w-2 rounded-full bg-abm-purple" />
+                  Submitting a {types.find((x) => x.id === type)?.label}
+                </div>
+                <div className="grid sm:grid-cols-2 gap-4">
+                  <Field label="Full name"><Input required maxLength={100} placeholder="First and last name" /></Field>
+                  <Field label="ID / Document"><Input required maxLength={30} placeholder="ID number" /></Field>
+                </div>
+                <div className="grid sm:grid-cols-2 gap-4">
+                  <Field label="Email"><Input required type="email" maxLength={200} placeholder="you@email.com" /></Field>
+                  <Field label="Phone"><Input required type="tel" maxLength={30} placeholder="+57 300 000 0000" /></Field>
+                </div>
+                <Field label="Related service">
+                  <Select>
+                    <SelectTrigger><SelectValue placeholder="Select a service" /></SelectTrigger>
+                    <SelectContent>
+                      <SelectItem value="cs">Customer Service</SelectItem>
+                      <SelectItem value="sales">Sales</SelectItem>
+                      <SelectItem value="col">Collections</SelectItem>
+                      <SelectItem value="lush">LushGlow account</SelectItem>
+                      <SelectItem value="other">Other</SelectItem>
+                    </SelectContent>
+                  </Select>
+                </Field>
+                <Field label="Subject">
+                  <Input required maxLength={140} placeholder="Short summary of your case" />
+                </Field>
+                <Field label="Describe your case">
+                  <Textarea required maxLength={1500} rows={5} placeholder="Provide dates, order or ticket numbers, and any detail that helps us resolve faster." />
+                </Field>
+                <Button type="submit" className="w-full rounded-full py-6 text-sm font-semibold text-white border-0" style={{ backgroundImage: "var(--gradient-brand)" }}>
+                  Submit PQR <Send className="ml-2 h-4 w-4" />
+                </Button>
+                <p className="text-[11px] text-muted-foreground text-center">
+                  By submitting, you accept ABM BPO's data processing policy for PQR management.
+                </p>
+              </form>
+            )}
+          </div>
+        </div>
+      </div>
+    </section>
+  );
+}
+
 /* ---------------- Footer ---------------- */
 function Footer() {
   return (
