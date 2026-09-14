@@ -125,11 +125,11 @@ function Navbar() {
 
 function Logo() {
   return (
-    <div className="relative h-10 w-10 shrink-0 rounded-xl overflow-hidden" style={{ backgroundImage: "linear-gradient(135deg, var(--abm-purple) 0%, var(--abm-yellow) 100%)" }}>
+    <div className="relative h-10 w-10 shrink-0 rounded-xl overflow-hidden bg-[var(--gradient-brand)]">
       <div className="absolute inset-[3px] rounded-[9px] bg-white flex items-center justify-center">
         <div className="relative h-5 w-5">
           <div className="absolute inset-0 rounded-full border-2" style={{ borderColor: "var(--abm-purple)" }} />
-          <div className="absolute inset-0 rounded-full border-t-2 rotate-45" style={{ borderTopColor: "var(--abm-yellow)" }} />
+          <div className="absolute inset-0 rounded-full border-t-2 rotate-45 border-t-abm-blue" />
           <div className="absolute left-1/2 top-1/2 h-1 w-1 -translate-x-1/2 -translate-y-1/2 rounded-full" style={{ background: "var(--abm-purple)" }} />
         </div>
       </div>
@@ -720,7 +720,7 @@ function TechStack() {
                 <div className="mt-4 text-sm font-semibold">{t.l}</div>
                 <span className="pointer-events-none absolute inset-0 rounded-2xl ring-1 ring-white/10 group-hover:ring-abm-purple/60 transition" />
                 {i % 2 === 0 && (
-                  <span className="pointer-events-none absolute -inset-2 rounded-3xl opacity-0 group-hover:opacity-100 transition" style={{ boxShadow: "0 0 40px oklch(0.6 0.2 285 / 0.35)" }} />
+                  <span className="pointer-events-none absolute -inset-2 rounded-3xl opacity-0 group-hover:opacity-100 transition shadow-[var(--shadow-glow)]" />
                 )}
               </div>
             ))}
