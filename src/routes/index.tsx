@@ -488,14 +488,80 @@ function Results() {
   );
 }
 
+/* ---------------- Academic project framework ---------------- */
+function ProjectDepth() {
+  const [active, setActive] = useState("objectives");
+  const panels = {
+    objectives: {
+      title: "2026 SMART objectives",
+      icon: Target,
+      intro: "From January 1 to August 10, 2026, ABM will operate against clear customer experience and growth commitments.",
+      points: ["Answer 80% of inbound calls within 20 seconds", "Reduce AHT from 8:45 to 5:30", "Raise FCR from 55% to 80%", "Generate COP 250M in sales and acquire 200 customers"],
+    },
+    operations: {
+      title: "Campaign operations",
+      icon: Users,
+      intro: "A bilingual operation runs Monday through Friday, 8:00 a.m. to 8:00 p.m., with 20% shrinkage built into staffing.",
+      points: ["Customer Service: 10 seats and 18 agents", "Sales & Marketing: 8 seats and 15 agents", "42-hour legal workweek in Colombia", "English/Spanish talent at B2+ to C1 level"],
+    },
+    quality: {
+      title: "Quality & compliance",
+      icon: BadgeCheck,
+      intro: "Weekly QA reviews cover recorded calls, chat, email and CRM cases, protecting both experience and regulatory compliance.",
+      points: ["QA score and schedule adherence targets of 95%+", "Law 1581 of 2012 data privacy controls", "Professional greetings, verification and active listening", "Product knowledge, accurate workflows and complete CRM logging"],
+    },
+    finance: {
+      title: "Sustainable financial model",
+      icon: Banknote,
+      intro: "A fixed seat fee plus performance incentives creates predictable revenue while aligning ABM with MONTOC’s outcomes.",
+      points: ["COP 6.8M monthly fee per dedicated seat", "COP 176.8M projected fixed monthly revenue", "Approximately 20.5% gross operating margin", "Break-even reached at 21 dedicated seats"],
+    },
+  };
+  const current = panels[active as keyof typeof panels] ?? panels.objectives;
+  return (
+    <section id="operations" className="py-24 lg:py-32" style={{ backgroundImage: "var(--gradient-soft)" }}>
+      <div className="mx-auto max-w-7xl px-4 sm:px-6">
+        <SectionEyebrow>Project framework</SectionEyebrow>
+        <div className="mt-4 grid gap-6 lg:grid-cols-[1fr_1.1fr] lg:items-end">
+          <h2 className="text-3xl sm:text-4xl lg:text-5xl font-extrabold tracking-tight text-abm-navy" style={{ fontFamily: "var(--font-display)" }}>Built to operate with <span className="text-gradient-brand">discipline and proof</span>.</h2>
+          <p className="text-muted-foreground leading-relaxed">The academic model combines measurable goals, workforce planning, rigorous quality controls and a financially sustainable delivery structure.</p>
+        </div>
+        <div className="mt-12 grid gap-5 lg:grid-cols-[0.72fr_1.28fr]">
+          <div className="grid grid-cols-2 gap-3 lg:grid-cols-1">
+            {Object.entries(panels).map(([key, item]) => (
+              <Button key={key} variant="outline" onClick={() => setActive(key)} className={`h-auto justify-start gap-3 rounded-lg p-4 text-left ${active === key ? "border-primary bg-accent text-primary" : "bg-card"}`}>
+                <item.icon className="h-5 w-5 shrink-0" /><span>{item.title}</span>
+              </Button>
+            ))}
+          </div>
+          <div className="rounded-lg border border-border bg-card p-7 shadow-[var(--shadow-card)] sm:p-9">
+            <div className="flex items-center gap-4"><div className="grid h-12 w-12 place-items-center rounded-lg bg-primary text-primary-foreground"><current.icon className="h-5 w-5" /></div><h3 className="text-2xl font-bold text-abm-navy">{current.title}</h3></div>
+            <p className="mt-5 text-muted-foreground leading-relaxed">{current.intro}</p>
+            <div className="mt-6 grid gap-3 sm:grid-cols-2">{current.points.map((point) => <div key={point} className="flex gap-2.5 rounded-lg bg-muted p-4 text-sm text-foreground/80"><CheckCircle2 className="mt-0.5 h-4 w-4 shrink-0 text-primary" />{point}</div>)}</div>
+          </div>
+        </div>
+        <div className="mt-14 grid gap-4 md:grid-cols-3">
+          <ProjectCard icon={Building2} title="Market opportunity" text="More than 70% of beauty e-commerce shoppers may abandon a purchase without immediate product guidance. ABM turns support into conversion." />
+          <ProjectCard icon={Scale} title="Regulatory readiness" text="Processes are designed around Colombian data protection obligations and transparent customer consent." />
+          <ProjectCard icon={Server} title="Business continuity" text="Redundant internet, UPS and generator coverage, cloud telephony backup, and secure work-from-home contingency protect availability." />
+        </div>
+      </div>
+    </section>
+  );
+}
+
+function ProjectCard({ icon: Icon, title, text }: { icon: typeof Scale; title: string; text: string }) {
+  return <div className="rounded-lg border border-border bg-card p-6"><Icon className="h-6 w-6 text-primary" /><h3 className="mt-4 font-bold text-abm-navy">{title}</h3><p className="mt-2 text-sm leading-relaxed text-muted-foreground">{text}</p></div>;
+}
+
 /* ---------------- Why ABM ---------------- */
 function WhyAbm() {
   const items = [
-    { icon: Zap, title: "Fast response", text: "Optimized attention and response times.", color: "var(--abm-yellow)" },
+    { icon: Zap, title: "Fast response", text: "Optimized attention and response times.", color: "var(--abm-purple)" },
     { icon: HeartHandshake, title: "Personalized service", text: "Every interaction is built to generate trust and satisfaction.", color: "var(--abm-purple)" },
     { icon: Globe2, title: "Omnichannel model", text: "Voice, chat, email and digital channels fully integrated.", color: "var(--abm-blue)" },
     { icon: Bot, title: "Technology", text: "CRM, automation and AI applied to every process.", color: "var(--abm-purple)" },
-    { icon: Users, title: "Specialized talent", text: "Agents trained in customer service, sales and digital communication.", color: "var(--abm-green)" },
+    { icon: Users, title: "Specialized talent", text: "Agents trained in customer service, sales and digital communication.", color: "var(--abm-blue)" },
     { icon: Rocket, title: "Scalability", text: "Solutions that adapt to each company's growth and needs.", color: "var(--abm-blue)" },
   ];
   return (
@@ -533,7 +599,7 @@ function MissionVision() {
       <div className="mx-auto max-w-7xl px-4 sm:px-6 grid lg:grid-cols-2 gap-6">
         {[
           { tag: "Mission", title: "Our mission", color: "var(--abm-blue)", text: "To deliver high-quality, end-to-end Business Process Outsourcing solutions that transform customer experience through artificial intelligence, automation, omnichannel infrastructure and highly trained human talent — reducing costs, optimizing times and maximizing efficiency." },
-          { tag: "Vision 2030", title: "Our vision", color: "var(--abm-purple)", text: "To become a national and international benchmark in the BPO sector, reaching a leading position in outsourcing services for growing companies and being recognized for operational excellence, technological innovation, adaptability and sustainable talent development." },
+          { tag: "Vision 2030", title: "Our vision", color: "var(--abm-purple)", text: "To become a national and international BPO benchmark, achieve 15% market share among growing enterprises, and pursue COPC and ISO 27001 standards through innovation, adaptability and sustainable talent development." },
         ].map((c) => (
           <div key={c.tag} className="relative overflow-hidden rounded-3xl p-8 lg:p-10 text-white shadow-[var(--shadow-card)]" style={{ backgroundImage: "var(--gradient-hero)" }}>
             <div className="absolute -top-16 -right-16 h-64 w-64 rounded-full blur-3xl opacity-40" style={{ backgroundColor: c.color }} />
@@ -554,12 +620,12 @@ function Values() {
   const values = [
     { l: "Trust", i: ShieldCheck, c: "var(--abm-blue)" },
     { l: "Innovation", i: Lightbulb, c: "var(--abm-purple)" },
-    { l: "Growth", i: TrendingUp, c: "var(--abm-green)" },
-    { l: "Teamwork", i: Users, c: "var(--abm-yellow)" },
-    { l: "Optimism", i: Sparkles, c: "var(--abm-yellow)" },
+    { l: "Growth", i: TrendingUp, c: "var(--abm-blue)" },
+    { l: "Teamwork", i: Users, c: "var(--abm-purple)" },
+    { l: "Optimism", i: Sparkles, c: "var(--abm-blue)" },
     { l: "Connection", i: Globe2, c: "var(--abm-blue)" },
     { l: "Excellence", i: Target, c: "var(--abm-purple)" },
-    { l: "Adaptability", i: Layers, c: "var(--abm-green)" },
+    { l: "Adaptability", i: Layers, c: "var(--abm-blue)" },
   ];
   return (
     <section className="relative py-24 lg:py-28" style={{ backgroundImage: "var(--gradient-soft)" }}>
@@ -600,7 +666,7 @@ function Process() {
           How we <span className="text-gradient-brand">work</span>.
         </h2>
         <div className="relative mt-14">
-          <div className="hidden lg:block absolute left-0 right-0 top-8 h-0.5" style={{ backgroundImage: "linear-gradient(90deg, var(--abm-blue), var(--abm-purple), var(--abm-green), var(--abm-yellow))" }} />
+          <div className="hidden lg:block absolute left-0 right-0 top-8 h-0.5 bg-[var(--gradient-brand)]" />
           <div className="grid gap-6 lg:grid-cols-5">
             {steps.map((s, i) => (
               <div key={s.n} className="relative rounded-2xl bg-card border border-border p-6 shadow-[var(--shadow-soft)]">
@@ -633,7 +699,7 @@ function TechStack() {
       <div className="relative mx-auto max-w-7xl px-4 sm:px-6 text-white">
         <SectionEyebrow tone="light">Technology</SectionEyebrow>
         <h2 className="mt-4 max-w-3xl text-3xl sm:text-4xl lg:text-5xl font-extrabold tracking-tight" style={{ fontFamily: "var(--font-display)" }}>
-          Technology that connects. <span style={{ backgroundImage: "linear-gradient(120deg, oklch(0.85 0.15 90), oklch(0.75 0.2 300))", WebkitBackgroundClip: "text", color: "transparent" }}>Intelligence that transforms</span>.
+          Technology that connects. <span className="text-gradient-brand">Intelligence that transforms</span>.
         </h2>
 
         <div className="relative mt-16">
