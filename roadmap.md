@@ -8,3 +8,6 @@
 - [x] Expand the MONTOC case with its story, needs and ABM solution.
 - [x] Add verified MONTOC history and official product photography.
 - [x] Add an APEX People & Culture section for human talent.
+- [x] Replace the generic beauty image with official MONTOC product photography.
+- [x] Connect service and strategy buttons to detailed project information.
+- [x] Expand the interactive project framework with campaign, market and continuity details.

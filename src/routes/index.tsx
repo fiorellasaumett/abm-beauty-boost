@@ -8,7 +8,6 @@ import {
   BookOpen, CircleAlert, Waypoints, ExternalLink, GraduationCap, Languages, UserRoundCheck,
 } from "lucide-react";
 import heroImg from "@/assets/hero-bpo.jpg";
-import beautyImg from "@/assets/beauty-tech.jpg";
 import agentImg from "@/assets/agent.jpg";
 import montocFoundation from "@/assets/montoc-foundation.jpg.asset.json";
 import montocShadows from "@/assets/montoc-shadows.jpg.asset.json";
@@ -296,8 +295,8 @@ function Services() {
                   </li>
                 ))}
               </ul>
-              <a href="#contacto" className="mt-8 inline-flex items-center gap-2 self-start text-sm font-semibold text-abm-navy group/link">
-                Learn more
+              <a href={s.title === "Customer Service" ? "#customer-service-campaign" : "#sales-campaign"} className="mt-8 inline-flex items-center gap-2 self-start text-sm font-semibold text-abm-navy group/link">
+                View campaign details
                 <ArrowRight className="h-4 w-4 transition-transform group-hover/link:translate-x-1" style={{ color: s.color }} />
               </a>
             </div>
@@ -310,12 +309,22 @@ function Services() {
 
 /* ---------------- Beauty Focus ---------------- */
 function BeautyFocus() {
+  const showcase = [
+    { image: montocFoundation.url, name: "Humide Healthy Foundation", className: "col-span-2 row-span-2" },
+    { image: montocHighlighter.url, name: "Light Set Highlighter", className: "col-span-1" },
+    { image: montocLipGloss.url, name: "Juicy Lips Lip Gloss", className: "col-span-1" },
+  ];
   return (
     <section className="relative py-24 lg:py-32">
       <div className="mx-auto max-w-7xl px-4 sm:px-6 grid lg:grid-cols-2 gap-14 items-center">
         <div className="order-2 lg:order-1 relative">
-          <div className="rounded-3xl overflow-hidden shadow-[var(--shadow-card)] border border-border">
-            <img src={beautyImg} alt="Skincare products and technology" width={1280} height={960} loading="lazy" className="w-full h-auto" />
+          <div className="grid aspect-[4/3] grid-cols-3 grid-rows-2 gap-2 overflow-hidden rounded-3xl border border-border bg-card p-2 shadow-[var(--shadow-card)]">
+            {showcase.map((product) => (
+              <div key={product.name} className={`group relative overflow-hidden rounded-xl bg-white ${product.className}`}>
+                <img src={product.image} alt={`${product.name} by MONTOC`} width={900} height={900} loading="lazy" className="h-full w-full object-cover transition-transform duration-500 group-hover:scale-105" />
+                <div className="absolute inset-x-0 bottom-0 bg-gradient-to-t from-abm-navy-deep/90 to-transparent p-3 pt-10 text-xs font-semibold text-white">{product.name}</div>
+              </div>
+            ))}
           </div>
           <div className="absolute -bottom-6 -right-4 rounded-2xl glass-card px-5 py-4 shadow-[var(--shadow-card)]">
             <div className="text-[10px] uppercase tracking-widest text-muted-foreground">Industry</div>
@@ -330,6 +339,7 @@ function BeautyFocus() {
           <p className="mt-6 text-lg text-muted-foreground leading-relaxed">
             Our focus is on beauty, makeup and skincare brands, where speed, personalization and quality of service are essential to build lasting customer relationships.
           </p>
+          <p className="mt-3 text-xs text-muted-foreground">Official MONTOC product photography.</p>
           <div className="mt-8 grid grid-cols-3 gap-3">
             {[
               { l: "Beauty", c: "var(--abm-purple)" },
@@ -509,7 +519,7 @@ function Montoc() {
             </div>
           </div>
           <div className="mt-8">
-            <a href="#contacto" className="inline-flex items-center gap-2 rounded-full px-6 py-3 text-sm font-semibold text-abm-navy bg-white hover:scale-[1.03] transition-transform">
+            <a href="#operations" className="inline-flex items-center gap-2 rounded-full px-6 py-3 text-sm font-semibold text-abm-navy bg-white hover:scale-[1.03] transition-transform">
               See full strategy <ArrowRight className="h-4 w-4" />
             </a>
           </div>
@@ -618,6 +628,18 @@ function ProjectDepth() {
       intro: "A bilingual operation runs Monday through Friday, 8:00 a.m. to 8:00 p.m., with 20% shrinkage built into staffing.",
       points: ["Customer Service: 10 seats and 18 agents", "Sales & Marketing: 8 seats and 15 agents", "42-hour legal workweek in Colombia", "English/Spanish talent at B2+ to C1 level"],
     },
+    customerService: {
+      title: "Customer Service campaign",
+      icon: Headphones,
+      intro: "The inbound campaign supports MONTOC customers with inquiries, requests, complaints and accurate product guidance across connected channels.",
+      points: ["Campaign period: January 1 to August 10, 2026", "Monday–Friday, 8:00 a.m. to 8:00 p.m.", "9,900 estimated monthly cases", "18 agents, 10 active workstations and 5:30 AHT target"],
+    },
+    sales: {
+      title: "Sales & Marketing campaign",
+      icon: TrendingUp,
+      intro: "The outbound team combines consultative product recommendations, lead nurturing, cross-selling and upselling to support MONTOC’s growth.",
+      points: ["6,600 estimated monthly cases", "15 agents and 8 active workstations", "6-minute average interaction target", "COP 250M sales, 200 new customers and 12% conversion goals"],
+    },
     quality: {
       title: "Quality & compliance",
       icon: BadgeCheck,
@@ -627,8 +649,20 @@ function ProjectDepth() {
     finance: {
       title: "Sustainable financial model",
       icon: Banknote,
-      intro: "A fixed seat fee plus performance incentives creates predictable revenue while aligning ABM with MONTOC’s outcomes.",
-      points: ["COP 6.8M monthly fee per dedicated seat", "Fixed seat fees support predictable planning", "Performance incentives align both organizations", "18 dedicated seats across the two service lines"],
+      intro: "A fixed seat fee plus performance incentives creates predictable revenue while aligning ABM with MONTOC’s outcomes across the approved two-service scope.",
+      points: ["COP 6.8M monthly fee per dedicated seat", "18 active seats across Customer Service and Sales", "Initial technology and facilities investment is planned through CAPEX", "Performance incentives connect revenue with SLA, QA and conversion results"],
+    },
+    continuity: {
+      title: "Technology & continuity",
+      icon: Server,
+      intro: "ABM’s architecture keeps customer conversations available, secure and traceable through cloud tools and operational redundancy.",
+      points: ["CRM integration with Salesforce or HubSpot", "Voice, chat, email and social channels", "Backup connectivity, UPS and 24-hour generator support", "Cloud telephony recovery and secure work-from-home contingency"],
+    },
+    market: {
+      title: "Market & value proposition",
+      icon: Building2,
+      intro: "ABM is designed as an agile, specialized alternative for growing beauty and e-commerce brands that need measurable service without building an internal contact center.",
+      points: ["Product-trained agents reduce purchase uncertainty", "Omnichannel records preserve context across every interaction", "Bilingual nearshore talent supports future expansion", "Flexible operations help lower internal administrative costs"],
     },
   };
   const current = panels[active as keyof typeof panels] ?? panels.objectives;
@@ -643,7 +677,7 @@ function ProjectDepth() {
         <div className="mt-12 grid gap-5 lg:grid-cols-[0.72fr_1.28fr]">
           <div className="grid grid-cols-2 gap-3 lg:grid-cols-1">
             {Object.entries(panels).map(([key, item]) => (
-              <Button key={key} variant="outline" onClick={() => setActive(key)} className={`h-auto justify-start gap-3 rounded-lg p-4 text-left ${active === key ? "border-primary bg-accent text-primary" : "bg-card"}`}>
+              <Button id={key === "customerService" ? "customer-service-campaign" : key === "sales" ? "sales-campaign" : undefined} key={key} variant="outline" onClick={() => setActive(key)} className={`h-auto justify-start gap-3 rounded-lg p-4 text-left ${active === key ? "border-primary bg-accent text-primary" : "bg-card"}`}>
                 <item.icon className="h-5 w-5 shrink-0" /><span>{item.title}</span>
               </Button>
             ))}
