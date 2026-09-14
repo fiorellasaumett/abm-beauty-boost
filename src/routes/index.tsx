@@ -5,6 +5,7 @@ import {
   MessageSquare, Mail, Phone, Users, BarChart3, ShieldCheck, Layers, Rocket,
   Target, HeartHandshake, Lightbulb, Menu, X, CheckCircle2, Send,
   FileText, AlertTriangle, Gavel, Scale, BadgeCheck, Building2, Server, Banknote,
+  BookOpen, CircleAlert, Waypoints,
 } from "lucide-react";
 import heroImg from "@/assets/hero-bpo.jpg";
 import beautyImg from "@/assets/beauty-tech.jpg";
@@ -344,23 +345,57 @@ function BeautyFocus() {
 /* ---------------- MONTOC Case ---------------- */
 function Montoc() {
   const tabs = [
-    { key: "cs", label: "Customer Service", icon: Headphones, text: "Personalized attention, product support and issue resolution." },
-    { key: "sales", label: "Sales & Marketing", icon: TrendingUp, text: "Consultative recommendations, campaign support, cross-selling, upselling and lead conversion." },
+    {
+      key: "cs",
+      label: "Customer Service",
+      icon: Headphones,
+      text: "A dedicated bilingual team centralizes voice, chat, email and CRM cases, combining product guidance with fast, empathetic issue resolution.",
+      highlights: ["80% first-contact resolution target", "5:30 average handle time target", "4.2 / 5 minimum customer satisfaction"],
+    },
+    {
+      key: "sales",
+      label: "Sales & Marketing",
+      icon: TrendingUp,
+      text: "Consultative agents turn product questions into relevant recommendations through lead nurturing, campaign support, cross-selling and upselling.",
+      highlights: ["200+ new-customer goal", "12% minimum conversion target", "COP 250M campaign sales goal"],
+    },
   ];
   const [active, setActive] = useState(tabs[0].key);
   const cur = tabs.find((t) => t.key === active) ?? tabs[0];
+  const needs = [
+    "Centralize customer conversations across voice, chat, email and digital channels.",
+    "Give buyers fast, accurate guidance on makeup tools, skincare accessories and product use.",
+    "Reduce response and handling times while improving first-contact resolution.",
+    "Convert qualified product interest into measurable customer and revenue growth.",
+  ];
+  const journey = [
+    { step: "01", title: "Listen & diagnose", text: "Map recurring questions, buying barriers, service demand and the moments that most influence purchase decisions." },
+    { step: "02", title: "Design the operation", text: "Assign specialized Customer Service and Sales & Marketing teams, supported by workforce planning and clear workflows." },
+    { step: "03", title: "Connect every channel", text: "Use CRM case management and omnichannel communication to preserve context and create a consistent customer journey." },
+    { step: "04", title: "Measure & improve", text: "Review service, quality and sales indicators continuously to coach agents and optimize MONTOC’s performance." },
+  ];
   return (
     <section id="montoc" className="relative py-24 lg:py-32 overflow-hidden" style={{ backgroundImage: "var(--gradient-hero)" }}>
       <div className="absolute inset-0 bg-grid opacity-30" />
       <div className="absolute -right-32 top-10 h-96 w-96 rounded-full bg-abm-purple/40 blur-3xl" />
       <div className="relative mx-auto max-w-7xl px-4 sm:px-6 text-white">
-        <SectionEyebrow tone="light">Corporate client</SectionEyebrow>
-        <h2 className="mt-4 max-w-3xl text-3xl sm:text-4xl lg:text-5xl font-extrabold tracking-tight" style={{ fontFamily: "var(--font-display)" }}>
-          Our corporate client: <span className="text-gradient-brand">MONTOC</span>
-        </h2>
-        <p className="mt-6 max-w-2xl text-white/75 leading-relaxed">
-          MONTOC Cosmetic Tools is a Colombian beauty brand offering practical, functional and high-quality makeup and skincare products. ABM supports its customer relationships, digital growth and sales performance.
-        </p>
+        <div className="grid gap-10 lg:grid-cols-[1.15fr_0.85fr] lg:items-end">
+          <div>
+            <SectionEyebrow tone="light">Corporate client case</SectionEyebrow>
+            <h2 className="mt-4 max-w-3xl text-3xl sm:text-4xl lg:text-5xl font-extrabold tracking-tight" style={{ fontFamily: "var(--font-display)" }}>
+              MONTOC: from product expertise to a <span className="text-gradient-brand">connected customer experience</span>.
+            </h2>
+            <p className="mt-6 max-w-3xl text-white/75 leading-relaxed">
+              MONTOC Cosmetic Tools is a Colombian beauty brand built around practical, functional and high-quality makeup and skincare tools. As its digital audience and commercial opportunities grew, every customer conversation became a decisive moment for trust, guidance and conversion.
+            </p>
+          </div>
+          <div className="rounded-lg border border-white/15 bg-white/5 p-6 backdrop-blur-sm">
+            <div className="flex items-center gap-3 text-sm font-semibold text-white"><BookOpen className="h-5 w-5 text-abm-blue" />The story</div>
+            <p className="mt-4 text-sm leading-relaxed text-white/70">
+              ABM BPO became MONTOC’s strategic service partner to connect brand knowledge with disciplined customer care and consultative selling—without losing the personal attention expected in the beauty industry.
+            </p>
+          </div>
+        </div>
 
         {/* Flow ABM -> MONTOC -> CUSTOMERS */}
         <div className="mt-12 grid gap-4 md:grid-cols-3 items-stretch">
@@ -369,29 +404,70 @@ function Montoc() {
           <FlowNode title="CUSTOMERS" sub="Optimized experience" icon={HeartHandshake} color="var(--abm-blue)" />
         </div>
 
-        {/* Tabs */}
-        <div className="mt-12 rounded-3xl glass-dark p-6 sm:p-8">
+        <div className="mt-16 grid gap-10 lg:grid-cols-[0.82fr_1.18fr] lg:items-start">
+          <div>
+            <div className="flex items-center gap-3 text-sm font-semibold"><CircleAlert className="h-5 w-5 text-abm-purple" />What MONTOC needed</div>
+            <h3 className="mt-4 text-2xl sm:text-3xl font-extrabold" style={{ fontFamily: "var(--font-display)" }}>Growth required a more structured customer operation.</h3>
+            <div className="mt-7 space-y-3">
+              {needs.map((need, index) => (
+                <div key={need} className="flex gap-4 border-l-2 border-white/15 py-2 pl-4">
+                  <span className="text-xs font-bold text-abm-blue">0{index + 1}</span>
+                  <p className="text-sm leading-relaxed text-white/75">{need}</p>
+                </div>
+              ))}
+            </div>
+          </div>
+          <div className="rounded-lg glass-dark p-6 sm:p-8">
+            <div className="flex items-center gap-3 text-sm font-semibold"><Waypoints className="h-5 w-5 text-abm-blue" />How ABM solved it</div>
+            <div className="mt-6 grid gap-x-6 gap-y-7 sm:grid-cols-2">
+              {journey.map((item) => (
+                <div key={item.step} className="relative border-t border-white/15 pt-5">
+                  <div className="text-xs font-bold text-abm-blue">{item.step}</div>
+                  <h4 className="mt-2 font-bold">{item.title}</h4>
+                  <p className="mt-2 text-sm leading-relaxed text-white/65">{item.text}</p>
+                </div>
+              ))}
+            </div>
+          </div>
+        </div>
+
+        {/* Service solution tabs */}
+        <div className="mt-12 rounded-lg glass-dark p-6 sm:p-8">
+          <div className="max-w-2xl">
+            <div className="text-xs font-bold uppercase tracking-[0.25em] text-abm-blue">The solution in action</div>
+            <h3 className="mt-3 text-2xl font-extrabold" style={{ fontFamily: "var(--font-display)" }}>Two specialized teams. One connected strategy.</h3>
+          </div>
           <div className="flex flex-wrap gap-2">
             {tabs.map((t) => {
               const activeT = t.key === active;
               return (
-                <button
+                <Button
                   key={t.key}
+                  variant="ghost"
                   onClick={() => setActive(t.key)}
-                  className={`inline-flex items-center gap-2 rounded-full px-4 py-2.5 text-sm font-semibold transition-all ${activeT ? "text-abm-navy bg-white shadow-[var(--shadow-card)]" : "text-white/80 border border-white/20 hover:bg-white/10"}`}
+                  className={`mt-6 h-auto rounded-full px-4 py-2.5 text-sm font-semibold transition-all ${activeT ? "text-abm-navy bg-white shadow-[var(--shadow-card)] hover:bg-white/90" : "text-white/80 border border-white/20 hover:bg-white/10 hover:text-white"}`}
                 >
                   <t.icon className="h-4 w-4" />
                   {t.label}
-                </button>
+                </Button>
               );
             })}
           </div>
-          <div key={cur.key} className="mt-6 animate-fade-up">
-            <div className="flex items-start gap-4">
+          <div key={cur.key} className="mt-8 animate-fade-up">
+            <div className="grid gap-7 lg:grid-cols-[1fr_1.1fr]">
+              <div className="flex items-start gap-4">
               <div className="grid h-12 w-12 shrink-0 place-items-center rounded-xl text-white" style={{ backgroundImage: "var(--gradient-brand)" }}>
                 <cur.icon className="h-5 w-5" />
               </div>
-              <p className="text-lg text-white/90 leading-relaxed">{cur.text}</p>
+                <p className="text-base text-white/85 leading-relaxed">{cur.text}</p>
+              </div>
+              <div className="grid gap-2 sm:grid-cols-3 lg:grid-cols-1">
+                {cur.highlights.map((highlight) => (
+                  <div key={highlight} className="flex items-center gap-2 rounded-lg bg-white/5 px-4 py-3 text-sm text-white/80">
+                    <CheckCircle2 className="h-4 w-4 shrink-0 text-abm-blue" />{highlight}
+                  </div>
+                ))}
+              </div>
             </div>
           </div>
           <div className="mt-8">
