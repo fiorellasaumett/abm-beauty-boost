@@ -341,33 +341,32 @@ function BeautyFocus() {
   );
 }
 
-/* ---------------- LushGlow Case ---------------- */
-function LushGlow() {
+/* ---------------- MONTOC Case ---------------- */
+function Montoc() {
   const tabs = [
     { key: "cs", label: "Customer Service", icon: Headphones, text: "Personalized attention, product support and issue resolution." },
-    { key: "sales", label: "Sales", icon: TrendingUp, text: "Product recommendations, cross-selling and up-selling strategies, and customer conversion." },
-    { key: "col", label: "Collections", icon: Wallet, text: "Reminders, negotiation and professional recovery of outstanding payments." },
+    { key: "sales", label: "Sales & Marketing", icon: TrendingUp, text: "Consultative recommendations, campaign support, cross-selling, upselling and lead conversion." },
   ];
   const [active, setActive] = useState(tabs[0].key);
-  const cur = tabs.find((t) => t.key === active)!;
+  const cur = tabs.find((t) => t.key === active) ?? tabs[0];
   return (
-    <section id="lushglow" className="relative py-24 lg:py-32 overflow-hidden" style={{ backgroundImage: "var(--gradient-hero)" }}>
+    <section id="montoc" className="relative py-24 lg:py-32 overflow-hidden" style={{ backgroundImage: "var(--gradient-hero)" }}>
       <div className="absolute inset-0 bg-grid opacity-30" />
       <div className="absolute -right-32 top-10 h-96 w-96 rounded-full bg-abm-purple/40 blur-3xl" />
       <div className="relative mx-auto max-w-7xl px-4 sm:px-6 text-white">
-        <SectionEyebrow tone="light">Case study</SectionEyebrow>
+        <SectionEyebrow tone="light">Corporate client</SectionEyebrow>
         <h2 className="mt-4 max-w-3xl text-3xl sm:text-4xl lg:text-5xl font-extrabold tracking-tight" style={{ fontFamily: "var(--font-display)" }}>
-          Our case study: <span style={{ backgroundImage: "linear-gradient(120deg, oklch(0.85 0.15 90), oklch(0.75 0.2 300))", WebkitBackgroundClip: "text", color: "transparent" }}>LushGlow</span>
+          Our corporate client: <span className="text-gradient-brand">MONTOC</span>
         </h2>
         <p className="mt-6 max-w-2xl text-white/75 leading-relaxed">
-          LushGlow is a makeup and skincare brand offering high-quality products at accessible prices. ABM BPO acts as its strategic partner to optimize customer service, sales and collections management.
+          MONTOC Cosmetic Tools is a Colombian beauty brand offering practical, functional and high-quality makeup and skincare products. ABM supports its customer relationships, digital growth and sales performance.
         </p>
 
-        {/* Flow ABM -> LUSHGLOW -> CLIENTES */}
+        {/* Flow ABM -> MONTOC -> CUSTOMERS */}
         <div className="mt-12 grid gap-4 md:grid-cols-3 items-stretch">
           <FlowNode title="ABM BPO" sub="Strategic partner" icon={Layers} color="var(--abm-blue)" />
-          <FlowNode title="LUSHGLOW" sub="Beauty brand" icon={Sparkles} color="var(--abm-yellow)" />
-          <FlowNode title="CUSTOMERS" sub="Optimized experience" icon={HeartHandshake} color="var(--abm-green)" />
+          <FlowNode title="MONTOC" sub="Corporate client" icon={Sparkles} color="var(--abm-purple)" />
+          <FlowNode title="CUSTOMERS" sub="Optimized experience" icon={HeartHandshake} color="var(--abm-blue)" />
         </div>
 
         {/* Tabs */}
@@ -477,12 +476,12 @@ function Results() {
         <div className="mt-12 grid gap-5 sm:grid-cols-2 lg:grid-cols-4">
           <Counter value={80} suffix="%" label="Service level" sub="Operational target" color="var(--abm-blue)" />
           <Counter value={5.5} decimals={1} suffix=" min" label="AHT target" sub="Average handle time" color="var(--abm-purple)" />
-          <Counter value={80} suffix="%" label="FCR target" sub="First-contact resolution" color="var(--abm-green)" />
-          <Counter value={4.2} decimals={1} suffix=" / 5" label="Minimum CSAT" sub="Customer satisfaction" color="var(--abm-yellow)" />
-          <Counter value={500} suffix="+" label="New customers" sub="Acquisition goal" color="var(--abm-purple)" />
+          <Counter value={80} suffix="%" label="FCR target" sub="First-contact resolution" color="var(--abm-blue)" />
+          <Counter value={4.2} decimals={1} suffix=" / 5" label="Minimum CSAT" sub="Customer satisfaction" color="var(--abm-purple)" />
+          <Counter value={200} suffix="+" label="New customers" sub="Minimum acquisition goal" color="var(--abm-purple)" />
           <Counter value={12} suffix="%" label="Minimum conversion" sub="Close rate" color="var(--abm-blue)" />
-          <Counter value={500} prefix="$" suffix="K USD" label="Minimum recovery" sub="Financial target" color="var(--abm-green)" />
-          <Counter value={1200} label="Accounts to recover" sub="Overdue portfolio" color="var(--abm-yellow)" />
+          <Counter value={250} prefix="$" suffix="M COP" label="Sales revenue" sub="2026 campaign goal" color="var(--abm-purple)" />
+          <Counter value={35} suffix="%" label="Cost reduction" sub="Value proposition" color="var(--abm-blue)" />
         </div>
       </div>
     </section>
