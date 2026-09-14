@@ -144,16 +144,16 @@ function Hero() {
       <div className="absolute inset-0 bg-grid opacity-40" />
       <div className="absolute -left-40 top-20 h-96 w-96 rounded-full bg-abm-purple/40 blur-3xl" />
       <div className="absolute -right-32 top-40 h-96 w-96 rounded-full bg-abm-blue/40 blur-3xl" />
-      <div className="absolute left-1/3 bottom-0 h-72 w-72 rounded-full bg-abm-green/25 blur-3xl" />
+      <div className="absolute left-1/3 bottom-0 h-72 w-72 rounded-full bg-abm-purple/25 blur-3xl" />
 
       <div className="relative mx-auto max-w-7xl px-4 sm:px-6 grid lg:grid-cols-[1.05fr_1fr] gap-12 items-center">
         <div className="text-white animate-fade-up">
           <div className="inline-flex items-center gap-2 rounded-full glass-dark px-4 py-1.5 text-xs font-medium tracking-wide">
-            <Sparkles className="h-3.5 w-3.5 text-abm-yellow" />
+            <Sparkles className="h-3.5 w-3.5 text-abm-blue" />
              Customer Service · Sales & Marketing
           </div>
           <div className="mt-6">
-            <div className="text-xs font-semibold tracking-[0.35em] text-abm-yellow/90">APEX BUSINESS MATRIX</div>
+            <div className="text-xs font-semibold tracking-[0.35em] text-abm-blue">APEX BUSINESS MATRIX</div>
             <div className="text-[10px] tracking-[0.4em] text-white/60">ABM BPO</div>
           </div>
           <h1 className="mt-4 text-4xl sm:text-5xl lg:text-6xl font-extrabold tracking-tight leading-[1.05]" style={{ fontFamily: "var(--font-display)" }}>
@@ -197,7 +197,7 @@ function Hero() {
           </div>
           <div className="absolute -right-3 bottom-10 animate-float rounded-2xl glass-card px-4 py-3 shadow-[var(--shadow-card)]" style={{ animationDelay: "1.5s" }}>
             <div className="flex items-center gap-3">
-              <div className="grid h-9 w-9 place-items-center rounded-lg text-white" style={{ backgroundColor: "oklch(0.6 0.18 155)" }}>
+              <div className="grid h-9 w-9 place-items-center rounded-lg bg-abm-purple text-white">
                 <TrendingUp className="h-4 w-4" />
               </div>
               <div>
@@ -514,7 +514,7 @@ function ProjectDepth() {
       title: "Sustainable financial model",
       icon: Banknote,
       intro: "A fixed seat fee plus performance incentives creates predictable revenue while aligning ABM with MONTOC’s outcomes.",
-      points: ["COP 6.8M monthly fee per dedicated seat", "COP 176.8M projected fixed monthly revenue", "Approximately 20.5% gross operating margin", "Break-even reached at 21 dedicated seats"],
+      points: ["COP 6.8M monthly fee per dedicated seat", "Fixed seat fees support predictable planning", "Performance incentives align both organizations", "18 dedicated seats across the two service lines"],
     },
   };
   const current = panels[active as keyof typeof panels] ?? panels.objectives;
@@ -544,6 +544,14 @@ function ProjectDepth() {
           <ProjectCard icon={Building2} title="Market opportunity" text="More than 70% of beauty e-commerce shoppers may abandon a purchase without immediate product guidance. ABM turns support into conversion." />
           <ProjectCard icon={Scale} title="Regulatory readiness" text="Processes are designed around Colombian data protection obligations and transparent customer consent." />
           <ProjectCard icon={Server} title="Business continuity" text="Redundant internet, UPS and generator coverage, cloud telephony backup, and secure work-from-home contingency protect availability." />
+        </div>
+        <div className="mt-16 border-t border-border pt-12">
+          <div className="flex flex-wrap items-end justify-between gap-4"><div><SectionEyebrow>Leadership</SectionEyebrow><h3 className="mt-4 text-3xl font-extrabold text-abm-navy" style={{ fontFamily: "var(--font-display)" }}>The team behind ABM</h3></div><p className="max-w-xl text-sm leading-relaxed text-muted-foreground">A specialized structure connects executive direction, operations, finance and campaign leadership.</p></div>
+          <div className="mt-8 grid gap-3 sm:grid-cols-2 lg:grid-cols-5">
+            {[
+              ["Mabel Rodriguez", "CEO"], ["Jesus Martinez", "Operations Manager"], ["Valentina Fuentes", "Finance Director"], ["Fiorella Saumett", "Sales & Marketing Lead"], ["Juan Esteban Guzman", "Customer Service Lead"],
+            ].map(([name, role]) => <div key={name} className="rounded-lg border border-border bg-card p-5"><div className="text-xs font-semibold uppercase tracking-wider text-primary">{role}</div><div className="mt-2 font-bold text-abm-navy">{name}</div></div>)}
+          </div>
         </div>
       </div>
     </section>
@@ -820,9 +828,8 @@ function Contact() {
                   <SelectTrigger><SelectValue placeholder="Select a service" /></SelectTrigger>
                   <SelectContent>
                     <SelectItem value="cs">Customer Service</SelectItem>
-                    <SelectItem value="sales">Sales</SelectItem>
-                    <SelectItem value="col">Collections</SelectItem>
-                    <SelectItem value="full">End-to-End BPO Solution</SelectItem>
+                    <SelectItem value="sales">Sales & Marketing</SelectItem>
+                    <SelectItem value="full">Combined Service Solution</SelectItem>
                   </SelectContent>
                 </Select>
               </Field>
@@ -963,9 +970,8 @@ function PQR() {
                     <SelectTrigger><SelectValue placeholder="Select a service" /></SelectTrigger>
                     <SelectContent>
                       <SelectItem value="cs">Customer Service</SelectItem>
-                      <SelectItem value="sales">Sales</SelectItem>
-                      <SelectItem value="col">Collections</SelectItem>
-                      <SelectItem value="lush">LushGlow account</SelectItem>
+                      <SelectItem value="sales">Sales & Marketing</SelectItem>
+                      <SelectItem value="montoc">MONTOC account</SelectItem>
                       <SelectItem value="other">Other</SelectItem>
                     </SelectContent>
                   </Select>
@@ -1007,7 +1013,7 @@ function Footer() {
               </div>
             </div>
             <p className="mt-5 text-white/70 max-w-md">
-              We connect people. We power businesses. Specialized BPO solutions in Customer Service, Sales and Collections for beauty and skincare brands.
+              We connect people. We power businesses. Specialized Customer Service and Sales & Marketing solutions for the beauty industry.
             </p>
             <div className="mt-6 flex gap-3">
               {["in", "ig", "fb", "tw"].map((s) => (
@@ -1029,9 +1035,8 @@ function Footer() {
             <div className="text-xs uppercase tracking-widest text-white/50">Services</div>
             <ul className="mt-4 space-y-2 text-sm text-white/80">
               <li>Customer Service</li>
-              <li>Sales</li>
-              <li>Collections</li>
-              <li>End-to-End BPO Solution</li>
+              <li>Sales & Marketing</li>
+              <li>Combined Service Solution</li>
             </ul>
           </div>
         </div>
