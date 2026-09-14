@@ -4,4 +4,4 @@
 - [x] Limit services to Customer Service and Sales & Marketing.
 - [x] Restore a cohesive purple-and-blue visual identity.
 - [x] Add the key academic project content from the uploaded document.
-- [ ] Verify desktop and mobile presentation.
+- [x] Verify desktop and mobile presentation.
