@@ -6,3 +6,5 @@
 - [x] Add the key academic project content from the uploaded document.
 - [x] Verify desktop and mobile presentation.
 - [x] Expand the MONTOC case with its story, needs and ABM solution.
+- [x] Add verified MONTOC history and official product photography.
+- [x] Add an APEX People & Culture section for human talent.

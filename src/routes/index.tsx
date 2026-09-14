@@ -5,11 +5,15 @@ import {
   MessageSquare, Mail, Phone, Users, BarChart3, ShieldCheck, Layers, Rocket,
   Target, HeartHandshake, Lightbulb, Menu, X, CheckCircle2, Send,
   FileText, AlertTriangle, Gavel, Scale, BadgeCheck, Building2, Server, Banknote,
-  BookOpen, CircleAlert, Waypoints,
+  BookOpen, CircleAlert, Waypoints, ExternalLink, GraduationCap, Languages, UserRoundCheck,
 } from "lucide-react";
 import heroImg from "@/assets/hero-bpo.jpg";
 import beautyImg from "@/assets/beauty-tech.jpg";
 import agentImg from "@/assets/agent.jpg";
+import montocFoundation from "@/assets/montoc-foundation.jpg.asset.json";
+import montocShadows from "@/assets/montoc-shadows.jpg.asset.json";
+import montocHighlighter from "@/assets/montoc-highlighter.png.asset.json";
+import montocLipGloss from "@/assets/montoc-lip-gloss.jpg.asset.json";
 import { Button } from "@/components/ui/button";
 import { Input } from "@/components/ui/input";
 import { Textarea } from "@/components/ui/textarea";
@@ -39,6 +43,7 @@ const NAV = [
   { href: "#montoc", label: "MONTOC" },
   { href: "#resultados", label: "Results" },
   { href: "#operations", label: "Operations" },
+  { href: "#people", label: "People" },
   { href: "#pqr", label: "PQR" },
   { href: "#contacto", label: "Contact" },
 ];
@@ -54,6 +59,7 @@ function Index() {
       <Montoc />
       <Results />
       <ProjectDepth />
+      <PeopleCulture />
       <WhyAbm />
       <MissionVision />
       <Values />
@@ -374,6 +380,12 @@ function Montoc() {
     { step: "03", title: "Connect every channel", text: "Use CRM case management and omnichannel communication to preserve context and create a consistent customer journey." },
     { step: "04", title: "Measure & improve", text: "Review service, quality and sales indicators continuously to coach agents and optimize MONTOC’s performance." },
   ];
+  const products = [
+    { name: "Humide Healthy Foundation", category: "Complexion", image: montocFoundation.url, href: "https://montoccosmetictools.com/products/base-humide" },
+    { name: "Light Set Metallic Shadows", category: "Eyes", image: montocShadows.url, href: "https://montoccosmetictools.com/products/sombras-compactas-metalicas-light-set" },
+    { name: "Light Set Highlighter", category: "Face", image: montocHighlighter.url, href: "https://montoccosmetictools.com/products/iluminador-light-set" },
+    { name: "Juicy Lips Lip Gloss", category: "Lips", image: montocLipGloss.url, href: "https://montoccosmetictools.com/products/brillo-labial-juicy-lips-200" },
+  ];
   return (
     <section id="montoc" className="relative py-24 lg:py-32 overflow-hidden" style={{ backgroundImage: "var(--gradient-hero)" }}>
       <div className="absolute inset-0 bg-grid opacity-30" />
@@ -386,7 +398,7 @@ function Montoc() {
               MONTOC: from product expertise to a <span className="text-gradient-brand">connected customer experience</span>.
             </h2>
             <p className="mt-6 max-w-3xl text-white/75 leading-relaxed">
-              MONTOC Cosmetic Tools is a Colombian beauty brand built around practical, functional and high-quality makeup and skincare tools. As its digital audience and commercial opportunities grew, every customer conversation became a decisive moment for trust, guidance and conversion.
+              Founded in 2018 as a small multi-brand makeup store, MONTOC grew into a Colombian beauty company with its own line of practical, functional products. Its official website reports more than 20,000 satisfied customers and over 250 products—making every conversation a decisive moment for trust, guidance and conversion.
             </p>
           </div>
           <div className="rounded-lg border border-white/15 bg-white/5 p-6 backdrop-blur-sm">
@@ -402,6 +414,32 @@ function Montoc() {
           <FlowNode title="ABM BPO" sub="Strategic partner" icon={Layers} color="var(--abm-blue)" />
           <FlowNode title="MONTOC" sub="Corporate client" icon={Sparkles} color="var(--abm-purple)" />
           <FlowNode title="CUSTOMERS" sub="Optimized experience" icon={HeartHandshake} color="var(--abm-blue)" />
+        </div>
+
+        <div className="mt-16">
+          <div className="flex flex-wrap items-end justify-between gap-4">
+            <div>
+              <div className="text-xs font-bold uppercase tracking-[0.25em] text-abm-blue">The brand in focus</div>
+              <h3 className="mt-3 text-2xl sm:text-3xl font-extrabold" style={{ fontFamily: "var(--font-display)" }}>Real products. Informed conversations.</h3>
+            </div>
+            <a href="https://montoccosmetictools.com/" target="_blank" rel="noreferrer" className="inline-flex items-center gap-2 text-sm font-semibold text-white/80 transition-colors hover:text-white">
+              Visit MONTOC <ExternalLink className="h-4 w-4" />
+            </a>
+          </div>
+          <div className="mt-7 grid grid-cols-2 gap-3 lg:grid-cols-4">
+            {products.map((product) => (
+              <a key={product.name} href={product.href} target="_blank" rel="noreferrer" className="group overflow-hidden rounded-lg border border-white/15 bg-white/5">
+                <div className="aspect-square overflow-hidden bg-white">
+                  <img src={product.image} alt={`${product.name} by MONTOC`} width={900} height={900} loading="lazy" className="h-full w-full object-cover transition-transform duration-500 group-hover:scale-105" />
+                </div>
+                <div className="p-4">
+                  <div className="text-[10px] font-bold uppercase tracking-[0.2em] text-abm-blue">{product.category}</div>
+                  <div className="mt-2 flex items-start justify-between gap-2 text-sm font-bold text-white"><span>{product.name}</span><ExternalLink className="h-3.5 w-3.5 shrink-0 text-white/45" /></div>
+                </div>
+              </a>
+            ))}
+          </div>
+          <p className="mt-3 text-xs text-white/45">Product names and photography sourced from MONTOC’s official website.</p>
         </div>
 
         <div className="mt-16 grid gap-10 lg:grid-cols-[0.82fr_1.18fr] lg:items-start">
@@ -636,6 +674,47 @@ function ProjectDepth() {
 
 function ProjectCard({ icon: Icon, title, text }: { icon: typeof Scale; title: string; text: string }) {
   return <div className="rounded-lg border border-border bg-card p-6"><Icon className="h-6 w-6 text-primary" /><h3 className="mt-4 font-bold text-abm-navy">{title}</h3><p className="mt-2 text-sm leading-relaxed text-muted-foreground">{text}</p></div>;
+}
+
+/* ---------------- People & Culture ---------------- */
+function PeopleCulture() {
+  const pillars = [
+    { icon: Languages, title: "Bilingual capability", text: "English and Spanish professionals at B2+ to C1 level support clear, confident customer conversations." },
+    { icon: GraduationCap, title: "Continuous learning", text: "Training combines product knowledge, communication skills, systems, workflows and campaign objectives." },
+    { icon: UserRoundCheck, title: "Quality coaching", text: "Weekly reviews turn service and sales interactions into focused feedback and practical development plans." },
+    { icon: HeartHandshake, title: "Human connection", text: "Empathy, active listening and teamwork keep every interaction personal—even within a technology-enabled operation." },
+  ];
+  return (
+    <section id="people" className="relative overflow-hidden py-24 lg:py-32">
+      <div className="mx-auto grid max-w-7xl gap-14 px-4 sm:px-6 lg:grid-cols-[0.9fr_1.1fr] lg:items-center">
+        <div className="relative overflow-hidden rounded-lg border border-border shadow-[var(--shadow-card)]">
+          <img src={agentImg} alt="ABM customer service professional representing the People and Culture team" width={1024} height={1024} loading="lazy" className="aspect-[4/5] w-full object-cover" />
+          <div className="absolute inset-x-0 bottom-0 bg-gradient-to-t from-abm-navy-deep via-abm-navy-deep/80 to-transparent p-7 pt-24 text-white">
+            <div className="text-xs font-bold uppercase tracking-[0.25em] text-abm-blue">Human talent</div>
+            <div className="mt-2 text-xl font-bold">The people behind every result</div>
+          </div>
+        </div>
+        <div>
+          <SectionEyebrow>People & Culture</SectionEyebrow>
+          <h2 className="mt-4 text-3xl font-extrabold tracking-tight text-abm-navy sm:text-4xl lg:text-5xl" style={{ fontFamily: "var(--font-display)" }}>
+            Technology enables the work. <span className="text-gradient-brand">People create the connection.</span>
+          </h2>
+          <p className="mt-6 max-w-2xl text-lg leading-relaxed text-muted-foreground">
+            ABM’s human talent brings together bilingual communication, customer empathy, commercial judgment and operational discipline. Our teams are prepared to represent each client’s voice with consistency and care.
+          </p>
+          <div className="mt-9 grid gap-4 sm:grid-cols-2">
+            {pillars.map((pillar) => (
+              <div key={pillar.title} className="rounded-lg border border-border bg-card p-5 shadow-[var(--shadow-soft)]">
+                <div className="grid h-10 w-10 place-items-center rounded-lg bg-primary text-primary-foreground"><pillar.icon className="h-5 w-5" /></div>
+                <h3 className="mt-4 font-bold text-abm-navy">{pillar.title}</h3>
+                <p className="mt-2 text-sm leading-relaxed text-muted-foreground">{pillar.text}</p>
+              </div>
+            ))}
+          </div>
+        </div>
+      </div>
+    </section>
+  );
 }
 
 /* ---------------- Why ABM ---------------- */
