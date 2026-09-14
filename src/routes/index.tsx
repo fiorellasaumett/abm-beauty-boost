@@ -1,10 +1,10 @@
 import { createFileRoute } from "@tanstack/react-router";
 import { useEffect, useRef, useState } from "react";
 import {
-  ArrowRight, Sparkles, Headphones, TrendingUp, Wallet, Bot, Zap, Globe2,
+  ArrowRight, Sparkles, Headphones, TrendingUp, Bot, Zap, Globe2,
   MessageSquare, Mail, Phone, Users, BarChart3, ShieldCheck, Layers, Rocket,
   Target, HeartHandshake, Lightbulb, Menu, X, CheckCircle2, Send,
-  FileText, AlertTriangle, Gavel,
+  FileText, AlertTriangle, Gavel, Scale, BadgeCheck, Building2, Server, Banknote,
 } from "lucide-react";
 import heroImg from "@/assets/hero-bpo.jpg";
 import beautyImg from "@/assets/beauty-tech.jpg";
@@ -18,6 +18,16 @@ import {
 } from "@/components/ui/select";
 
 export const Route = createFileRoute("/")({
+  head: () => ({
+    meta: [
+      { title: "ABM BPO | Customer Service & Sales" },
+      { name: "description", content: "Apex Business Matrix delivers bilingual customer service and sales solutions for the beauty industry, with MONTOC as its corporate client." },
+      { property: "og:title", content: "ABM BPO | Customer Service & Sales" },
+      { property: "og:description", content: "Specialized BPO operations for the beauty industry from Barranquilla, Colombia." },
+      { property: "og:type", content: "website" },
+      { name: "twitter:card", content: "summary_large_image" },
+    ],
+  }),
   component: Index,
 });
 
@@ -25,9 +35,9 @@ const NAV = [
   { href: "#inicio", label: "Home" },
   { href: "#nosotros", label: "About" },
   { href: "#servicios", label: "Services" },
-  { href: "#lushglow", label: "LushGlow Case" },
+  { href: "#montoc", label: "MONTOC" },
   { href: "#resultados", label: "Results" },
-  { href: "#porque", label: "Why ABM" },
+  { href: "#operations", label: "Operations" },
   { href: "#pqr", label: "PQR" },
   { href: "#contacto", label: "Contact" },
 ];
@@ -40,8 +50,9 @@ function Index() {
       <About />
       <Services />
       <BeautyFocus />
-      <LushGlow />
+      <Montoc />
       <Results />
+      <ProjectDepth />
       <WhyAbm />
       <MissionVision />
       <Values />
@@ -139,7 +150,7 @@ function Hero() {
         <div className="text-white animate-fade-up">
           <div className="inline-flex items-center gap-2 rounded-full glass-dark px-4 py-1.5 text-xs font-medium tracking-wide">
             <Sparkles className="h-3.5 w-3.5 text-abm-yellow" />
-            Customer Experience · Sales · Collections
+             Customer Service · Sales & Marketing
           </div>
           <div className="mt-6">
             <div className="text-xs font-semibold tracking-[0.35em] text-abm-yellow/90">APEX BUSINESS MATRIX</div>
@@ -147,12 +158,12 @@ function Hero() {
           </div>
           <h1 className="mt-4 text-4xl sm:text-5xl lg:text-6xl font-extrabold tracking-tight leading-[1.05]" style={{ fontFamily: "var(--font-display)" }}>
             We connect people.<br />
-            <span className="text-gradient-brand bg-clip-text" style={{ backgroundImage: "linear-gradient(120deg, oklch(0.85 0.15 90), oklch(0.75 0.18 155), oklch(0.7 0.2 285))", WebkitBackgroundClip: "text", color: "transparent" }}>
+             <span className="text-gradient-brand">
               We power businesses.
             </span>
           </h1>
           <p className="mt-5 max-w-xl text-base sm:text-lg text-white/75 leading-relaxed">
-            Specialized BPO solutions to transform customer experience, streamline operations and drive sustainable growth.
+             Specialized, bilingual outsourcing for beauty brands—uniting high-touch customer care with data-led sales and marketing.
           </p>
           <div className="mt-8 flex flex-wrap gap-3">
             <a href="#servicios" className="inline-flex items-center gap-2 rounded-full px-6 py-3.5 text-sm font-semibold text-abm-navy bg-white hover:bg-white/90 transition-transform hover:scale-[1.03] shadow-[var(--shadow-soft)]">
@@ -206,8 +217,8 @@ function About() {
   const items = [
     { icon: Users, color: "var(--abm-blue)", title: "Human talent", text: "Trained agents delivering professional, personalized service." },
     { icon: Bot, color: "var(--abm-purple)", title: "Technology", text: "Strategic use of CRM, automation and artificial intelligence." },
-    { icon: Globe2, color: "var(--abm-green)", title: "Omnichannel", text: "Voice, chat, email and digital channels seamlessly integrated." },
-    { icon: BarChart3, color: "var(--abm-yellow)", title: "Results", text: "KPI-driven processes focused on efficiency and growth." },
+     { icon: Globe2, color: "var(--abm-blue)", title: "Omnichannel", text: "Voice, chat, email and digital channels seamlessly integrated." },
+     { icon: BarChart3, color: "var(--abm-purple)", title: "Results", text: "KPI-driven processes focused on efficiency and growth." },
   ];
   return (
     <section id="nosotros" className="relative py-24 lg:py-32">
@@ -240,19 +251,14 @@ function About() {
 function Services() {
   const svcs = [
     {
-      icon: Headphones, title: "Customer Service", tag: "Customer Service", color: "var(--abm-blue)",
-      desc: "We provide Tier 1 attention and specialized support to guarantee fast, clear and personalized responses.",
-      bullets: ["Inbound support", "Issue resolution", "Product assistance", "Request management", "Omnichannel support", "Customer Experience"],
+       icon: Headphones, title: "Customer Service", tag: "Inbound", color: "var(--abm-blue)",
+       desc: "Tier 1 support and product guidance built around fast, clear and empathetic customer experiences.",
+       bullets: ["Inbound support", "Product assistance", "Requests & complaints", "Omnichannel service", "CRM case management", "Customer loyalty"],
     },
     {
-      icon: TrendingUp, title: "Sales", tag: "Sales", color: "var(--abm-purple)",
-      desc: "We drive commercial growth through outbound sales, cross-selling, up-selling and lead nurturing strategies.",
-      bullets: ["Outbound sales", "Cross-selling", "Up-selling", "Personalized recommendations", "Lead nurturing", "Lead conversion"],
-    },
-    {
-      icon: Wallet, title: "Collections", tag: "Collections", color: "var(--abm-green)",
-      desc: "We manage professional receivables recovery through effective communication, negotiation and follow-up.",
-      bullets: ["Payment reminders", "Negotiation", "Payment agreements", "Account follow-up", "Portfolio recovery", "Professional client management"],
+       icon: TrendingUp, title: "Sales & Marketing", tag: "Outbound", color: "var(--abm-purple)",
+       desc: "Consultative sales and marketing campaigns that turn product guidance into measurable revenue growth.",
+       bullets: ["Outbound sales", "Cross-selling & upselling", "Lead nurturing", "Personalized recommendations", "Campaign support", "Conversion optimization"],
     },
   ];
   return (
@@ -264,7 +270,7 @@ function Services() {
             Solutions designed to <span className="text-gradient-brand">grow your business</span>.
           </h2>
         </div>
-        <div className="mt-14 grid gap-6 lg:grid-cols-3">
+         <div className="mt-14 grid gap-6 lg:grid-cols-2">
           {svcs.map((s) => (
             <div key={s.title} className="group relative flex flex-col rounded-3xl bg-card p-8 border border-border shadow-[var(--shadow-soft)] hover:shadow-[var(--shadow-glow)] transition-all hover:-translate-y-1.5">
               <div className="flex items-center justify-between">
@@ -321,7 +327,7 @@ function BeautyFocus() {
             {[
               { l: "Beauty", c: "var(--abm-purple)" },
               { l: "Makeup", c: "var(--abm-blue)" },
-              { l: "Skincare", c: "var(--abm-green)" },
+               { l: "Skincare", c: "var(--abm-purple)" },
             ].map((x) => (
               <div key={x.l} className="rounded-2xl border border-border bg-card p-5 text-center hover:-translate-y-1 transition-transform">
                 <div className="mx-auto h-2 w-8 rounded-full" style={{ backgroundColor: x.c }} />
