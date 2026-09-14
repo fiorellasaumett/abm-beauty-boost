@@ -615,6 +615,15 @@ function Results() {
 /* ---------------- Academic project framework ---------------- */
 function ProjectDepth() {
   const [active, setActive] = useState("objectives");
+  useEffect(() => {
+    const selectLinkedCampaign = () => {
+      if (window.location.hash === "#customer-service-campaign") setActive("customerService");
+      if (window.location.hash === "#sales-campaign") setActive("sales");
+    };
+    selectLinkedCampaign();
+    window.addEventListener("hashchange", selectLinkedCampaign);
+    return () => window.removeEventListener("hashchange", selectLinkedCampaign);
+  }, []);
   const panels = {
     objectives: {
       title: "2026 SMART objectives",
