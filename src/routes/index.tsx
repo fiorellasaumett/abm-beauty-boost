@@ -1,10 +1,10 @@
 import { createFileRoute } from "@tanstack/react-router";
 import { useEffect, useRef, useState } from "react";
 import {
-  ArrowRight, Sparkles, Headphones, TrendingUp, Wallet, Bot, Zap, Globe2,
+  ArrowRight, Sparkles, Headphones, TrendingUp, Bot, Zap, Globe2,
   MessageSquare, Mail, Phone, Users, BarChart3, ShieldCheck, Layers, Rocket,
   Target, HeartHandshake, Lightbulb, Menu, X, CheckCircle2, Send,
-  FileText, AlertTriangle, Gavel,
+  FileText, AlertTriangle, Gavel, Scale, BadgeCheck, Building2, Server, Banknote,
 } from "lucide-react";
 import heroImg from "@/assets/hero-bpo.jpg";
 import beautyImg from "@/assets/beauty-tech.jpg";
@@ -18,6 +18,16 @@ import {
 } from "@/components/ui/select";
 
 export const Route = createFileRoute("/")({
+  head: () => ({
+    meta: [
+      { title: "ABM BPO | Customer Service & Sales" },
+      { name: "description", content: "Apex Business Matrix delivers bilingual customer service and sales solutions for the beauty industry, with MONTOC as its corporate client." },
+      { property: "og:title", content: "ABM BPO | Customer Service & Sales" },
+      { property: "og:description", content: "Specialized BPO operations for the beauty industry from Barranquilla, Colombia." },
+      { property: "og:type", content: "website" },
+      { name: "twitter:card", content: "summary_large_image" },
+    ],
+  }),
   component: Index,
 });
 
@@ -25,9 +35,9 @@ const NAV = [
   { href: "#inicio", label: "Home" },
   { href: "#nosotros", label: "About" },
   { href: "#servicios", label: "Services" },
-  { href: "#lushglow", label: "LushGlow Case" },
+  { href: "#montoc", label: "MONTOC" },
   { href: "#resultados", label: "Results" },
-  { href: "#porque", label: "Why ABM" },
+  { href: "#operations", label: "Operations" },
   { href: "#pqr", label: "PQR" },
   { href: "#contacto", label: "Contact" },
 ];
@@ -40,8 +50,9 @@ function Index() {
       <About />
       <Services />
       <BeautyFocus />
-      <LushGlow />
+      <Montoc />
       <Results />
+      <ProjectDepth />
       <WhyAbm />
       <MissionVision />
       <Values />
@@ -114,11 +125,11 @@ function Navbar() {
 
 function Logo() {
   return (
-    <div className="relative h-10 w-10 shrink-0 rounded-xl overflow-hidden" style={{ backgroundImage: "linear-gradient(135deg, var(--abm-purple) 0%, var(--abm-yellow) 100%)" }}>
+    <div className="relative h-10 w-10 shrink-0 rounded-xl overflow-hidden bg-[var(--gradient-brand)]">
       <div className="absolute inset-[3px] rounded-[9px] bg-white flex items-center justify-center">
         <div className="relative h-5 w-5">
           <div className="absolute inset-0 rounded-full border-2" style={{ borderColor: "var(--abm-purple)" }} />
-          <div className="absolute inset-0 rounded-full border-t-2 rotate-45" style={{ borderTopColor: "var(--abm-yellow)" }} />
+          <div className="absolute inset-0 rounded-full border-t-2 rotate-45 border-t-abm-blue" />
           <div className="absolute left-1/2 top-1/2 h-1 w-1 -translate-x-1/2 -translate-y-1/2 rounded-full" style={{ background: "var(--abm-purple)" }} />
         </div>
       </div>
@@ -133,26 +144,26 @@ function Hero() {
       <div className="absolute inset-0 bg-grid opacity-40" />
       <div className="absolute -left-40 top-20 h-96 w-96 rounded-full bg-abm-purple/40 blur-3xl" />
       <div className="absolute -right-32 top-40 h-96 w-96 rounded-full bg-abm-blue/40 blur-3xl" />
-      <div className="absolute left-1/3 bottom-0 h-72 w-72 rounded-full bg-abm-green/25 blur-3xl" />
+      <div className="absolute left-1/3 bottom-0 h-72 w-72 rounded-full bg-abm-purple/25 blur-3xl" />
 
       <div className="relative mx-auto max-w-7xl px-4 sm:px-6 grid lg:grid-cols-[1.05fr_1fr] gap-12 items-center">
         <div className="text-white animate-fade-up">
           <div className="inline-flex items-center gap-2 rounded-full glass-dark px-4 py-1.5 text-xs font-medium tracking-wide">
-            <Sparkles className="h-3.5 w-3.5 text-abm-yellow" />
-            Customer Experience · Sales · Collections
+            <Sparkles className="h-3.5 w-3.5 text-abm-blue" />
+             Customer Service · Sales & Marketing
           </div>
           <div className="mt-6">
-            <div className="text-xs font-semibold tracking-[0.35em] text-abm-yellow/90">APEX BUSINESS MATRIX</div>
+            <div className="text-xs font-semibold tracking-[0.35em] text-abm-blue">APEX BUSINESS MATRIX</div>
             <div className="text-[10px] tracking-[0.4em] text-white/60">ABM BPO</div>
           </div>
           <h1 className="mt-4 text-4xl sm:text-5xl lg:text-6xl font-extrabold tracking-tight leading-[1.05]" style={{ fontFamily: "var(--font-display)" }}>
             We connect people.<br />
-            <span className="text-gradient-brand bg-clip-text" style={{ backgroundImage: "linear-gradient(120deg, oklch(0.85 0.15 90), oklch(0.75 0.18 155), oklch(0.7 0.2 285))", WebkitBackgroundClip: "text", color: "transparent" }}>
+             <span className="text-gradient-brand">
               We power businesses.
             </span>
           </h1>
           <p className="mt-5 max-w-xl text-base sm:text-lg text-white/75 leading-relaxed">
-            Specialized BPO solutions to transform customer experience, streamline operations and drive sustainable growth.
+             Specialized, bilingual outsourcing for beauty brands—uniting high-touch customer care with data-led sales and marketing.
           </p>
           <div className="mt-8 flex flex-wrap gap-3">
             <a href="#servicios" className="inline-flex items-center gap-2 rounded-full px-6 py-3.5 text-sm font-semibold text-abm-navy bg-white hover:bg-white/90 transition-transform hover:scale-[1.03] shadow-[var(--shadow-soft)]">
@@ -186,7 +197,7 @@ function Hero() {
           </div>
           <div className="absolute -right-3 bottom-10 animate-float rounded-2xl glass-card px-4 py-3 shadow-[var(--shadow-card)]" style={{ animationDelay: "1.5s" }}>
             <div className="flex items-center gap-3">
-              <div className="grid h-9 w-9 place-items-center rounded-lg text-white" style={{ backgroundColor: "oklch(0.6 0.18 155)" }}>
+              <div className="grid h-9 w-9 place-items-center rounded-lg bg-abm-purple text-white">
                 <TrendingUp className="h-4 w-4" />
               </div>
               <div>
@@ -206,8 +217,8 @@ function About() {
   const items = [
     { icon: Users, color: "var(--abm-blue)", title: "Human talent", text: "Trained agents delivering professional, personalized service." },
     { icon: Bot, color: "var(--abm-purple)", title: "Technology", text: "Strategic use of CRM, automation and artificial intelligence." },
-    { icon: Globe2, color: "var(--abm-green)", title: "Omnichannel", text: "Voice, chat, email and digital channels seamlessly integrated." },
-    { icon: BarChart3, color: "var(--abm-yellow)", title: "Results", text: "KPI-driven processes focused on efficiency and growth." },
+     { icon: Globe2, color: "var(--abm-blue)", title: "Omnichannel", text: "Voice, chat, email and digital channels seamlessly integrated." },
+     { icon: BarChart3, color: "var(--abm-purple)", title: "Results", text: "KPI-driven processes focused on efficiency and growth." },
   ];
   return (
     <section id="nosotros" className="relative py-24 lg:py-32">
@@ -240,19 +251,14 @@ function About() {
 function Services() {
   const svcs = [
     {
-      icon: Headphones, title: "Customer Service", tag: "Customer Service", color: "var(--abm-blue)",
-      desc: "We provide Tier 1 attention and specialized support to guarantee fast, clear and personalized responses.",
-      bullets: ["Inbound support", "Issue resolution", "Product assistance", "Request management", "Omnichannel support", "Customer Experience"],
+       icon: Headphones, title: "Customer Service", tag: "Inbound", color: "var(--abm-blue)",
+       desc: "Tier 1 support and product guidance built around fast, clear and empathetic customer experiences.",
+       bullets: ["Inbound support", "Product assistance", "Requests & complaints", "Omnichannel service", "CRM case management", "Customer loyalty"],
     },
     {
-      icon: TrendingUp, title: "Sales", tag: "Sales", color: "var(--abm-purple)",
-      desc: "We drive commercial growth through outbound sales, cross-selling, up-selling and lead nurturing strategies.",
-      bullets: ["Outbound sales", "Cross-selling", "Up-selling", "Personalized recommendations", "Lead nurturing", "Lead conversion"],
-    },
-    {
-      icon: Wallet, title: "Collections", tag: "Collections", color: "var(--abm-green)",
-      desc: "We manage professional receivables recovery through effective communication, negotiation and follow-up.",
-      bullets: ["Payment reminders", "Negotiation", "Payment agreements", "Account follow-up", "Portfolio recovery", "Professional client management"],
+       icon: TrendingUp, title: "Sales & Marketing", tag: "Outbound", color: "var(--abm-purple)",
+       desc: "Consultative sales and marketing campaigns that turn product guidance into measurable revenue growth.",
+       bullets: ["Outbound sales", "Cross-selling & upselling", "Lead nurturing", "Personalized recommendations", "Campaign support", "Conversion optimization"],
     },
   ];
   return (
@@ -264,7 +270,7 @@ function Services() {
             Solutions designed to <span className="text-gradient-brand">grow your business</span>.
           </h2>
         </div>
-        <div className="mt-14 grid gap-6 lg:grid-cols-3">
+         <div className="mt-14 grid gap-6 lg:grid-cols-2">
           {svcs.map((s) => (
             <div key={s.title} className="group relative flex flex-col rounded-3xl bg-card p-8 border border-border shadow-[var(--shadow-soft)] hover:shadow-[var(--shadow-glow)] transition-all hover:-translate-y-1.5">
               <div className="flex items-center justify-between">
@@ -321,7 +327,7 @@ function BeautyFocus() {
             {[
               { l: "Beauty", c: "var(--abm-purple)" },
               { l: "Makeup", c: "var(--abm-blue)" },
-              { l: "Skincare", c: "var(--abm-green)" },
+               { l: "Skincare", c: "var(--abm-purple)" },
             ].map((x) => (
               <div key={x.l} className="rounded-2xl border border-border bg-card p-5 text-center hover:-translate-y-1 transition-transform">
                 <div className="mx-auto h-2 w-8 rounded-full" style={{ backgroundColor: x.c }} />
@@ -335,33 +341,32 @@ function BeautyFocus() {
   );
 }
 
-/* ---------------- LushGlow Case ---------------- */
-function LushGlow() {
+/* ---------------- MONTOC Case ---------------- */
+function Montoc() {
   const tabs = [
     { key: "cs", label: "Customer Service", icon: Headphones, text: "Personalized attention, product support and issue resolution." },
-    { key: "sales", label: "Sales", icon: TrendingUp, text: "Product recommendations, cross-selling and up-selling strategies, and customer conversion." },
-    { key: "col", label: "Collections", icon: Wallet, text: "Reminders, negotiation and professional recovery of outstanding payments." },
+    { key: "sales", label: "Sales & Marketing", icon: TrendingUp, text: "Consultative recommendations, campaign support, cross-selling, upselling and lead conversion." },
   ];
   const [active, setActive] = useState(tabs[0].key);
-  const cur = tabs.find((t) => t.key === active)!;
+  const cur = tabs.find((t) => t.key === active) ?? tabs[0];
   return (
-    <section id="lushglow" className="relative py-24 lg:py-32 overflow-hidden" style={{ backgroundImage: "var(--gradient-hero)" }}>
+    <section id="montoc" className="relative py-24 lg:py-32 overflow-hidden" style={{ backgroundImage: "var(--gradient-hero)" }}>
       <div className="absolute inset-0 bg-grid opacity-30" />
       <div className="absolute -right-32 top-10 h-96 w-96 rounded-full bg-abm-purple/40 blur-3xl" />
       <div className="relative mx-auto max-w-7xl px-4 sm:px-6 text-white">
-        <SectionEyebrow tone="light">Case study</SectionEyebrow>
+        <SectionEyebrow tone="light">Corporate client</SectionEyebrow>
         <h2 className="mt-4 max-w-3xl text-3xl sm:text-4xl lg:text-5xl font-extrabold tracking-tight" style={{ fontFamily: "var(--font-display)" }}>
-          Our case study: <span style={{ backgroundImage: "linear-gradient(120deg, oklch(0.85 0.15 90), oklch(0.75 0.2 300))", WebkitBackgroundClip: "text", color: "transparent" }}>LushGlow</span>
+          Our corporate client: <span className="text-gradient-brand">MONTOC</span>
         </h2>
         <p className="mt-6 max-w-2xl text-white/75 leading-relaxed">
-          LushGlow is a makeup and skincare brand offering high-quality products at accessible prices. ABM BPO acts as its strategic partner to optimize customer service, sales and collections management.
+          MONTOC Cosmetic Tools is a Colombian beauty brand offering practical, functional and high-quality makeup and skincare products. ABM supports its customer relationships, digital growth and sales performance.
         </p>
 
-        {/* Flow ABM -> LUSHGLOW -> CLIENTES */}
+        {/* Flow ABM -> MONTOC -> CUSTOMERS */}
         <div className="mt-12 grid gap-4 md:grid-cols-3 items-stretch">
           <FlowNode title="ABM BPO" sub="Strategic partner" icon={Layers} color="var(--abm-blue)" />
-          <FlowNode title="LUSHGLOW" sub="Beauty brand" icon={Sparkles} color="var(--abm-yellow)" />
-          <FlowNode title="CUSTOMERS" sub="Optimized experience" icon={HeartHandshake} color="var(--abm-green)" />
+          <FlowNode title="MONTOC" sub="Corporate client" icon={Sparkles} color="var(--abm-purple)" />
+          <FlowNode title="CUSTOMERS" sub="Optimized experience" icon={HeartHandshake} color="var(--abm-blue)" />
         </div>
 
         {/* Tabs */}
@@ -471,26 +476,100 @@ function Results() {
         <div className="mt-12 grid gap-5 sm:grid-cols-2 lg:grid-cols-4">
           <Counter value={80} suffix="%" label="Service level" sub="Operational target" color="var(--abm-blue)" />
           <Counter value={5.5} decimals={1} suffix=" min" label="AHT target" sub="Average handle time" color="var(--abm-purple)" />
-          <Counter value={80} suffix="%" label="FCR target" sub="First-contact resolution" color="var(--abm-green)" />
-          <Counter value={4.2} decimals={1} suffix=" / 5" label="Minimum CSAT" sub="Customer satisfaction" color="var(--abm-yellow)" />
-          <Counter value={500} suffix="+" label="New customers" sub="Acquisition goal" color="var(--abm-purple)" />
+          <Counter value={80} suffix="%" label="FCR target" sub="First-contact resolution" color="var(--abm-blue)" />
+          <Counter value={4.2} decimals={1} suffix=" / 5" label="Minimum CSAT" sub="Customer satisfaction" color="var(--abm-purple)" />
+          <Counter value={200} suffix="+" label="New customers" sub="Minimum acquisition goal" color="var(--abm-purple)" />
           <Counter value={12} suffix="%" label="Minimum conversion" sub="Close rate" color="var(--abm-blue)" />
-          <Counter value={500} prefix="$" suffix="K USD" label="Minimum recovery" sub="Financial target" color="var(--abm-green)" />
-          <Counter value={1200} label="Accounts to recover" sub="Overdue portfolio" color="var(--abm-yellow)" />
+          <Counter value={250} prefix="$" suffix="M COP" label="Sales revenue" sub="2026 campaign goal" color="var(--abm-purple)" />
+          <Counter value={35} suffix="%" label="Cost reduction" sub="Value proposition" color="var(--abm-blue)" />
         </div>
       </div>
     </section>
   );
 }
 
+/* ---------------- Academic project framework ---------------- */
+function ProjectDepth() {
+  const [active, setActive] = useState("objectives");
+  const panels = {
+    objectives: {
+      title: "2026 SMART objectives",
+      icon: Target,
+      intro: "From January 1 to August 10, 2026, ABM will operate against clear customer experience and growth commitments.",
+      points: ["Answer 80% of inbound calls within 20 seconds", "Reduce AHT from 8:45 to 5:30", "Raise FCR from 55% to 80%", "Generate COP 250M in sales and acquire 200 customers"],
+    },
+    operations: {
+      title: "Campaign operations",
+      icon: Users,
+      intro: "A bilingual operation runs Monday through Friday, 8:00 a.m. to 8:00 p.m., with 20% shrinkage built into staffing.",
+      points: ["Customer Service: 10 seats and 18 agents", "Sales & Marketing: 8 seats and 15 agents", "42-hour legal workweek in Colombia", "English/Spanish talent at B2+ to C1 level"],
+    },
+    quality: {
+      title: "Quality & compliance",
+      icon: BadgeCheck,
+      intro: "Weekly QA reviews cover recorded calls, chat, email and CRM cases, protecting both experience and regulatory compliance.",
+      points: ["QA score and schedule adherence targets of 95%+", "Law 1581 of 2012 data privacy controls", "Professional greetings, verification and active listening", "Product knowledge, accurate workflows and complete CRM logging"],
+    },
+    finance: {
+      title: "Sustainable financial model",
+      icon: Banknote,
+      intro: "A fixed seat fee plus performance incentives creates predictable revenue while aligning ABM with MONTOC’s outcomes.",
+      points: ["COP 6.8M monthly fee per dedicated seat", "Fixed seat fees support predictable planning", "Performance incentives align both organizations", "18 dedicated seats across the two service lines"],
+    },
+  };
+  const current = panels[active as keyof typeof panels] ?? panels.objectives;
+  return (
+    <section id="operations" className="py-24 lg:py-32" style={{ backgroundImage: "var(--gradient-soft)" }}>
+      <div className="mx-auto max-w-7xl px-4 sm:px-6">
+        <SectionEyebrow>Project framework</SectionEyebrow>
+        <div className="mt-4 grid gap-6 lg:grid-cols-[1fr_1.1fr] lg:items-end">
+          <h2 className="text-3xl sm:text-4xl lg:text-5xl font-extrabold tracking-tight text-abm-navy" style={{ fontFamily: "var(--font-display)" }}>Built to operate with <span className="text-gradient-brand">discipline and proof</span>.</h2>
+          <p className="text-muted-foreground leading-relaxed">The academic model combines measurable goals, workforce planning, rigorous quality controls and a financially sustainable delivery structure.</p>
+        </div>
+        <div className="mt-12 grid gap-5 lg:grid-cols-[0.72fr_1.28fr]">
+          <div className="grid grid-cols-2 gap-3 lg:grid-cols-1">
+            {Object.entries(panels).map(([key, item]) => (
+              <Button key={key} variant="outline" onClick={() => setActive(key)} className={`h-auto justify-start gap-3 rounded-lg p-4 text-left ${active === key ? "border-primary bg-accent text-primary" : "bg-card"}`}>
+                <item.icon className="h-5 w-5 shrink-0" /><span>{item.title}</span>
+              </Button>
+            ))}
+          </div>
+          <div className="rounded-lg border border-border bg-card p-7 shadow-[var(--shadow-card)] sm:p-9">
+            <div className="flex items-center gap-4"><div className="grid h-12 w-12 place-items-center rounded-lg bg-primary text-primary-foreground"><current.icon className="h-5 w-5" /></div><h3 className="text-2xl font-bold text-abm-navy">{current.title}</h3></div>
+            <p className="mt-5 text-muted-foreground leading-relaxed">{current.intro}</p>
+            <div className="mt-6 grid gap-3 sm:grid-cols-2">{current.points.map((point) => <div key={point} className="flex gap-2.5 rounded-lg bg-muted p-4 text-sm text-foreground/80"><CheckCircle2 className="mt-0.5 h-4 w-4 shrink-0 text-primary" />{point}</div>)}</div>
+          </div>
+        </div>
+        <div className="mt-14 grid gap-4 md:grid-cols-3">
+          <ProjectCard icon={Building2} title="Market opportunity" text="More than 70% of beauty e-commerce shoppers may abandon a purchase without immediate product guidance. ABM turns support into conversion." />
+          <ProjectCard icon={Scale} title="Regulatory readiness" text="Processes are designed around Colombian data protection obligations and transparent customer consent." />
+          <ProjectCard icon={Server} title="Business continuity" text="Redundant internet, UPS and generator coverage, cloud telephony backup, and secure work-from-home contingency protect availability." />
+        </div>
+        <div className="mt-16 border-t border-border pt-12">
+          <div className="flex flex-wrap items-end justify-between gap-4"><div><SectionEyebrow>Leadership</SectionEyebrow><h3 className="mt-4 text-3xl font-extrabold text-abm-navy" style={{ fontFamily: "var(--font-display)" }}>The team behind ABM</h3></div><p className="max-w-xl text-sm leading-relaxed text-muted-foreground">A specialized structure connects executive direction, operations, finance and campaign leadership.</p></div>
+          <div className="mt-8 grid gap-3 sm:grid-cols-2 lg:grid-cols-5">
+            {[
+              ["Mabel Rodriguez", "CEO"], ["Jesus Martinez", "Operations Manager"], ["Valentina Fuentes", "Finance Director"], ["Fiorella Saumett", "Sales & Marketing Lead"], ["Juan Esteban Guzman", "Customer Service Lead"],
+            ].map(([name, role]) => <div key={name} className="rounded-lg border border-border bg-card p-5"><div className="text-xs font-semibold uppercase tracking-wider text-primary">{role}</div><div className="mt-2 font-bold text-abm-navy">{name}</div></div>)}
+          </div>
+        </div>
+      </div>
+    </section>
+  );
+}
+
+function ProjectCard({ icon: Icon, title, text }: { icon: typeof Scale; title: string; text: string }) {
+  return <div className="rounded-lg border border-border bg-card p-6"><Icon className="h-6 w-6 text-primary" /><h3 className="mt-4 font-bold text-abm-navy">{title}</h3><p className="mt-2 text-sm leading-relaxed text-muted-foreground">{text}</p></div>;
+}
+
 /* ---------------- Why ABM ---------------- */
 function WhyAbm() {
   const items = [
-    { icon: Zap, title: "Fast response", text: "Optimized attention and response times.", color: "var(--abm-yellow)" },
+    { icon: Zap, title: "Fast response", text: "Optimized attention and response times.", color: "var(--abm-purple)" },
     { icon: HeartHandshake, title: "Personalized service", text: "Every interaction is built to generate trust and satisfaction.", color: "var(--abm-purple)" },
     { icon: Globe2, title: "Omnichannel model", text: "Voice, chat, email and digital channels fully integrated.", color: "var(--abm-blue)" },
     { icon: Bot, title: "Technology", text: "CRM, automation and AI applied to every process.", color: "var(--abm-purple)" },
-    { icon: Users, title: "Specialized talent", text: "Agents trained in customer service, sales and digital communication.", color: "var(--abm-green)" },
+    { icon: Users, title: "Specialized talent", text: "Agents trained in customer service, sales and digital communication.", color: "var(--abm-blue)" },
     { icon: Rocket, title: "Scalability", text: "Solutions that adapt to each company's growth and needs.", color: "var(--abm-blue)" },
   ];
   return (
@@ -528,7 +607,7 @@ function MissionVision() {
       <div className="mx-auto max-w-7xl px-4 sm:px-6 grid lg:grid-cols-2 gap-6">
         {[
           { tag: "Mission", title: "Our mission", color: "var(--abm-blue)", text: "To deliver high-quality, end-to-end Business Process Outsourcing solutions that transform customer experience through artificial intelligence, automation, omnichannel infrastructure and highly trained human talent — reducing costs, optimizing times and maximizing efficiency." },
-          { tag: "Vision 2030", title: "Our vision", color: "var(--abm-purple)", text: "To become a national and international benchmark in the BPO sector, reaching a leading position in outsourcing services for growing companies and being recognized for operational excellence, technological innovation, adaptability and sustainable talent development." },
+          { tag: "Vision 2030", title: "Our vision", color: "var(--abm-purple)", text: "To become a national and international BPO benchmark, achieve 15% market share among growing enterprises, and pursue COPC and ISO 27001 standards through innovation, adaptability and sustainable talent development." },
         ].map((c) => (
           <div key={c.tag} className="relative overflow-hidden rounded-3xl p-8 lg:p-10 text-white shadow-[var(--shadow-card)]" style={{ backgroundImage: "var(--gradient-hero)" }}>
             <div className="absolute -top-16 -right-16 h-64 w-64 rounded-full blur-3xl opacity-40" style={{ backgroundColor: c.color }} />
@@ -549,12 +628,12 @@ function Values() {
   const values = [
     { l: "Trust", i: ShieldCheck, c: "var(--abm-blue)" },
     { l: "Innovation", i: Lightbulb, c: "var(--abm-purple)" },
-    { l: "Growth", i: TrendingUp, c: "var(--abm-green)" },
-    { l: "Teamwork", i: Users, c: "var(--abm-yellow)" },
-    { l: "Optimism", i: Sparkles, c: "var(--abm-yellow)" },
+    { l: "Growth", i: TrendingUp, c: "var(--abm-blue)" },
+    { l: "Teamwork", i: Users, c: "var(--abm-purple)" },
+    { l: "Optimism", i: Sparkles, c: "var(--abm-blue)" },
     { l: "Connection", i: Globe2, c: "var(--abm-blue)" },
     { l: "Excellence", i: Target, c: "var(--abm-purple)" },
-    { l: "Adaptability", i: Layers, c: "var(--abm-green)" },
+    { l: "Adaptability", i: Layers, c: "var(--abm-blue)" },
   ];
   return (
     <section className="relative py-24 lg:py-28" style={{ backgroundImage: "var(--gradient-soft)" }}>
@@ -595,7 +674,7 @@ function Process() {
           How we <span className="text-gradient-brand">work</span>.
         </h2>
         <div className="relative mt-14">
-          <div className="hidden lg:block absolute left-0 right-0 top-8 h-0.5" style={{ backgroundImage: "linear-gradient(90deg, var(--abm-blue), var(--abm-purple), var(--abm-green), var(--abm-yellow))" }} />
+          <div className="hidden lg:block absolute left-0 right-0 top-8 h-0.5 bg-[var(--gradient-brand)]" />
           <div className="grid gap-6 lg:grid-cols-5">
             {steps.map((s, i) => (
               <div key={s.n} className="relative rounded-2xl bg-card border border-border p-6 shadow-[var(--shadow-soft)]">
@@ -628,7 +707,7 @@ function TechStack() {
       <div className="relative mx-auto max-w-7xl px-4 sm:px-6 text-white">
         <SectionEyebrow tone="light">Technology</SectionEyebrow>
         <h2 className="mt-4 max-w-3xl text-3xl sm:text-4xl lg:text-5xl font-extrabold tracking-tight" style={{ fontFamily: "var(--font-display)" }}>
-          Technology that connects. <span style={{ backgroundImage: "linear-gradient(120deg, oklch(0.85 0.15 90), oklch(0.75 0.2 300))", WebkitBackgroundClip: "text", color: "transparent" }}>Intelligence that transforms</span>.
+          Technology that connects. <span className="text-gradient-brand">Intelligence that transforms</span>.
         </h2>
 
         <div className="relative mt-16">
@@ -641,7 +720,7 @@ function TechStack() {
                 <div className="mt-4 text-sm font-semibold">{t.l}</div>
                 <span className="pointer-events-none absolute inset-0 rounded-2xl ring-1 ring-white/10 group-hover:ring-abm-purple/60 transition" />
                 {i % 2 === 0 && (
-                  <span className="pointer-events-none absolute -inset-2 rounded-3xl opacity-0 group-hover:opacity-100 transition" style={{ boxShadow: "0 0 40px oklch(0.6 0.2 285 / 0.35)" }} />
+                  <span className="pointer-events-none absolute -inset-2 rounded-3xl opacity-0 group-hover:opacity-100 transition shadow-[var(--shadow-glow)]" />
                 )}
               </div>
             ))}
@@ -749,9 +828,8 @@ function Contact() {
                   <SelectTrigger><SelectValue placeholder="Select a service" /></SelectTrigger>
                   <SelectContent>
                     <SelectItem value="cs">Customer Service</SelectItem>
-                    <SelectItem value="sales">Sales</SelectItem>
-                    <SelectItem value="col">Collections</SelectItem>
-                    <SelectItem value="full">End-to-End BPO Solution</SelectItem>
+                    <SelectItem value="sales">Sales & Marketing</SelectItem>
+                    <SelectItem value="full">Combined Service Solution</SelectItem>
                   </SelectContent>
                 </Select>
               </Field>
@@ -892,9 +970,8 @@ function PQR() {
                     <SelectTrigger><SelectValue placeholder="Select a service" /></SelectTrigger>
                     <SelectContent>
                       <SelectItem value="cs">Customer Service</SelectItem>
-                      <SelectItem value="sales">Sales</SelectItem>
-                      <SelectItem value="col">Collections</SelectItem>
-                      <SelectItem value="lush">LushGlow account</SelectItem>
+                      <SelectItem value="sales">Sales & Marketing</SelectItem>
+                      <SelectItem value="montoc">MONTOC account</SelectItem>
                       <SelectItem value="other">Other</SelectItem>
                     </SelectContent>
                   </Select>
@@ -936,7 +1013,7 @@ function Footer() {
               </div>
             </div>
             <p className="mt-5 text-white/70 max-w-md">
-              We connect people. We power businesses. Specialized BPO solutions in Customer Service, Sales and Collections for beauty and skincare brands.
+              We connect people. We power businesses. Specialized Customer Service and Sales & Marketing solutions for the beauty industry.
             </p>
             <div className="mt-6 flex gap-3">
               {["in", "ig", "fb", "tw"].map((s) => (
@@ -958,9 +1035,8 @@ function Footer() {
             <div className="text-xs uppercase tracking-widest text-white/50">Services</div>
             <ul className="mt-4 space-y-2 text-sm text-white/80">
               <li>Customer Service</li>
-              <li>Sales</li>
-              <li>Collections</li>
-              <li>End-to-End BPO Solution</li>
+              <li>Sales & Marketing</li>
+              <li>Combined Service Solution</li>
             </ul>
           </div>
         </div>
