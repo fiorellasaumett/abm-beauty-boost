@@ -260,58 +260,82 @@ export function ProcessRoutes() {
           ))}
         </div>
 
-        <div className="mt-8 grid gap-6 lg:grid-cols-3">
-          <div className="rounded-2xl border border-border bg-card p-6 shadow-[var(--shadow-card)] lg:col-span-1">
-            <h3 className="text-lg font-bold text-abm-navy">Process objective</h3>
-            <p className="mt-3 text-sm leading-relaxed text-muted-foreground">{data.objective}</p>
-            <h4 className="mt-6 flex items-center gap-2 text-sm font-bold uppercase tracking-wider text-abm-purple">
-              <Workflow className="h-4 w-4" /> Main tasks
-            </h4>
-            <ul className="mt-3 space-y-2">
-              {data.tasks.map((t) => (
-                <li key={t} className="flex gap-2 text-sm text-muted-foreground">
-                  <CheckCircle2 className="mt-0.5 h-4 w-4 shrink-0 text-abm-blue" />
-                  <span>{t}</span>
-                </li>
-              ))}
-            </ul>
-          </div>
+        <div className="mt-8 rounded-2xl border border-border bg-card p-6 shadow-[var(--shadow-card)]">
+          <h3 className="text-lg font-bold text-abm-navy">Process objective</h3>
+          <p className="mt-3 text-sm leading-relaxed text-muted-foreground">{data.objective}</p>
+          <h4 className="mt-6 flex items-center gap-2 text-sm font-bold uppercase tracking-wider text-abm-purple">
+            <Workflow className="h-4 w-4" /> Main tasks
+          </h4>
+          <ul className="mt-3 grid gap-2 sm:grid-cols-2">
+            {data.tasks.map((t) => (
+              <li key={t} className="flex gap-2 text-sm text-muted-foreground">
+                <CheckCircle2 className="mt-0.5 h-4 w-4 shrink-0 text-abm-blue" />
+                <span>{t}</span>
+              </li>
+            ))}
+          </ul>
+        </div>
 
-          <div className="space-y-4 lg:col-span-2">
-            {data.touchpoints.map((tp) => (
-              <article key={tp.n} className="rounded-2xl border border-border bg-card p-6 shadow-[var(--shadow-soft)]">
-                <div className="flex items-baseline gap-3">
-                  <span className="text-2xl font-extrabold text-gradient-brand" style={{ fontFamily: "var(--font-display)" }}>
-                    {tp.n}
-                  </span>
-                  <h3 className="text-lg font-bold text-abm-navy">Touchpoint {tp.n.replace(/^0/, "")}: {tp.title}</h3>
+        {/* Process route diagram */}
+        <div className="mt-10 overflow-x-auto rounded-3xl border border-border bg-card p-5 shadow-[var(--shadow-card)] sm:p-8">
+          <div className="min-w-[860px]">
+            <div className="inline-flex rounded-xl border-2 border-abm-purple px-5 py-2 text-sm font-bold uppercase tracking-[0.2em] text-abm-purple">
+              Process route
+            </div>
+            <p className="mt-3 text-xs font-semibold uppercase tracking-[0.2em] text-muted-foreground">Touchpoints</p>
+
+            <div className="mt-4 grid grid-cols-[190px_1fr_300px] gap-4">
+              <div className="rounded-xl border-2 border-abm-blue py-3 text-center text-sm font-bold uppercase tracking-wider text-abm-blue">
+                What
+              </div>
+              <div className="rounded-xl border-2 border-abm-blue py-3 text-center text-sm font-bold uppercase tracking-wider text-abm-blue">
+                How — Protocols
+              </div>
+              <div className="rounded-xl border-2 border-abm-blue py-3 text-center text-sm font-bold uppercase tracking-wider text-abm-blue">
+                Expected result — Quality standards
+              </div>
+            </div>
+
+            {data.touchpoints.map((tp, i) => (
+              <div key={tp.n} className="mt-4 grid grid-cols-[190px_1fr_300px] items-stretch gap-4">
+                <div className="flex flex-col">
+                  <div className="rounded-xl px-3 py-4 text-center shadow-[var(--shadow-soft)]" style={{ backgroundImage: "var(--gradient-brand)" }}>
+                    <p className="text-[11px] font-bold uppercase tracking-[0.2em] text-primary-foreground/80">
+                      {i === 0 ? "Start" : `Step ${i + 1}`}
+                    </p>
+                    <p className="mt-1 text-sm font-bold text-primary-foreground">{tp.title}</p>
+                  </div>
+                  <p className="mt-2 px-1 text-xs leading-relaxed text-muted-foreground">{tp.what}</p>
+                  {i < data.touchpoints.length - 1 && (
+                    <div className="mx-auto mt-auto flex flex-col items-center pt-3">
+                      <span className="h-6 w-px bg-abm-blue" />
+                      <span className="-mt-1 h-2 w-2 rotate-45 border-b-2 border-r-2 border-abm-blue" />
+                    </div>
+                  )}
                 </div>
-                <div className="mt-4 grid gap-5 md:grid-cols-3">
-                  <div>
-                    <p className="text-[11px] font-bold uppercase tracking-[0.2em] text-abm-blue">What</p>
-                    <p className="mt-2 text-sm text-muted-foreground">{tp.what}</p>
-                  </div>
-                  <div>
-                    <p className="text-[11px] font-bold uppercase tracking-[0.2em] text-abm-purple">How — Protocol</p>
-                    <ul className="mt-2 space-y-1.5">
-                      {tp.how.map((h) => (
-                        <li key={h} className="text-sm text-muted-foreground">• {h}</li>
-                      ))}
-                    </ul>
-                  </div>
-                  <div>
-                    <p className="text-[11px] font-bold uppercase tracking-[0.2em] text-abm-navy">Expected result</p>
-                    <ul className="mt-2 space-y-1.5">
-                      {tp.result.map((r) => (
-                        <li key={r} className="text-sm text-muted-foreground">• {r}</li>
-                      ))}
-                    </ul>
-                  </div>
+
+                <div className="rounded-xl border-2 border-dashed border-abm-purple/60 bg-accent/40 p-5">
+                  <p className="text-[11px] font-bold uppercase tracking-[0.2em] text-abm-purple">Protocols</p>
+                  <ul className="mt-2 space-y-1.5">
+                    {tp.how.map((h) => (
+                      <li key={h} className="text-sm text-muted-foreground">• {h}</li>
+                    ))}
+                  </ul>
                 </div>
-              </article>
+
+                <div className="rounded-xl border-2 border-abm-navy/30 p-5">
+                  <p className="text-[11px] font-bold uppercase tracking-[0.2em] text-abm-navy">Quality standards</p>
+                  <ul className="mt-2 space-y-1.5">
+                    {tp.result.map((r) => (
+                      <li key={r} className="text-sm text-muted-foreground">• {r}</li>
+                    ))}
+                  </ul>
+                </div>
+              </div>
             ))}
           </div>
         </div>
+
 
         <div className="mt-10 grid gap-6 lg:grid-cols-2">
           <div className="rounded-2xl border border-border bg-card p-6 shadow-[var(--shadow-card)]">
