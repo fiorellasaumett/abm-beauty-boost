@@ -13,6 +13,7 @@ import montocFoundation from "@/assets/montoc-foundation.jpg.asset.json";
 import montocShadows from "@/assets/montoc-shadows.jpg.asset.json";
 import montocHighlighter from "@/assets/montoc-highlighter.png.asset.json";
 import montocLipGloss from "@/assets/montoc-lip-gloss.jpg.asset.json";
+import { ProcessRoutes } from "@/components/ProcessRoutes";
 import { Button } from "@/components/ui/button";
 import { Input } from "@/components/ui/input";
 import { Textarea } from "@/components/ui/textarea";
@@ -40,6 +41,7 @@ const NAV = [
   { href: "#nosotros", label: "About" },
   { href: "#servicios", label: "Services" },
   { href: "#montoc", label: "MONTOC" },
+  { href: "#process-routes", label: "Process routes" },
   { href: "#resultados", label: "Results" },
   { href: "#operations", label: "Operations" },
   { href: "#people", label: "People" },
@@ -56,6 +58,7 @@ function Index() {
       <Services />
       <BeautyFocus />
       <Montoc />
+      <ProcessRoutes />
       <Results />
       <ProjectDepth />
       <PeopleCulture />
