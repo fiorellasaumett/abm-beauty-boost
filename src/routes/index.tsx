@@ -57,6 +57,7 @@ function Index() {
       <Services />
       <BeautyFocus />
       <Montoc />
+      <ProcessRoutes />
       <Results />
       <ProjectDepth />
       <PeopleCulture />
