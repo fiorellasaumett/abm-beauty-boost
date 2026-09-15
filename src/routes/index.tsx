@@ -40,6 +40,7 @@ const NAV = [
   { href: "#nosotros", label: "About" },
   { href: "#servicios", label: "Services" },
   { href: "#montoc", label: "MONTOC" },
+  { href: "#process-routes", label: "Process routes" },
   { href: "#resultados", label: "Results" },
   { href: "#operations", label: "Operations" },
   { href: "#people", label: "People" },
