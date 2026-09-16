@@ -11,3 +11,6 @@
 - [x] Replace the generic beauty image with official MONTOC product photography.
 - [x] Connect service and strategy buttons to detailed project information.
 - [x] Expand the interactive project framework with campaign, market and continuity details.
+- [x] Remove the "Process route vs. flow chart" card from the process routes section.
+- [x] Add arrows linking the What and How columns in the process route diagram.
+- [x] Swap the "Specialists in Beauty & Skincare" photos for different official MONTOC products (Glow Filter Pre-Base, Sunsoon SPF 50+, Fluffy Brush Kit).
