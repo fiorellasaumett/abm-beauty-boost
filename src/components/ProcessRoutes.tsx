@@ -282,12 +282,18 @@ export function ProcessRoutes() {
             <div className="inline-flex rounded-xl border-2 border-abm-purple px-5 py-2 text-sm font-bold uppercase tracking-[0.2em] text-abm-purple">
               Process route
             </div>
-            <p className="mt-3 text-xs font-semibold uppercase tracking-[0.2em] text-muted-foreground">Touchpoints</p>
+            <p className="mt-3 flex items-center gap-2 text-xs font-semibold uppercase tracking-[0.2em] text-muted-foreground">
+              Touchpoints
+              <span className="inline-flex items-center gap-1 rounded-full border border-abm-purple/40 bg-accent/50 px-2 py-0.5 text-[10px] normal-case tracking-normal text-abm-purple">
+                <MoveRight className="h-3 w-3" /> What and How go together
+              </span>
+            </p>
 
-            <div className="mt-4 grid grid-cols-[190px_1fr_300px] gap-4">
+            <div className="mt-4 grid grid-cols-[190px_28px_1fr_300px] gap-4">
               <div className="rounded-xl border-2 border-abm-blue py-3 text-center text-sm font-bold uppercase tracking-wider text-abm-blue">
                 What
               </div>
+              <div />
               <div className="rounded-xl border-2 border-abm-blue py-3 text-center text-sm font-bold uppercase tracking-wider text-abm-blue">
                 How — Protocols
               </div>
@@ -297,7 +303,7 @@ export function ProcessRoutes() {
             </div>
 
             {data.touchpoints.map((tp, i) => (
-              <div key={tp.n} className="mt-4 grid grid-cols-[190px_1fr_300px] items-stretch gap-4">
+              <div key={tp.n} className="mt-4 grid grid-cols-[190px_28px_1fr_300px] items-stretch gap-4">
                 <div className="flex flex-col">
                   <div className="rounded-xl px-3 py-4 text-center shadow-[var(--shadow-soft)]" style={{ backgroundImage: "var(--gradient-brand)" }}>
                     <p className="text-[11px] font-bold uppercase tracking-[0.2em] text-primary-foreground/80">
@@ -312,6 +318,10 @@ export function ProcessRoutes() {
                       <span className="-mt-1 h-2 w-2 rotate-45 border-b-2 border-r-2 border-abm-blue" />
                     </div>
                   )}
+                </div>
+
+                <div className="flex items-center justify-center">
+                  <MoveRight className="h-5 w-5 text-abm-purple" />
                 </div>
 
                 <div className="rounded-xl border-2 border-dashed border-abm-purple/60 bg-accent/40 p-5">
