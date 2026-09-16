@@ -1,5 +1,5 @@
 import { useState } from "react";
-import { MessageCircle, CheckCircle2, Workflow, GaugeCircle } from "lucide-react";
+import { MessageCircle, CheckCircle2, Workflow, GaugeCircle, MoveRight } from "lucide-react";
 
 type Touchpoint = { n: string; title: string; what: string; how: string[]; result: string[] };
 
@@ -347,34 +347,23 @@ export function ProcessRoutes() {
         </div>
 
 
-        <div className="mt-10 grid gap-6 lg:grid-cols-2">
-          <div className="rounded-2xl border border-border bg-card p-6 shadow-[var(--shadow-card)]">
-            <h3 className="flex items-center gap-2 text-lg font-bold text-abm-navy">
-              <GaugeCircle className="h-5 w-5 text-abm-purple" /> Service quality standards
-            </h3>
-            <ul className="mt-4 grid gap-2">
-              {data.standards.map((s) => (
-                <li key={s} className="flex gap-2 text-sm text-muted-foreground">
-                  <CheckCircle2 className="mt-0.5 h-4 w-4 shrink-0 text-abm-blue" />
-                  <span>{s}</span>
-                </li>
-              ))}
-            </ul>
-          </div>
-          <div className="rounded-2xl border border-border bg-card p-6 shadow-[var(--shadow-card)]">
-            <h3 className="text-lg font-bold text-abm-navy">Process route vs. flow chart</h3>
-            <p className="mt-3 text-sm leading-relaxed text-muted-foreground">
-              They are not the same. A process route explains what happens at each touchpoint, how the employee should act and
-              what the expected result is, organized as <strong className="text-abm-purple">WHAT → HOW → EXPECTED RESULT</strong>.
-              A flow chart represents the process visually using symbols, arrows and decisions. First the process route is
-              defined, and then the flow chart is created.
-            </p>
-            <p className="mt-4 text-sm leading-relaxed text-muted-foreground">
-              Customer Service and Sales &amp; Marketing allow MONTOC to properly assist its customers, promote its products and
-              increase sales. WhatsApp Business makes communication quick and direct, protocols standardize service, and quality
-              standards make it possible to measure every process.
-            </p>
-          </div>
+        <div className="mt-10 rounded-2xl border border-border bg-card p-6 shadow-[var(--shadow-card)]">
+          <h3 className="flex items-center gap-2 text-lg font-bold text-abm-navy">
+            <GaugeCircle className="h-5 w-5 text-abm-purple" /> Service quality standards
+          </h3>
+          <ul className="mt-4 grid gap-2 sm:grid-cols-2">
+            {data.standards.map((s) => (
+              <li key={s} className="flex gap-2 text-sm text-muted-foreground">
+                <CheckCircle2 className="mt-0.5 h-4 w-4 shrink-0 text-abm-blue" />
+                <span>{s}</span>
+              </li>
+            ))}
+          </ul>
+          <p className="mt-5 text-sm leading-relaxed text-muted-foreground">
+            Customer Service and Sales &amp; Marketing allow MONTOC to properly assist its customers, promote its products and
+            increase sales. WhatsApp Business makes communication quick and direct, protocols standardize service, and quality
+            standards make it possible to measure every process.
+          </p>
         </div>
       </div>
     </section>
