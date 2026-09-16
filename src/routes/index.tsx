@@ -13,6 +13,9 @@ import montocFoundation from "@/assets/montoc-foundation.jpg.asset.json";
 import montocShadows from "@/assets/montoc-shadows.jpg.asset.json";
 import montocHighlighter from "@/assets/montoc-highlighter.png.asset.json";
 import montocLipGloss from "@/assets/montoc-lip-gloss.jpg.asset.json";
+import montocGlowFilter from "@/assets/montoc-glowfilter.jpg.asset.json";
+import montocSunsoon from "@/assets/montoc-sunsoon.jpg.asset.json";
+import montocFluffy from "@/assets/montoc-fluffy.jpg.asset.json";
 import { ProcessRoutes } from "@/components/ProcessRoutes";
 import { Button } from "@/components/ui/button";
 import { Input } from "@/components/ui/input";
@@ -313,9 +316,9 @@ function Services() {
 /* ---------------- Beauty Focus ---------------- */
 function BeautyFocus() {
   const showcase = [
-    { image: montocFoundation.url, name: "Humide Healthy Foundation", className: "col-span-2 row-span-2" },
-    { image: montocHighlighter.url, name: "Light Set Highlighter", className: "col-span-1" },
-    { image: montocLipGloss.url, name: "Juicy Lips Lip Gloss", className: "col-span-1" },
+    { image: montocGlowFilter.url, name: "Glow Filter Luminous Pre-Base", className: "col-span-2 row-span-2" },
+    { image: montocSunsoon.url, name: "Sunsoon Sunscreen SPF 50+", className: "col-span-1" },
+    { image: montocFluffy.url, name: "Fluffy Brush Kit", className: "col-span-1" },
   ];
   return (
     <section className="relative py-24 lg:py-32">
