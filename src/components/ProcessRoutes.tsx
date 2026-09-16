@@ -199,7 +199,7 @@ const TABS = {
     ],
     touchpoints: SALES,
     standards: [
-      "Response to potential customers: maximum 10 minutes during business hours.",
+      "Response to potential customers: maximum 5 minutes during business hours.",
       "Updated product and price information: 100%.",
       "Orders recorded without errors: at least 98%.",
       "Quotations sent correctly: at least 95%.",
