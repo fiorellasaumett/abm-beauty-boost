@@ -1,5 +1,5 @@
 import { useState } from "react";
-import { MessageCircle, CheckCircle2, Workflow, GaugeCircle } from "lucide-react";
+import { MessageCircle, CheckCircle2, Workflow, GaugeCircle, MoveRight } from "lucide-react";
 
 type Touchpoint = { n: string; title: string; what: string; how: string[]; result: string[] };
 
@@ -282,12 +282,18 @@ export function ProcessRoutes() {
             <div className="inline-flex rounded-xl border-2 border-abm-purple px-5 py-2 text-sm font-bold uppercase tracking-[0.2em] text-abm-purple">
               Process route
             </div>
-            <p className="mt-3 text-xs font-semibold uppercase tracking-[0.2em] text-muted-foreground">Touchpoints</p>
+            <p className="mt-3 flex items-center gap-2 text-xs font-semibold uppercase tracking-[0.2em] text-muted-foreground">
+              Touchpoints
+              <span className="inline-flex items-center gap-1 rounded-full border border-abm-purple/40 bg-accent/50 px-2 py-0.5 text-[10px] normal-case tracking-normal text-abm-purple">
+                <MoveRight className="h-3 w-3" /> What and How go together
+              </span>
+            </p>
 
-            <div className="mt-4 grid grid-cols-[190px_1fr_300px] gap-4">
+            <div className="mt-4 grid grid-cols-[190px_28px_1fr_300px] gap-4">
               <div className="rounded-xl border-2 border-abm-blue py-3 text-center text-sm font-bold uppercase tracking-wider text-abm-blue">
                 What
               </div>
+              <div />
               <div className="rounded-xl border-2 border-abm-blue py-3 text-center text-sm font-bold uppercase tracking-wider text-abm-blue">
                 How — Protocols
               </div>
@@ -297,7 +303,7 @@ export function ProcessRoutes() {
             </div>
 
             {data.touchpoints.map((tp, i) => (
-              <div key={tp.n} className="mt-4 grid grid-cols-[190px_1fr_300px] items-stretch gap-4">
+              <div key={tp.n} className="mt-4 grid grid-cols-[190px_28px_1fr_300px] items-stretch gap-4">
                 <div className="flex flex-col">
                   <div className="rounded-xl px-3 py-4 text-center shadow-[var(--shadow-soft)]" style={{ backgroundImage: "var(--gradient-brand)" }}>
                     <p className="text-[11px] font-bold uppercase tracking-[0.2em] text-primary-foreground/80">
@@ -312,6 +318,10 @@ export function ProcessRoutes() {
                       <span className="-mt-1 h-2 w-2 rotate-45 border-b-2 border-r-2 border-abm-blue" />
                     </div>
                   )}
+                </div>
+
+                <div className="flex items-center justify-center">
+                  <MoveRight className="h-5 w-5 text-abm-purple" />
                 </div>
 
                 <div className="rounded-xl border-2 border-dashed border-abm-purple/60 bg-accent/40 p-5">
@@ -337,34 +347,23 @@ export function ProcessRoutes() {
         </div>
 
 
-        <div className="mt-10 grid gap-6 lg:grid-cols-2">
-          <div className="rounded-2xl border border-border bg-card p-6 shadow-[var(--shadow-card)]">
-            <h3 className="flex items-center gap-2 text-lg font-bold text-abm-navy">
-              <GaugeCircle className="h-5 w-5 text-abm-purple" /> Service quality standards
-            </h3>
-            <ul className="mt-4 grid gap-2">
-              {data.standards.map((s) => (
-                <li key={s} className="flex gap-2 text-sm text-muted-foreground">
-                  <CheckCircle2 className="mt-0.5 h-4 w-4 shrink-0 text-abm-blue" />
-                  <span>{s}</span>
-                </li>
-              ))}
-            </ul>
-          </div>
-          <div className="rounded-2xl border border-border bg-card p-6 shadow-[var(--shadow-card)]">
-            <h3 className="text-lg font-bold text-abm-navy">Process route vs. flow chart</h3>
-            <p className="mt-3 text-sm leading-relaxed text-muted-foreground">
-              They are not the same. A process route explains what happens at each touchpoint, how the employee should act and
-              what the expected result is, organized as <strong className="text-abm-purple">WHAT → HOW → EXPECTED RESULT</strong>.
-              A flow chart represents the process visually using symbols, arrows and decisions. First the process route is
-              defined, and then the flow chart is created.
-            </p>
-            <p className="mt-4 text-sm leading-relaxed text-muted-foreground">
-              Customer Service and Sales &amp; Marketing allow MONTOC to properly assist its customers, promote its products and
-              increase sales. WhatsApp Business makes communication quick and direct, protocols standardize service, and quality
-              standards make it possible to measure every process.
-            </p>
-          </div>
+        <div className="mt-10 rounded-2xl border border-border bg-card p-6 shadow-[var(--shadow-card)]">
+          <h3 className="flex items-center gap-2 text-lg font-bold text-abm-navy">
+            <GaugeCircle className="h-5 w-5 text-abm-purple" /> Service quality standards
+          </h3>
+          <ul className="mt-4 grid gap-2 sm:grid-cols-2">
+            {data.standards.map((s) => (
+              <li key={s} className="flex gap-2 text-sm text-muted-foreground">
+                <CheckCircle2 className="mt-0.5 h-4 w-4 shrink-0 text-abm-blue" />
+                <span>{s}</span>
+              </li>
+            ))}
+          </ul>
+          <p className="mt-5 text-sm leading-relaxed text-muted-foreground">
+            Customer Service and Sales &amp; Marketing allow MONTOC to properly assist its customers, promote its products and
+            increase sales. WhatsApp Business makes communication quick and direct, protocols standardize service, and quality
+            standards make it possible to measure every process.
+          </p>
         </div>
       </div>
     </section>
