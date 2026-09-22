@@ -70,6 +70,8 @@ function CustomerServiceChart() {
     <div aria-label="Customer Service flow chart" className="mx-auto max-w-4xl">
       <Terminator>Customer contacts MONTOC on WhatsApp Business</Terminator>
       <FlowArrow />
+      <Activity title="Receive, greet and record the contact" owner="Customer Service agent" />
+      <FlowArrow />
       <Decision>What type of case is it?</Decision>
       <div className="grid gap-5 md:grid-cols-3">
         <BranchCard label="Inquiry">Check the catalog or system and provide accurate information.</BranchCard>
