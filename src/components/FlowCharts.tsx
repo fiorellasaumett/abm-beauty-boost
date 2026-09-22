@@ -68,7 +68,7 @@ function BranchCard({ label, children }: { label: string; children: React.ReactN
 function CustomerServiceChart() {
   return (
     <div aria-label="Customer Service flow chart" className="mx-auto max-w-4xl">
-      <Activity title="Receive, greet and record the contact" owner="Customer Service agent" />
+      <Terminator>Customer contacts MONTOC on WhatsApp Business</Terminator>
       <FlowArrow />
       <Decision>What type of case is it?</Decision>
       <div className="grid gap-5 md:grid-cols-3">
