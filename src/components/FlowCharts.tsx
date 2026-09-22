@@ -71,9 +71,7 @@ function CustomerServiceChart() {
         <BranchCard label="Yes">Confirm the solution with the customer and document the result.</BranchCard>
         <BranchCard label="No">Escalate the case to the appropriate specialist or support area.</BranchCard>
       </div>
-      <FlowArrow />
       <Activity title="Follow up on any pending commitment" owner="Agent / support area" />
-      <FlowArrow />
       <Decision>Is the customer satisfied?</Decision>
       <div className="grid gap-5 md:grid-cols-2">
         <BranchCard label="Yes">Close the interaction and record the final outcome.</BranchCard>
