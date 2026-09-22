@@ -1,5 +1,5 @@
 import { useState } from "react";
-import { MessageCircle, CheckCircle2, Workflow, GaugeCircle, MoveRight } from "lucide-react";
+import { MessageCircle, Mail, CheckCircle2, Workflow, GaugeCircle, MoveRight } from "lucide-react";
 
 type Touchpoint = { n: string; title: string; what: string; how: string[]; result: string[] };
 
@@ -186,7 +186,7 @@ const TABS = {
   sales: {
     label: "Sales & Marketing",
     objective:
-      "To promote MONTOC products, identify customers' needs and increase sales through personalized service using WhatsApp Business.",
+      "To promote MONTOC products, identify customers' needs and increase sales through personalized service using WhatsApp Business, supported by email for formal follow-up.",
     tasks: [
       "Present products and their benefits.",
       "Identify the customer's needs.",
@@ -231,16 +231,40 @@ export function ProcessRoutes() {
           </p>
         </div>
 
-        <div className="mt-8 flex flex-col gap-4 rounded-2xl border border-border bg-card p-6 shadow-[var(--shadow-soft)] sm:flex-row sm:items-center">
-          <span className="flex h-12 w-12 shrink-0 items-center justify-center rounded-xl" style={{ backgroundImage: "var(--gradient-brand)" }}>
-            <MessageCircle className="h-6 w-6 text-primary-foreground" />
-          </span>
-          <div>
-            <p className="font-semibold text-abm-navy">Chosen contact channel: WhatsApp Business</p>
-            <p className="text-sm text-muted-foreground">
-              It allows the team to answer questions, receive orders, send product information and keep direct communication
-              with MONTOC customers.
-            </p>
+        <div className="mt-8 grid gap-4 sm:grid-cols-2">
+          <div className="flex flex-col gap-4 rounded-2xl border border-border bg-card p-6 shadow-[var(--shadow-soft)] sm:flex-row sm:items-center">
+            <span className="flex h-12 w-12 shrink-0 items-center justify-center rounded-xl" style={{ backgroundImage: "var(--gradient-brand)" }}>
+              <MessageCircle className="h-6 w-6 text-primary-foreground" />
+            </span>
+            <div>
+              <p className="flex flex-wrap items-center gap-2 font-semibold text-abm-navy">
+                WhatsApp Business
+                <span className="rounded-full bg-abm-purple/10 px-2 py-0.5 text-[10px] font-bold uppercase tracking-wider text-abm-purple">
+                  Primary channel
+                </span>
+              </p>
+              <p className="text-sm text-muted-foreground">
+                It allows the team to answer questions, receive orders, send product information and keep direct, real-time
+                communication with MONTOC customers.
+              </p>
+            </div>
+          </div>
+          <div className="flex flex-col gap-4 rounded-2xl border border-border bg-card p-6 shadow-[var(--shadow-soft)] sm:flex-row sm:items-center">
+            <span className="flex h-12 w-12 shrink-0 items-center justify-center rounded-xl border-2 border-abm-blue/40 bg-accent">
+              <Mail className="h-6 w-6 text-abm-blue" />
+            </span>
+            <div>
+              <p className="flex flex-wrap items-center gap-2 font-semibold text-abm-navy">
+                Email
+                <span className="rounded-full bg-abm-blue/10 px-2 py-0.5 text-[10px] font-bold uppercase tracking-wider text-abm-blue">
+                  Secondary channel
+                </span>
+              </p>
+              <p className="text-sm text-muted-foreground">
+                Used for formal communication: catalogs, quotations, order confirmations and written follow-up of requests
+                and claims.
+              </p>
+            </div>
           </div>
         </div>
 
@@ -361,8 +385,8 @@ export function ProcessRoutes() {
           </ul>
           <p className="mt-5 text-sm leading-relaxed text-muted-foreground">
             Customer Service and Sales &amp; Marketing allow MONTOC to properly assist its customers, promote its products and
-            increase sales. WhatsApp Business makes communication quick and direct, protocols standardize service, and quality
-            standards make it possible to measure every process.
+            increase sales. WhatsApp Business and email make communication quick and direct, protocols standardize service,
+            and quality standards make it possible to measure every process.
           </p>
         </div>
       </div>
