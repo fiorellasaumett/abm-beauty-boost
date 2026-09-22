@@ -6,8 +6,8 @@ import {
   CircleDot,
   GitBranch,
   Headphones,
+  Mail,
   MessageCircle,
-  RotateCcw,
   ShoppingBag,
   UserRoundCheck,
 } from "lucide-react";
@@ -192,15 +192,21 @@ export function FlowCharts() {
             ))}
           </div>
 
-          <div className="mb-8 grid grid-cols-[minmax(0,1fr)_auto] items-center gap-4 rounded-xl border border-abm-blue/30 bg-accent/40 p-4 sm:flex sm:justify-between">
+          <div className="mb-8 grid gap-3 rounded-xl border border-abm-blue/30 bg-accent/40 p-4 sm:grid-cols-2">
             <div className="flex min-w-0 items-center gap-3">
               <MessageCircle className="h-5 w-5 shrink-0 text-abm-blue" />
               <div className="min-w-0">
                 <p className="text-sm font-bold text-abm-navy">Primary channel: WhatsApp Business</p>
-                <p className="text-xs text-muted-foreground">ABM front-office operation</p>
+                <p className="text-xs text-muted-foreground">Real-time assistance and orders</p>
               </div>
             </div>
-            <RotateCcw className="h-5 w-5 shrink-0 text-abm-purple" aria-label="Follow-up loop" />
+            <div className="flex min-w-0 items-center gap-3">
+              <Mail className="h-5 w-5 shrink-0 text-abm-purple" />
+              <div className="min-w-0">
+                <p className="text-sm font-bold text-abm-navy">Secondary channel: Email</p>
+                <p className="text-xs text-muted-foreground">Formal communication and written follow-up</p>
+              </div>
+            </div>
           </div>
 
           {service === "customer" ? <CustomerServiceChart /> : <SalesChart />}
