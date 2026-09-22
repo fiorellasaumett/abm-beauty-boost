@@ -307,7 +307,7 @@ export function ProcessRoutes() {
                 <div className="flex flex-col">
                   <div className="rounded-xl px-3 py-4 text-center shadow-[var(--shadow-soft)]" style={{ backgroundImage: "var(--gradient-brand)" }}>
                     <p className="text-[11px] font-bold uppercase tracking-[0.2em] text-primary-foreground/80">
-                      {i === 0 ? "Start" : `Step ${i + 1}`}
+                      Step {i + 1}
                     </p>
                     <p className="mt-1 text-sm font-bold text-primary-foreground">{tp.title}</p>
                   </div>
