@@ -24,6 +24,7 @@ function FlowArrow({ label }: { label?: string }) {
   );
 }
 
+
 function Terminator({ children, end = false }: { children: React.ReactNode; end?: boolean }) {
   return (
     <div
@@ -67,7 +68,7 @@ function BranchCard({ label, children }: { label: string; children: React.ReactN
 function CustomerServiceChart() {
   return (
     <div aria-label="Customer Service flow chart" className="mx-auto max-w-4xl">
-      <Terminator>Start: customer contacts MONTOC on WhatsApp Business</Terminator>
+      <Terminator>Customer contacts MONTOC on WhatsApp Business</Terminator>
       <FlowArrow />
       <Activity title="Receive, greet and record the contact" owner="Customer Service agent" />
       <FlowArrow />
@@ -94,7 +95,7 @@ function CustomerServiceChart() {
         <BranchCard label="No">Reopen, reassess and escalate the case for a new solution.</BranchCard>
       </div>
       <FlowArrow />
-      <Terminator end>End: case resolved, documented and closed</Terminator>
+      <Terminator end>Case resolved, documented and closed</Terminator>
     </div>
   );
 }
@@ -102,7 +103,7 @@ function CustomerServiceChart() {
 function SalesChart() {
   return (
     <div aria-label="Sales and Marketing flow chart" className="mx-auto max-w-4xl">
-      <Terminator>Start: potential customer contacts MONTOC on WhatsApp Business</Terminator>
+      <Terminator>Potential customer contacts MONTOC on WhatsApp Business</Terminator>
       <FlowArrow />
       <Activity title="Greet and identify the product of interest" owner="Sales advisor" />
       <FlowArrow />
@@ -130,7 +131,7 @@ function SalesChart() {
       <FlowArrow />
       <Activity title="Confirm delivery, product condition and satisfaction" owner="Sales advisor" />
       <FlowArrow />
-      <Terminator end>End: sale completed or opportunity documented for follow-up</Terminator>
+      <Terminator end>Sale completed or opportunity documented for follow-up</Terminator>
     </div>
   );
 }
