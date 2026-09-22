@@ -23,17 +23,6 @@ function FlowArrow({ label }: { label?: string }) {
   );
 }
 
-function Terminator({ children, end = false }: { children: React.ReactNode; end?: boolean }) {
-  return (
-    <div
-      className={`mx-auto flex min-h-14 w-full max-w-sm items-center justify-center rounded-full border-2 px-6 py-3 text-center text-sm font-bold shadow-[var(--shadow-soft)] ${
-        end ? "border-abm-purple bg-accent text-abm-purple" : "border-abm-blue bg-card text-abm-navy"
-      }`}
-    >
-      {children}
-    </div>
-  );
-}
 
 function Activity({ title, owner }: { title: string; owner: string }) {
   return (
