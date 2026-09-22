@@ -3,7 +3,6 @@ import {
   ArrowDown,
   ArrowRight,
   CheckCircle2,
-  CircleDot,
   GitBranch,
   Headphones,
   Mail,
