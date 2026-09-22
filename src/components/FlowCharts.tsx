@@ -79,8 +79,6 @@ function CustomerServiceChart() {
         <BranchCard label="Yes">Close the interaction and record the final outcome.</BranchCard>
         <BranchCard label="No">Reopen, reassess and escalate the case for a new solution.</BranchCard>
       </div>
-      <FlowArrow />
-      <Terminator end>End: case resolved, documented and closed</Terminator>
     </div>
   );
 }
