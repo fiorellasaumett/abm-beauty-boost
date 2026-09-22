@@ -17,6 +17,7 @@ import montocGlowFilter from "@/assets/montoc-glowfilter.jpg.asset.json";
 import montocSunsoon from "@/assets/montoc-sunsoon.jpg.asset.json";
 import montocFluffy from "@/assets/montoc-fluffy.jpg.asset.json";
 import { ProcessRoutes } from "@/components/ProcessRoutes";
+import { FlowCharts } from "@/components/FlowCharts";
 import { Button } from "@/components/ui/button";
 import { Input } from "@/components/ui/input";
 import { Textarea } from "@/components/ui/textarea";
@@ -45,6 +46,7 @@ const NAV = [
   { href: "#servicios", label: "Services" },
   { href: "#montoc", label: "MONTOC" },
   { href: "#process-routes", label: "Process routes" },
+  { href: "#flow-charts", label: "Flow charts" },
   { href: "#resultados", label: "Results" },
   { href: "#operations", label: "Operations" },
   { href: "#people", label: "People" },
@@ -62,6 +64,7 @@ function Index() {
       <BeautyFocus />
       <Montoc />
       <ProcessRoutes />
+      <FlowCharts />
       <Results />
       <ProjectDepth />
       <PeopleCulture />
