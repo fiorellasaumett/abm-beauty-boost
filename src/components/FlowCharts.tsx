@@ -8,7 +8,6 @@ import {
   Headphones,
   Mail,
   MessageCircle,
-  RotateCcw,
   ShoppingBag,
   UserRoundCheck,
 } from "lucide-react";
