@@ -103,9 +103,6 @@ const BRANCHES: { key: string; label: string; icon: React.ComponentType<{ classN
 ];
 
 export function OrgChart() {
-  const [branch, setBranch] = useState("coo");
-  const active = BRANCHES.find((b) => b.key === branch)!;
-
   return (
     <section id="org-chart" className="relative overflow-hidden py-24 lg:py-32" style={{ backgroundImage: "var(--gradient-soft)" }}>
       <div className="mx-auto max-w-7xl px-4 sm:px-6">
@@ -117,12 +114,13 @@ export function OrgChart() {
             How <span className="text-gradient-brand">ABM</span> is structured.
           </h2>
           <p className="mt-5 text-lg leading-relaxed text-muted-foreground">
-            Four corporate directions report to the CEO. Explore each branch to see the full chain of command down to the operation teams.
+            Four corporate directions report to the CEO. The full chain of command, from the CEO down to the operation teams, at a glance.
           </p>
         </div>
 
-        <div className="mx-auto mt-14 max-w-5xl rounded-2xl border border-border bg-card/60 p-6 shadow-[var(--shadow-card)] sm:p-10">
-          <div className="mx-auto max-w-sm rounded-2xl border-2 border-abm-purple bg-accent px-6 py-4 text-center shadow-[var(--shadow-soft)]">
+        <div className="mx-auto mt-14 max-w-6xl rounded-2xl border border-border bg-card/60 p-6 shadow-[var(--shadow-card)] sm:p-10">
+          {/* CEO */}
+          <div className="mx-auto w-fit rounded-2xl border-2 border-abm-purple bg-accent px-6 py-4 text-center shadow-[var(--shadow-soft)]">
             <div className="mx-auto grid h-11 w-11 place-items-center rounded-full bg-primary text-primary-foreground">
               <Crown className="h-5 w-5" />
             </div>
@@ -130,34 +128,43 @@ export function OrgChart() {
             <p className="text-sm font-bold text-abm-purple">Mabel Rodriguez</p>
           </div>
 
-          <Link_down />
-
-          <div className="grid grid-cols-2 gap-2 rounded-xl border border-border bg-card p-2 shadow-[var(--shadow-soft)] lg:grid-cols-4">
-            {BRANCHES.map((b) => (
-              <Button
-                key={b.key}
-                type="button"
-                variant={branch === b.key ? "default" : "ghost"}
-                onClick={() => setBranch(b.key)}
-                className="h-auto min-h-12 gap-2 whitespace-normal px-3 py-2 text-xs sm:text-sm"
-              >
-                <b.icon className="h-4 w-4 shrink-0" /> {b.label}
-              </Button>
-            ))}
+          {/* Connector: CEO -> four directions */}
+          <div className="relative mx-auto hidden h-8 w-[calc(100%-4rem)] lg:block" aria-hidden="true">
+            <div className="absolute left-1/2 top-0 h-4 w-px -translate-x-1/2 bg-abm-purple/50" />
+            <div className="absolute left-[12.5%] right-[12.5%] top-4 h-px bg-abm-purple/50" />
+            <div className="absolute top-0 h-4 w-px bg-abm-purple/50" style={{ left: "12.5%" }} />
+            <div className="absolute top-0 h-4 w-px bg-abm-purple/50" style={{ left: "37.5%" }} />
+            <div className="absolute top-0 h-4 w-px bg-abm-purple/50" style={{ left: "62.5%" }} />
+            <div className="absolute top-0 h-4 w-px bg-abm-purple/50" style={{ left: "87.5%" }} />
+          </div>
+          <div className="flex justify-center py-1 text-abm-purple lg:hidden" aria-hidden="true">
+            <ArrowDown className="h-4 w-4" />
           </div>
 
-          <div className="mx-auto mt-8 max-w-md">
-            {active.chain.map((level, i) => (
-              <div key={i}>
-                {i > 0 && <Link_down />}
-                <div className={`grid gap-3 ${level.length > 1 ? "sm:grid-cols-2" : ""}`}>
-                  {level.map((node) => (
-                    <OrgNode key={node.title} node={node} small={level.length > 1} />
+          {/* Four directions side by side */}
+          <div className="grid gap-6 sm:grid-cols-2 lg:grid-cols-4 lg:gap-4">
+            {BRANCHES.map((b) => (
+              <div key={b.key} className="flex flex-col rounded-xl border border-border bg-card p-3 shadow-[var(--shadow-soft)]">
+                <div className="flex items-center justify-center gap-2 rounded-lg bg-accent px-3 py-2 text-center">
+                  <b.icon className="h-4 w-4 shrink-0 text-abm-purple" />
+                  <p className="text-[11px] font-extrabold uppercase tracking-wide text-abm-navy">{b.label}</p>
+                </div>
+                <div className="mt-1 flex flex-col items-stretch">
+                  {b.chain.map((level, i) => (
+                    <div key={i}>
+                      {i > 0 && <Link_down />}
+                      <div className={`grid gap-2 ${level.length > 1 ? "grid-cols-2" : "grid-cols-1"}`}>
+                        {level.map((node) => (
+                          <OrgNode key={node.title} node={node} small={level.length > 1} />
+                        ))}
+                      </div>
+                    </div>
                   ))}
                 </div>
               </div>
             ))}
           </div>
+
 
           <p className="mt-8 border-t border-border pt-5 text-center text-xs leading-relaxed text-muted-foreground">
             The MONTOC campaign is delivered by the Operations branch: Customer Service and Sales &amp; Marketing front-office teams,
