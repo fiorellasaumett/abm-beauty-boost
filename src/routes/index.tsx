@@ -18,6 +18,7 @@ import montocSunsoon from "@/assets/montoc-sunsoon.jpg.asset.json";
 import montocFluffy from "@/assets/montoc-fluffy.jpg.asset.json";
 import { ProcessRoutes } from "@/components/ProcessRoutes";
 import { FlowCharts } from "@/components/FlowCharts";
+import { CampaignBriefs, OrgChart } from "@/components/OrgChart";
 import { Button } from "@/components/ui/button";
 import { Input } from "@/components/ui/input";
 import { Textarea } from "@/components/ui/textarea";
@@ -47,6 +48,8 @@ const NAV = [
   { href: "#montoc", label: "MONTOC" },
   { href: "#process-routes", label: "Process routes" },
   { href: "#flow-charts", label: "Flow charts" },
+  { href: "#org-chart", label: "Org chart" },
+  { href: "#briefs", label: "Briefs" },
   { href: "#resultados", label: "Results" },
   { href: "#operations", label: "Operations" },
   { href: "#people", label: "People" },
@@ -65,6 +68,8 @@ function Index() {
       <Montoc />
       <ProcessRoutes />
       <FlowCharts />
+      <OrgChart />
+      <CampaignBriefs />
       <Results />
       <ProjectDepth />
       <PeopleCulture />
