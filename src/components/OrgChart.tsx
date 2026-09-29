@@ -40,8 +40,9 @@ function OrgNode({ node, small = false }: { node: Node; small?: boolean }) {
 
 function Link_down() {
   return (
-    <div className="flex justify-center py-1 text-abm-purple" aria-hidden="true">
-      <ArrowDown className="h-4 w-4" />
+    <div className="mx-auto flex flex-col items-center py-1" aria-hidden="true">
+      <span className="h-4 w-px bg-abm-blue" />
+      <span className="-mt-1 h-2 w-2 rotate-45 border-b-2 border-r-2 border-abm-blue" />
     </div>
   );
 }
