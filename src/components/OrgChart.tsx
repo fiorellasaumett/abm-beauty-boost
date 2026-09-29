@@ -118,38 +118,52 @@ export function OrgChart() {
           </p>
         </div>
 
-        <div className="mx-auto mt-14 max-w-6xl rounded-2xl border border-border bg-card/60 p-6 shadow-[var(--shadow-card)] sm:p-10">
-          {/* CEO */}
-          <div className="mx-auto w-fit rounded-2xl border-2 border-abm-purple bg-accent px-6 py-4 text-center shadow-[var(--shadow-soft)]">
-            <div className="mx-auto grid h-11 w-11 place-items-center rounded-full bg-primary text-primary-foreground">
-              <Crown className="h-5 w-5" />
+        <div className="mx-auto mt-14 overflow-x-auto rounded-3xl border border-border bg-card p-5 shadow-[var(--shadow-card)] sm:p-8">
+          <div className="min-w-[980px]">
+            <div className="inline-flex rounded-xl border-2 border-abm-purple px-5 py-2 text-sm font-bold uppercase tracking-[0.2em] text-abm-purple">
+              Organization chart
             </div>
-            <p className="mt-2 text-xs font-extrabold uppercase tracking-wide text-abm-navy">Chief Executive Officer</p>
-            <p className="text-sm font-bold text-abm-purple">Mabel Rodriguez</p>
-          </div>
+            <p className="mt-3 text-xs font-semibold uppercase tracking-[0.2em] text-muted-foreground">
+              Chain of command — all directions and teams
+            </p>
 
-          {/* Connector: CEO -> four directions */}
-          <div className="relative mx-auto hidden h-8 w-[calc(100%-4rem)] lg:block" aria-hidden="true">
-            <div className="absolute left-1/2 top-0 h-4 w-px -translate-x-1/2 bg-abm-purple/50" />
-            <div className="absolute left-[12.5%] right-[12.5%] top-4 h-px bg-abm-purple/50" />
-            <div className="absolute top-0 h-4 w-px bg-abm-purple/50" style={{ left: "12.5%" }} />
-            <div className="absolute top-0 h-4 w-px bg-abm-purple/50" style={{ left: "37.5%" }} />
-            <div className="absolute top-0 h-4 w-px bg-abm-purple/50" style={{ left: "62.5%" }} />
-            <div className="absolute top-0 h-4 w-px bg-abm-purple/50" style={{ left: "87.5%" }} />
-          </div>
-          <div className="flex justify-center py-1 text-abm-purple lg:hidden" aria-hidden="true">
-            <ArrowDown className="h-4 w-4" />
-          </div>
+            {/* CEO */}
+            <div
+              className="mx-auto mt-5 w-fit rounded-xl px-8 py-4 text-center shadow-[var(--shadow-soft)]"
+              style={{ backgroundImage: "var(--gradient-brand)" }}
+            >
+              <div className="mx-auto grid h-9 w-9 place-items-center rounded-full bg-primary-foreground/20">
+                <Crown className="h-4 w-4 text-primary-foreground" />
+              </div>
+              <p className="mt-1.5 text-[11px] font-bold uppercase tracking-[0.2em] text-primary-foreground/80">
+                Chief Executive Officer
+              </p>
+              <p className="text-sm font-bold text-primary-foreground">Mabel Rodriguez</p>
+            </div>
 
-          {/* Four directions side by side */}
-          <div className="grid gap-6 sm:grid-cols-2 lg:grid-cols-4 lg:gap-4">
-            {BRANCHES.map((b) => (
-              <div key={b.key} className="flex flex-col rounded-xl border border-border bg-card p-3 shadow-[var(--shadow-soft)]">
-                <div className="flex items-center justify-center gap-2 rounded-lg bg-accent px-3 py-2 text-center">
-                  <b.icon className="h-4 w-4 shrink-0 text-abm-purple" />
-                  <p className="text-[11px] font-extrabold uppercase tracking-wide text-abm-navy">{b.label}</p>
+            {/* Connector: CEO -> four directions */}
+            <div className="relative mx-auto h-11 w-[86%]" aria-hidden="true">
+              <div className="absolute left-1/2 top-0 h-5 w-px -translate-x-1/2 bg-abm-blue" />
+              <div className="absolute left-[12.5%] right-[12.5%] top-5 h-px bg-abm-blue" />
+              {["12.5%", "37.5%", "62.5%", "87.5%"].map((left) => (
+                <div
+                  key={left}
+                  className="absolute top-5 flex -translate-x-1/2 flex-col items-center"
+                  style={{ left }}
+                >
+                  <span className="h-4 w-px bg-abm-blue" />
+                  <span className="-mt-1 h-2 w-2 rotate-45 border-b-2 border-r-2 border-abm-blue" />
                 </div>
-                <div className="mt-1 flex flex-col items-stretch">
+              ))}
+            </div>
+
+            {/* Four directions side by side */}
+            <div className="grid grid-cols-4 gap-4">
+              {BRANCHES.map((b) => (
+                <div key={b.key} className="flex flex-col">
+                  <div className="rounded-xl border-2 border-abm-blue py-3 text-center text-[11px] font-bold uppercase tracking-wider text-abm-blue">
+                    {b.label}
+                  </div>
                   {b.chain.map((level, i) => (
                     <div key={i}>
                       {i > 0 && <Link_down />}
@@ -161,8 +175,8 @@ export function OrgChart() {
                     </div>
                   ))}
                 </div>
-              </div>
-            ))}
+              ))}
+            </div>
           </div>
 
 
