@@ -3,12 +3,12 @@ import { useEffect, useRef, useState } from "react";
 import {
   ArrowRight, Sparkles, Headphones, TrendingUp, Bot, Zap, Globe2,
   MessageSquare, Mail, Phone, Users, BarChart3, ShieldCheck, Layers, Rocket,
-  Target, HeartHandshake, Lightbulb, Menu, X, CheckCircle2, Send,
+  Target, HeartHandshake, Lightbulb, Menu, X, CheckCircle2, Send, Palette,
   FileText, AlertTriangle, Gavel, Scale, BadgeCheck, Building2, Server, Banknote,
   BookOpen, CircleAlert, Waypoints, ExternalLink, GraduationCap, Languages, UserRoundCheck,
 } from "lucide-react";
-import heroImg from "@/assets/hero-bpo.jpg";
 import agentImg from "@/assets/agent.jpg";
+import abmLogo from "@/assets/abm-logo.jpg.asset.json";
 import montocFoundation from "@/assets/montoc-foundation.jpg.asset.json";
 import montocShadows from "@/assets/montoc-shadows.jpg.asset.json";
 import montocHighlighter from "@/assets/montoc-highlighter.png.asset.json";
@@ -43,7 +43,7 @@ export const Route = createFileRoute("/")({
 
 const NAV = [
   { href: "#inicio", label: "Home" },
-  { href: "#nosotros", label: "About" },
+  { href: "#nosotros", label: "Who we are" },
   { href: "#servicios", label: "Services" },
   { href: "#montoc", label: "MONTOC" },
   { href: "#process-routes", label: "Process routes" },
@@ -74,8 +74,6 @@ function Index() {
       <ProjectDepth />
       <PeopleCulture />
       <WhyAbm />
-      <MissionVision />
-      <Values />
       <Process />
       <TechStack />
       <CtaBanner />
@@ -145,87 +143,53 @@ function Navbar() {
 
 function Logo() {
   return (
-    <div className="relative h-10 w-10 shrink-0 rounded-xl overflow-hidden bg-[var(--gradient-brand)]">
-      <div className="absolute inset-[3px] rounded-[9px] bg-white flex items-center justify-center">
-        <div className="relative h-5 w-5">
-          <div className="absolute inset-0 rounded-full border-2" style={{ borderColor: "var(--abm-purple)" }} />
-          <div className="absolute inset-0 rounded-full border-t-2 rotate-45 border-t-abm-blue" />
-          <div className="absolute left-1/2 top-1/2 h-1 w-1 -translate-x-1/2 -translate-y-1/2 rounded-full" style={{ background: "var(--abm-purple)" }} />
-        </div>
-      </div>
-    </div>
+    <img src={abmLogo.url} alt="Apex Business Matrix logo" className="h-10 w-10 shrink-0 rounded-lg object-cover shadow-[var(--shadow-soft)]" />
   );
 }
 
 /* ---------------- Hero ---------------- */
 function Hero() {
+  const logoElements = [
+    { icon: Globe2, title: "The globe", text: "Expresses our commitment to growth, a forward-looking vision and the future of the services we deliver." },
+    { icon: Waypoints, title: "Lines and nodes", text: "Represent continuous client-company communication, seamless integration and the local and international clients we seek to serve." },
+    { icon: Palette, title: "Colors and 3D design", text: "Blue means trust; green means growth; purple means creativity and technology; yellow means optimism and teamwork. The 3D finish reflects a modern, innovative BPO." },
+  ];
   return (
-    <section id="inicio" className="relative overflow-hidden pt-28 pb-20 lg:pt-36 lg:pb-28" style={{ backgroundImage: "var(--gradient-hero)" }}>
+    <section id="inicio" className="relative overflow-hidden pt-28 pb-20 lg:pt-36 lg:pb-24" style={{ backgroundImage: "var(--gradient-hero)" }}>
       <div className="absolute inset-0 bg-grid opacity-40" />
-      <div className="absolute -left-40 top-20 h-96 w-96 rounded-full bg-abm-purple/40 blur-3xl" />
-      <div className="absolute -right-32 top-40 h-96 w-96 rounded-full bg-abm-blue/40 blur-3xl" />
-      <div className="absolute left-1/3 bottom-0 h-72 w-72 rounded-full bg-abm-purple/25 blur-3xl" />
-
-      <div className="relative mx-auto max-w-7xl px-4 sm:px-6 grid lg:grid-cols-[1.05fr_1fr] gap-12 items-center">
-        <div className="text-white animate-fade-up">
-          <div className="inline-flex items-center gap-2 rounded-full glass-dark px-4 py-1.5 text-xs font-medium tracking-wide">
+      <div className="relative mx-auto max-w-7xl px-4 sm:px-6 text-center text-white">
+        <div className="animate-fade-up">
+          <img src={abmLogo.url} alt="Apex Business Matrix globe logo" className="mx-auto h-44 w-44 sm:h-56 sm:w-56 rounded-2xl object-cover shadow-[var(--shadow-glow)] ring-1 ring-white/20" />
+          <div className="mt-7 inline-flex items-center gap-2 rounded-full glass-dark px-4 py-1.5 text-xs font-medium tracking-wide">
             <Sparkles className="h-3.5 w-3.5 text-abm-blue" />
-             Customer Service · Sales & Marketing
+            Customer Service · Sales & Marketing
           </div>
-          <div className="mt-6">
-            <div className="text-xs font-semibold tracking-[0.35em] text-abm-blue">APEX BUSINESS MATRIX</div>
-            <div className="text-[10px] tracking-[0.4em] text-white/60">ABM BPO</div>
-          </div>
-          <h1 className="mt-4 text-4xl sm:text-5xl lg:text-6xl font-extrabold tracking-tight leading-[1.05]" style={{ fontFamily: "var(--font-display)" }}>
-            We connect people.<br />
-             <span className="text-gradient-brand">
-              We power businesses.
-            </span>
+          <h1 className="mx-auto mt-5 max-w-5xl text-4xl sm:text-5xl lg:text-6xl font-extrabold leading-[1.08]" style={{ fontFamily: "var(--font-display)" }}>
+            Apex Business Matrix <span className="text-gradient-brand">(ABM BPO)</span>
           </h1>
-          <p className="mt-5 max-w-xl text-base sm:text-lg text-white/75 leading-relaxed">
-             Specialized, bilingual outsourcing for beauty brands—uniting high-touch customer care with data-led sales and marketing.
+          <p className="mx-auto mt-5 max-w-3xl text-xl sm:text-2xl font-semibold text-white/90">
+            “More than outsourcing processes, we build connections that generate results.”
           </p>
-          <div className="mt-8 flex flex-wrap gap-3">
+          <p className="mx-auto mt-4 max-w-2xl text-base text-white/70 leading-relaxed">
+            We chose this logo because it brings our purpose into one image: global ambition, connected service, human relationships and technology working together.
+          </p>
+          <div className="mt-8 flex flex-wrap justify-center gap-3">
+            <a href="#nosotros" className="inline-flex items-center gap-2 rounded-full px-6 py-3.5 text-sm font-semibold text-abm-navy bg-white hover:bg-white/90 transition-transform hover:scale-[1.03] shadow-[var(--shadow-soft)]">
+              Who we are <ArrowRight className="h-4 w-4" />
+            </a>
             <a href="#servicios" className="inline-flex items-center gap-2 rounded-full px-6 py-3.5 text-sm font-semibold text-abm-navy bg-white hover:bg-white/90 transition-transform hover:scale-[1.03] shadow-[var(--shadow-soft)]">
-              Explore our services <ArrowRight className="h-4 w-4" />
-            </a>
-            <a href="#contacto" className="inline-flex items-center gap-2 rounded-full px-6 py-3.5 text-sm font-semibold text-white border border-white/25 hover:bg-white/10 transition-colors">
-              Request a consultation
+              Explore our services
             </a>
           </div>
-          <p className="mt-8 max-w-md text-sm italic text-white/60">
-            "More than outsourcing processes, we build connections that generate results."
-          </p>
         </div>
-
-        <div className="relative animate-fade-up" style={{ animationDelay: "0.15s" }}>
-          <div className="relative rounded-3xl overflow-hidden shadow-[var(--shadow-glow)] border border-white/10">
-            <img src={heroImg} alt="Globally connected BPO operations center" width={1280} height={1024} className="w-full h-auto object-cover" />
-            <div className="absolute inset-0 bg-gradient-to-tr from-abm-navy-deep/60 via-transparent to-abm-purple/20" />
-          </div>
-          {/* floating stat cards */}
-          <div className="absolute -left-4 top-8 animate-float rounded-2xl glass-card px-4 py-3 shadow-[var(--shadow-card)]">
-            <div className="flex items-center gap-3">
-              <div className="grid h-9 w-9 place-items-center rounded-lg text-white" style={{ backgroundImage: "var(--gradient-brand)" }}>
-                <Headphones className="h-4 w-4" />
-              </div>
-              <div>
-                <div className="text-[10px] uppercase tracking-wider text-muted-foreground">Service level</div>
-                <div className="text-lg font-bold text-abm-navy">80%</div>
-              </div>
+        <div className="mt-14 grid gap-4 text-left md:grid-cols-3">
+          {logoElements.map((item) => (
+            <div key={item.title} className="rounded-xl border border-white/15 bg-white/10 p-6 backdrop-blur-sm">
+              <item.icon className="h-6 w-6 text-abm-blue" />
+              <h2 className="mt-4 text-lg font-bold">{item.title}</h2>
+              <p className="mt-2 text-sm leading-relaxed text-white/70">{item.text}</p>
             </div>
-          </div>
-          <div className="absolute -right-3 bottom-10 animate-float rounded-2xl glass-card px-4 py-3 shadow-[var(--shadow-card)]" style={{ animationDelay: "1.5s" }}>
-            <div className="flex items-center gap-3">
-              <div className="grid h-9 w-9 place-items-center rounded-lg bg-abm-purple text-white">
-                <TrendingUp className="h-4 w-4" />
-              </div>
-              <div>
-                <div className="text-[10px] uppercase tracking-wider text-muted-foreground">Minimum CSAT</div>
-                <div className="text-lg font-bold text-abm-navy">4.2 / 5</div>
-              </div>
-            </div>
-          </div>
+          ))}
         </div>
       </div>
     </section>
@@ -234,11 +198,12 @@ function Hero() {
 
 /* ---------------- About ---------------- */
 function About() {
-  const items = [
-    { icon: Users, color: "var(--abm-blue)", title: "Human talent", text: "Trained agents delivering professional, personalized service." },
-    { icon: Bot, color: "var(--abm-purple)", title: "Technology", text: "Strategic use of CRM, automation and artificial intelligence." },
-     { icon: Globe2, color: "var(--abm-blue)", title: "Omnichannel", text: "Voice, chat, email and digital channels seamlessly integrated." },
-     { icon: BarChart3, color: "var(--abm-purple)", title: "Results", text: "KPI-driven processes focused on efficiency and growth." },
+  const values = [
+    { icon: ShieldCheck, title: "Trust & Reliability", text: "We protect every client relationship through dependable service, integrity and a workforce prepared to deliver quality." },
+    { icon: Lightbulb, title: "Growth & Innovation", text: "We pursue continuous improvement, adaptability, creativity and the responsible integration of technologies such as artificial intelligence." },
+    { icon: Users, title: "Optimism & Teamwork", text: "We build a positive organizational culture where collaboration, energy and shared responsibility strengthen every result." },
+    { icon: Waypoints, title: "Seamless Connection", text: "We keep communication continuous and customer-centered through connected channels and strong local and international relationships." },
+    { icon: BadgeCheck, title: "Excellence & Compliance", text: "We pursue COPC and ISO 27001 quality standards while complying with Colombian data protection requirements." },
   ];
   return (
     <section id="nosotros" className="relative py-24 lg:py-32">
@@ -247,20 +212,35 @@ function About() {
         <h2 className="mt-4 max-w-3xl text-3xl sm:text-4xl lg:text-5xl font-extrabold tracking-tight text-abm-navy" style={{ fontFamily: "var(--font-display)" }}>
           We transform customer experience through <span className="text-gradient-brand">technology and human talent</span>.
         </h2>
-        <p className="mt-6 max-w-3xl text-lg text-muted-foreground leading-relaxed">
+        <p className="mt-6 max-w-4xl text-lg text-muted-foreground leading-relaxed">
           Apex Business Matrix (ABM BPO) is a company specialized in Business Process Outsourcing solutions that optimize the relationship between brands and their customers. We combine highly trained human talent, technology, CRM, automation and omnichannel infrastructure to deliver efficient, reliable and customer-centric operations.
         </p>
-        <div className="mt-14 grid gap-5 sm:grid-cols-2 lg:grid-cols-4">
-          {items.map((it) => (
-            <div key={it.title} className="group relative rounded-2xl border border-border bg-card p-6 shadow-[var(--shadow-soft)] hover:shadow-[var(--shadow-card)] transition-all hover:-translate-y-1">
-              <div className="grid h-12 w-12 place-items-center rounded-xl text-white" style={{ backgroundColor: it.color }}>
-                <it.icon className="h-5 w-5" />
-              </div>
-              <h3 className="mt-5 text-lg font-bold text-abm-navy">{it.title}</h3>
-              <p className="mt-2 text-sm text-muted-foreground leading-relaxed">{it.text}</p>
-              <div className="absolute inset-x-6 bottom-0 h-0.5 origin-left scale-x-0 bg-[var(--gradient-brand)] transition-transform group-hover:scale-x-100" />
+        <div className="mt-14 grid gap-6 lg:grid-cols-2">
+          {[
+            { label: "Mission", title: "Transform customer experience", text: "To deliver comprehensive, high-quality BPO solutions by integrating artificial intelligence, process automation and omnichannel infrastructure across voice, chat and email. We turn innovation into cost reduction, faster response times and greater efficiency, supported by highly trained human talent and strict regulatory compliance." },
+            { label: "Vision 2030", title: "Become an industry benchmark", text: "To establish ABM BPO as a national and international benchmark, achieve a 15% market share in outsourcing services for growing enterprises, and pursue COPC and ISO 27001 standards through adaptability, continuous innovation and sustainable human talent development." },
+          ].map((item) => (
+            <div key={item.label} className="relative overflow-hidden rounded-2xl p-8 text-white shadow-[var(--shadow-card)]" style={{ backgroundImage: "var(--gradient-hero)" }}>
+              <div className="text-xs font-semibold uppercase tracking-[0.25em] text-white/60">{item.label}</div>
+              <h3 className="mt-3 text-2xl font-extrabold" style={{ fontFamily: "var(--font-display)" }}>{item.title}</h3>
+              <p className="mt-4 leading-relaxed text-white/80">{item.text}</p>
             </div>
           ))}
+        </div>
+        <div className="mt-20">
+          <SectionEyebrow>Corporate values</SectionEyebrow>
+          <h3 className="mt-4 max-w-2xl text-3xl sm:text-4xl font-extrabold text-abm-navy" style={{ fontFamily: "var(--font-display)" }}>
+            The principles behind <span className="text-gradient-brand">every connection</span>.
+          </h3>
+          <div className="mt-10 grid gap-5 md:grid-cols-2 lg:grid-cols-5">
+            {values.map((value) => (
+              <div key={value.title} className="rounded-xl border border-border bg-card p-5 shadow-[var(--shadow-soft)]">
+                <div className="grid h-11 w-11 place-items-center rounded-lg bg-primary text-primary-foreground"><value.icon className="h-5 w-5" /></div>
+                <h4 className="mt-5 font-bold text-abm-navy">{value.title}</h4>
+                <p className="mt-2 text-sm leading-relaxed text-muted-foreground">{value.text}</p>
+              </div>
+            ))}
+          </div>
         </div>
       </div>
     </section>
@@ -804,63 +784,6 @@ function WhyAbm() {
               </div>
               <h3 className="mt-5 font-bold text-abm-navy">{it.title}</h3>
               <p className="mt-2 text-sm text-muted-foreground leading-relaxed">{it.text}</p>
-            </div>
-          ))}
-        </div>
-      </div>
-    </section>
-  );
-}
-
-/* ---------------- Mission & Vision ---------------- */
-function MissionVision() {
-  return (
-    <section className="relative py-24 lg:py-32">
-      <div className="mx-auto max-w-7xl px-4 sm:px-6 grid lg:grid-cols-2 gap-6">
-        {[
-          { tag: "Mission", title: "Our mission", color: "var(--abm-blue)", text: "To deliver high-quality, end-to-end Business Process Outsourcing solutions that transform customer experience through artificial intelligence, automation, omnichannel infrastructure and highly trained human talent — reducing costs, optimizing times and maximizing efficiency." },
-          { tag: "Vision 2030", title: "Our vision", color: "var(--abm-purple)", text: "To become a national and international BPO benchmark, achieve 15% market share among growing enterprises, and pursue COPC and ISO 27001 standards through innovation, adaptability and sustainable talent development." },
-        ].map((c) => (
-          <div key={c.tag} className="relative overflow-hidden rounded-3xl p-8 lg:p-10 text-white shadow-[var(--shadow-card)]" style={{ backgroundImage: "var(--gradient-hero)" }}>
-            <div className="absolute -top-16 -right-16 h-64 w-64 rounded-full blur-3xl opacity-40" style={{ backgroundColor: c.color }} />
-            <div className="relative">
-              <div className="text-xs uppercase tracking-[0.35em] text-white/60">{c.tag}</div>
-              <h3 className="mt-3 text-3xl font-extrabold" style={{ fontFamily: "var(--font-display)" }}>{c.title}</h3>
-              <p className="mt-5 text-white/80 leading-relaxed">{c.text}</p>
-            </div>
-          </div>
-        ))}
-      </div>
-    </section>
-  );
-}
-
-/* ---------------- Values ---------------- */
-function Values() {
-  const values = [
-    { l: "Trust", i: ShieldCheck, c: "var(--abm-blue)" },
-    { l: "Innovation", i: Lightbulb, c: "var(--abm-purple)" },
-    { l: "Growth", i: TrendingUp, c: "var(--abm-blue)" },
-    { l: "Teamwork", i: Users, c: "var(--abm-purple)" },
-    { l: "Optimism", i: Sparkles, c: "var(--abm-blue)" },
-    { l: "Connection", i: Globe2, c: "var(--abm-blue)" },
-    { l: "Excellence", i: Target, c: "var(--abm-purple)" },
-    { l: "Adaptability", i: Layers, c: "var(--abm-blue)" },
-  ];
-  return (
-    <section className="relative py-24 lg:py-28" style={{ backgroundImage: "var(--gradient-soft)" }}>
-      <div className="mx-auto max-w-7xl px-4 sm:px-6">
-        <SectionEyebrow>Values</SectionEyebrow>
-        <h2 className="mt-4 max-w-2xl text-3xl sm:text-4xl font-extrabold tracking-tight text-abm-navy" style={{ fontFamily: "var(--font-display)" }}>
-          The principles that <span className="text-gradient-brand">define us</span>.
-        </h2>
-        <div className="mt-12 grid gap-4 grid-cols-2 md:grid-cols-4">
-          {values.map((v) => (
-            <div key={v.l} className="group rounded-2xl bg-card border border-border p-5 text-center shadow-[var(--shadow-soft)] hover:shadow-[var(--shadow-card)] transition-all">
-              <div className="mx-auto grid h-12 w-12 place-items-center rounded-xl text-white transition-transform group-hover:scale-110 group-hover:-rotate-6" style={{ backgroundColor: v.c }}>
-                <v.i className="h-5 w-5" />
-              </div>
-              <div className="mt-4 text-sm font-bold text-abm-navy">{v.l}</div>
             </div>
           ))}
         </div>
