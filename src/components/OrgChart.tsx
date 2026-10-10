@@ -189,9 +189,96 @@ export function OrgChart() {
   );
 }
 
+type BriefRow = { icon: React.ComponentType<{ className?: string }>; label: string; value: string; multiline?: string[] };
+
+const BRIEFS: { title: string; generalObjective: string; specificObjective: string; rows: BriefRow[] }[] = [
+  {
+    title: "Customer Service — Front Office",
+    generalObjective:
+      "To attend to and resolve MONTOC customers' inquiries, requests and claims in a clear, quick and respectful way, in order to guarantee their satisfaction and trust in the brand.",
+    specificObjective:
+      "To provide fast and personalized customer service through WhatsApp Business, resolving inquiries and requests efficiently.",
+    rows: [
+      { icon: Calendar, label: "Start date", value: "January 1, 2026" },
+      { icon: CalendarX, label: "End date", value: "Indefinite" },
+      { icon: Clock, label: "Operating hours", value: "Monday to Friday — 8:00 AM – 5:00 PM", multiline: ["Lunch: 12 PM – 1 PM"] },
+      { icon: Store, label: "# Stations", value: "18" },
+      { icon: Headset, label: "# Agents", value: "18" },
+      { icon: Repeat, label: "Shifts", value: "1" },
+      { icon: Globe, label: "Coverage", value: "Local" },
+    ],
+  },
+  {
+    title: "Sales & Marketing — Front Office",
+    generalObjective:
+      "To promote MONTOC products, identify customers' needs and increase sales through personalized service using WhatsApp Business, supported by email for formal follow-up.",
+    specificObjective:
+      "To identify customers' needs and recommend suitable MONTOC products through personalized service via WhatsApp Business.",
+    rows: [
+      { icon: Calendar, label: "Start date", value: "January 1, 2026" },
+      { icon: CalendarX, label: "End date", value: "Indefinite" },
+      { icon: Clock, label: "Operating hours", value: "Monday to Friday — 8:00 AM – 5:00 PM", multiline: ["Lunch: 12 PM – 1 PM"] },
+      { icon: Store, label: "# Stations", value: "15" },
+      { icon: Headset, label: "# Agents", value: "15" },
+      { icon: Repeat, label: "Shifts", value: "1" },
+      { icon: Globe, label: "Coverage", value: "Local" },
+    ],
+  },
+];
+
+function BriefCard({ brief }: { brief: (typeof BRIEFS)[number] }) {
+  return (
+    <article className="flex flex-col overflow-hidden rounded-3xl border border-border bg-card shadow-[var(--shadow-card)]">
+      <header className="px-6 py-5 text-center" style={{ backgroundImage: "var(--gradient-brand)" }}>
+        <p className="text-[11px] font-bold uppercase tracking-[0.25em] text-primary-foreground/80">Brief</p>
+        <h3 className="text-lg font-extrabold text-primary-foreground sm:text-xl" style={{ fontFamily: "var(--font-display)" }}>
+          {brief.title}
+        </h3>
+        <p className="mt-1 text-[11px] font-semibold uppercase tracking-[0.2em] text-primary-foreground/80">
+          Client: MONTOC Cosmetic Tools
+        </p>
+      </header>
+
+      <div className="flex flex-1 flex-col gap-2.5 px-6 py-6">
+        {brief.rows.map((row) => (
+          <div key={row.label} className="grid grid-cols-[1fr_1.4fr] items-center gap-3">
+            <div className="flex items-center gap-2.5 rounded-xl border border-abm-blue/40 bg-accent px-3 py-2.5">
+              <row.icon className="h-4 w-4 shrink-0 text-abm-blue" />
+              <span className="text-[11px] font-bold uppercase tracking-wide text-abm-navy">{row.label}</span>
+            </div>
+            <div className="rounded-xl border border-abm-purple/30 px-3 py-2.5 text-center">
+              <p className="text-xs font-bold text-abm-navy sm:text-sm">{row.value}</p>
+              {row.multiline?.map((line) => (
+                <p key={line} className="mt-0.5 text-[11px] font-semibold text-muted-foreground">{line}</p>
+              ))}
+            </div>
+          </div>
+        ))}
+      </div>
+
+      <footer className="border-t border-border px-6 py-6">
+        <div className="flex items-center gap-2">
+          <Target className="h-4 w-4 text-abm-purple" />
+          <h4 className="text-sm font-extrabold uppercase tracking-wide text-abm-purple" style={{ fontFamily: "var(--font-display)" }}>
+            General objective
+          </h4>
+        </div>
+        <p className="mt-2 text-sm leading-relaxed text-muted-foreground">{brief.generalObjective}</p>
+        <div className="mt-5 flex items-center gap-2">
+          <Target className="h-4 w-4 text-abm-blue" />
+          <h4 className="text-sm font-extrabold uppercase tracking-wide text-abm-blue" style={{ fontFamily: "var(--font-display)" }}>
+            Specific objective
+          </h4>
+        </div>
+        <p className="mt-2 text-sm leading-relaxed text-muted-foreground">{brief.specificObjective}</p>
+      </footer>
+    </article>
+  );
+}
+
 export function CampaignBriefs() {
   return (
-    <section id="briefs" className="relative overflow-hidden py-24 lg:py-32">
+    <section id="briefs" className="relative overflow-hidden py-24 lg:py-32" style={{ backgroundImage: "var(--gradient-soft)" }}>
       <div className="mx-auto max-w-7xl px-4 sm:px-6">
         <div className="mx-auto max-w-3xl text-center">
           <div className="inline-flex items-center gap-2 rounded-full bg-accent px-4 py-1.5 text-[11px] font-semibold uppercase text-abm-purple">
@@ -204,15 +291,10 @@ export function CampaignBriefs() {
             Client: MONTOC Cosmetic Tools. The approved Customer Service and Sales &amp; Marketing briefs are shown in full.
           </p>
         </div>
-        <div className="mx-auto mt-10 grid max-w-7xl gap-6 lg:grid-cols-2">
-          <figure className="overflow-hidden rounded-xl border border-border bg-card shadow-[var(--shadow-card)]">
-            <img src={customerServiceBrief.url} alt="ABM Customer Service front-office campaign brief for MONTOC" className="h-auto w-full" />
-            <figcaption className="border-t border-border px-5 py-4 text-sm font-bold text-abm-navy">Customer Service — Front Office</figcaption>
-          </figure>
-          <figure className="overflow-hidden rounded-xl border border-border bg-card shadow-[var(--shadow-card)]">
-            <img src={salesMarketingBrief.url} alt="ABM Sales and Marketing front-office campaign brief for MONTOC" className="h-auto w-full" />
-            <figcaption className="border-t border-border px-5 py-4 text-sm font-bold text-abm-navy">Sales &amp; Marketing — Front Office</figcaption>
-          </figure>
+        <div className="mx-auto mt-10 grid max-w-7xl items-start gap-6 lg:grid-cols-2">
+          {BRIEFS.map((brief) => (
+            <BriefCard key={brief.title} brief={brief} />
+          ))}
         </div>
       </div>
     </section>
