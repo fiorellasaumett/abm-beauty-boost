@@ -1,19 +1,12 @@
-import { useState } from "react";
 import {
-  Banknote,
-  CalendarDays,
-  Clock,
   Crown,
-  Headphones,
-  MapPin,
   Monitor,
   Network,
   ShieldCheck,
   ShoppingBag,
-  Users,
-  UsersRound,
 } from "lucide-react";
-import { Button } from "@/components/ui/button";
+import customerServiceBrief from "@/assets/abm-customer-service-brief.jpeg.asset.json";
+import salesMarketingBrief from "@/assets/abm-sales-marketing-brief.jpeg.asset.json";
 
 /* ---------------- Organization chart ---------------- */
 
@@ -190,123 +183,30 @@ export function OrgChart() {
   );
 }
 
-/* ---------------- Campaign briefs ---------------- */
-
-type Brief = {
-  key: string;
-  campaign: string;
-  icon: React.ComponentType<{ className?: string }>;
-  rows: { label: string; value: string; icon: React.ComponentType<{ className?: string }> }[];
-  general: string;
-  specific: string;
-};
-
-const BRIEFS: Brief[] = [
-  {
-    key: "customer",
-    campaign: "Customer Service — Front Office",
-    icon: Headphones,
-    rows: [
-      { label: "Start date", value: "January 1, 2026", icon: CalendarDays },
-      { label: "End date", value: "Indefinite", icon: CalendarDays },
-      { label: "Operating hours", value: "Monday to Friday, 8:00 AM – 6:00 PM", icon: Clock },
-      { label: "Stations", value: "10", icon: Monitor },
-      { label: "Agents", value: "18", icon: Users },
-      { label: "Shifts", value: "1", icon: Clock },
-      { label: "Coverage", value: "Local", icon: MapPin },
-    ],
-    general:
-      "To attend to and resolve MONTOC customers' inquiries, requests and claims in a clear, quick and respectful way, in order to guarantee their satisfaction and trust in the brand.",
-    specific:
-      "To provide fast and personalized customer service through WhatsApp Business, resolving inquiries and requests efficiently.",
-  },
-  {
-    key: "sales",
-    campaign: "Sales and Marketing — Front Office",
-    icon: ShoppingBag,
-    rows: [
-      { label: "Start date", value: "January 1, 2026", icon: CalendarDays },
-      { label: "End date", value: "Indefinite", icon: CalendarDays },
-      { label: "Operating hours", value: "Monday to Friday, 8:00 AM – 6:00 PM", icon: Clock },
-      { label: "Stations", value: "8", icon: Monitor },
-      { label: "Agents", value: "15", icon: Users },
-      { label: "Shifts", value: "1", icon: Clock },
-      { label: "Coverage", value: "Local", icon: MapPin },
-    ],
-    general:
-      "To promote MONTOC products, identify customers' needs and increase sales through personalized service using WhatsApp Business, supported by email for formal follow-up.",
-    specific:
-      "To identify customers' needs and recommend suitable MONTOC products through personalized service via WhatsApp Business.",
-  },
-];
-
 export function CampaignBriefs() {
-  const [brief, setBrief] = useState("customer");
-  const active = BRIEFS.find((b) => b.key === brief)!;
-
   return (
     <section id="briefs" className="relative overflow-hidden py-24 lg:py-32">
       <div className="mx-auto max-w-7xl px-4 sm:px-6">
         <div className="mx-auto max-w-3xl text-center">
           <div className="inline-flex items-center gap-2 rounded-full bg-accent px-4 py-1.5 text-[11px] font-semibold uppercase text-abm-purple">
-            <Banknote className="h-3.5 w-3.5" /> Campaign briefs
+            <ShoppingBag className="h-3.5 w-3.5" /> Campaign briefs
           </div>
           <h2 className="mt-4 text-3xl font-extrabold text-abm-navy sm:text-4xl lg:text-5xl" style={{ fontFamily: "var(--font-display)" }}>
             The <span className="text-gradient-brand">MONTOC</span> campaign briefs.
           </h2>
           <p className="mt-5 text-lg leading-relaxed text-muted-foreground">
-            Client: MONTOC Cosmetic Tools. Each front-office campaign runs with its own staffing, schedule and objectives.
+            Client: MONTOC Cosmetic Tools. The approved Customer Service and Sales &amp; Marketing briefs are shown in full.
           </p>
         </div>
-
-        <div className="mx-auto mt-8 grid max-w-4xl grid-cols-2 gap-2 rounded-xl border border-border bg-card p-2 shadow-[var(--shadow-soft)]">
-          {BRIEFS.map((b) => (
-            <Button
-              key={b.key}
-              type="button"
-              variant={brief === b.key ? "default" : "ghost"}
-              onClick={() => setBrief(b.key)}
-              className="h-auto min-h-12 gap-2 whitespace-normal px-3 py-2 text-xs sm:text-sm"
-            >
-              <b.icon className="h-4 w-4 shrink-0" /> {b.campaign}
-            </Button>
-          ))}
-        </div>
-
-        <div className="mx-auto mt-8 grid max-w-5xl gap-6 lg:grid-cols-[1.1fr_1fr]">
-          <div className="rounded-2xl border border-border bg-card p-6 shadow-[var(--shadow-card)] sm:p-8">
-            <h3 className="text-lg font-extrabold text-abm-navy" style={{ fontFamily: "var(--font-display)" }}>
-              Operation details
-            </h3>
-            <div className="mt-5 grid gap-3 sm:grid-cols-2">
-              {active.rows.map((row) => (
-                <div key={row.label} className="flex items-center gap-3 rounded-xl border border-border bg-accent/40 px-4 py-3">
-                  <row.icon className="h-4 w-4 shrink-0 text-abm-purple" />
-                  <div className="min-w-0">
-                    <p className="text-[10px] font-bold uppercase tracking-wide text-muted-foreground">{row.label}</p>
-                    <p className="text-sm font-bold text-abm-navy">{row.value}</p>
-                  </div>
-                </div>
-              ))}
-            </div>
-          </div>
-
-          <div className="flex flex-col gap-6">
-            <div className="rounded-2xl border-2 border-abm-blue/50 bg-card p-6 shadow-[var(--shadow-soft)]">
-              <div className="flex items-center gap-2 text-abm-blue">
-                <UsersRound className="h-4 w-4" />
-                <p className="text-[11px] font-bold uppercase tracking-[0.2em]">General objective</p>
-              </div>
-              <p className="mt-3 text-sm leading-relaxed text-abm-navy">{active.general}</p>
-            </div>
-            <div className="rounded-2xl border-2 border-abm-purple/50 bg-accent p-6 shadow-[var(--shadow-soft)]">
-              <div className="flex items-center gap-2 text-abm-purple">
-                <ShieldCheck className="h-4 w-4" />
-                <p className="text-[11px] font-bold uppercase tracking-[0.2em]">Specific objective</p>
-              </div>
-              <p className="mt-3 text-sm leading-relaxed text-abm-navy">{active.specific}</p>
-            </div>
-          </div>
+        <div className="mx-auto mt-10 grid max-w-7xl gap-6 lg:grid-cols-2">
+          <figure className="overflow-hidden rounded-xl border border-border bg-card shadow-[var(--shadow-card)]">
+            <img src={customerServiceBrief.url} alt="ABM Customer Service front-office campaign brief for MONTOC" className="h-auto w-full" />
+            <figcaption className="border-t border-border px-5 py-4 text-sm font-bold text-abm-navy">Customer Service — Front Office</figcaption>
+          </figure>
+          <figure className="overflow-hidden rounded-xl border border-border bg-card shadow-[var(--shadow-card)]">
+            <img src={salesMarketingBrief.url} alt="ABM Sales and Marketing front-office campaign brief for MONTOC" className="h-auto w-full" />
+            <figcaption className="border-t border-border px-5 py-4 text-sm font-bold text-abm-navy">Sales &amp; Marketing — Front Office</figcaption>
+          </figure>
         </div>
       </div>
     </section>
