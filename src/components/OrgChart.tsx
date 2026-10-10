@@ -1,12 +1,18 @@
 import {
+  Calendar,
+  CalendarX,
+  Clock,
   Crown,
+  Globe,
+  Headset,
   Monitor,
   Network,
+  Repeat,
   ShieldCheck,
   ShoppingBag,
+  Store,
+  Target,
 } from "lucide-react";
-import customerServiceBrief from "@/assets/abm-customer-service-brief.jpeg.asset.json";
-import salesMarketingBrief from "@/assets/abm-sales-marketing-brief.jpeg.asset.json";
 
 /* ---------------- Organization chart ---------------- */
 
