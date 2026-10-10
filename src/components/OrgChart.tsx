@@ -209,8 +209,8 @@ const BRIEFS: Brief[] = [
     rows: [
       { label: "Start date", value: "January 1, 2026", icon: CalendarDays },
       { label: "End date", value: "Indefinite", icon: CalendarDays },
-      { label: "Operating hours", value: "Monday to Friday, 8:00 AM – 6:00 PM", icon: Clock },
-      { label: "Stations", value: "10", icon: Monitor },
+      { label: "Operating hours", value: "Monday to Friday, 8:00 AM – 5:00 PM · Lunch 12:00 PM – 1:00 PM", icon: Clock },
+      { label: "Stations", value: "18", icon: Monitor },
       { label: "Agents", value: "18", icon: Users },
       { label: "Shifts", value: "1", icon: Clock },
       { label: "Coverage", value: "Local", icon: MapPin },
@@ -227,8 +227,8 @@ const BRIEFS: Brief[] = [
     rows: [
       { label: "Start date", value: "January 1, 2026", icon: CalendarDays },
       { label: "End date", value: "Indefinite", icon: CalendarDays },
-      { label: "Operating hours", value: "Monday to Friday, 8:00 AM – 6:00 PM", icon: Clock },
-      { label: "Stations", value: "8", icon: Monitor },
+      { label: "Operating hours", value: "Monday to Friday, 8:00 AM – 5:00 PM · Lunch 12:00 PM – 1:00 PM", icon: Clock },
+      { label: "Stations", value: "15", icon: Monitor },
       { label: "Agents", value: "15", icon: Users },
       { label: "Shifts", value: "1", icon: Clock },
       { label: "Coverage", value: "Local", icon: MapPin },

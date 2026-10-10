@@ -15,3 +15,4 @@
 - [x] Add arrows linking the What and How columns in the process route diagram.
 - [x] Swap the "Specialists in Beauty & Skincare" photos for different official MONTOC products (Glow Filter Pre-Base, Sunsoon SPF 50+, Fluffy Brush Kit).
 - [x] Lead the website with the original ABM logo and consolidate its explanation, slogan, mission, vision and values under Who We Are.
+- [x] Replace both MONTOC campaign briefs with the approved staffing and operating details from the supplied designs.
