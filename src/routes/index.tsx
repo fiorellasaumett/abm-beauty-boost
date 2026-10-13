@@ -5,7 +5,7 @@ import {
   MessageSquare, Mail, Phone, Users, BarChart3, ShieldCheck, Layers, Rocket,
   Target, HeartHandshake, Lightbulb, Menu, X, CheckCircle2, Send, Palette,
   FileText, AlertTriangle, Gavel, Scale, BadgeCheck, Building2, Server, Banknote,
-  BookOpen, CircleAlert, Waypoints, ExternalLink, GraduationCap, Languages, UserRoundCheck,
+  BookOpen, CircleAlert, Waypoints, ExternalLink,
 } from "lucide-react";
 import agentImg from "@/assets/agent.jpg";
 import abmLogo from "@/assets/abm-logo.jpg.asset.json";
@@ -54,7 +54,6 @@ const NAV = [
   { href: "#kpis", label: "KPIs" },
   { href: "#resultados", label: "Results" },
   { href: "#operations", label: "Operations" },
-  { href: "#people", label: "People" },
   { href: "#pqr", label: "PQR" },
   { href: "#contacto", label: "Contact" },
 ];
@@ -75,7 +74,6 @@ function Index() {
       <CampaignKpis />
       <Results />
       <ProjectDepth />
-      <PeopleCulture />
       <WhyAbm />
       <Process />
       <TechStack />
@@ -703,7 +701,7 @@ function ProjectDepth() {
           <div className="flex flex-wrap items-end justify-between gap-4"><div><SectionEyebrow>Leadership</SectionEyebrow><h3 className="mt-4 text-3xl font-extrabold text-abm-navy" style={{ fontFamily: "var(--font-display)" }}>The team behind ABM</h3></div><p className="max-w-xl text-sm leading-relaxed text-muted-foreground">A specialized structure connects executive direction, operations, finance and campaign leadership.</p></div>
           <div className="mt-8 grid gap-3 sm:grid-cols-2 lg:grid-cols-5">
             {[
-              ["Mabel Rodriguez", "CEO"], ["Jesus Martinez", "Operations Manager"], ["Valentina Fuentes", "Finance Director"], ["Fiorella Saumett", "Sales & Marketing Lead"], ["Juan Esteban Guzman", "Customer Service Lead"],
+              ["Mabel Rodriguez", "CEO"], ["Jesus Martinez", "Operations Manager"], ["Valentina Fuentes", "Finance Director"], ["Fiorella Saumett Romero", "Sales & Marketing Lead"], ["Juan Esteban Guzman", "Customer Service Lead"],
             ].map(([name, role]) => <div key={name} className="rounded-lg border border-border bg-card p-5"><div className="text-xs font-semibold uppercase tracking-wider text-primary">{role}</div><div className="mt-2 font-bold text-abm-navy">{name}</div></div>)}
           </div>
         </div>
@@ -714,47 +712,6 @@ function ProjectDepth() {
 
 function ProjectCard({ icon: Icon, title, text }: { icon: typeof Scale; title: string; text: string }) {
   return <div className="rounded-lg border border-border bg-card p-6"><Icon className="h-6 w-6 text-primary" /><h3 className="mt-4 font-bold text-abm-navy">{title}</h3><p className="mt-2 text-sm leading-relaxed text-muted-foreground">{text}</p></div>;
-}
-
-/* ---------------- People & Culture ---------------- */
-function PeopleCulture() {
-  const pillars = [
-    { icon: Languages, title: "Bilingual capability", text: "English and Spanish professionals at B2+ to C1 level support clear, confident customer conversations." },
-    { icon: GraduationCap, title: "Continuous learning", text: "Training combines product knowledge, communication skills, systems, workflows and campaign objectives." },
-    { icon: UserRoundCheck, title: "Quality coaching", text: "Weekly reviews turn service and sales interactions into focused feedback and practical development plans." },
-    { icon: HeartHandshake, title: "Human connection", text: "Empathy, active listening and teamwork keep every interaction personal—even within a technology-enabled operation." },
-  ];
-  return (
-    <section id="people" className="relative overflow-hidden py-24 lg:py-32">
-      <div className="mx-auto grid max-w-7xl gap-14 px-4 sm:px-6 lg:grid-cols-[0.9fr_1.1fr] lg:items-center">
-        <div className="relative overflow-hidden rounded-lg border border-border shadow-[var(--shadow-card)]">
-          <img src={agentImg} alt="ABM customer service professional representing the People and Culture team" width={1024} height={1024} loading="lazy" className="aspect-[4/5] w-full object-cover" />
-          <div className="absolute inset-x-0 bottom-0 bg-gradient-to-t from-abm-navy-deep via-abm-navy-deep/80 to-transparent p-7 pt-24 text-white">
-            <div className="text-xs font-bold uppercase tracking-[0.25em] text-abm-blue">Human talent</div>
-            <div className="mt-2 text-xl font-bold">The people behind every result</div>
-          </div>
-        </div>
-        <div>
-          <SectionEyebrow>People & Culture</SectionEyebrow>
-          <h2 className="mt-4 text-3xl font-extrabold tracking-tight text-abm-navy sm:text-4xl lg:text-5xl" style={{ fontFamily: "var(--font-display)" }}>
-            Technology enables the work. <span className="text-gradient-brand">People create the connection.</span>
-          </h2>
-          <p className="mt-6 max-w-2xl text-lg leading-relaxed text-muted-foreground">
-            ABM’s human talent brings together bilingual communication, customer empathy, commercial judgment and operational discipline. Our teams are prepared to represent each client’s voice with consistency and care.
-          </p>
-          <div className="mt-9 grid gap-4 sm:grid-cols-2">
-            {pillars.map((pillar) => (
-              <div key={pillar.title} className="rounded-lg border border-border bg-card p-5 shadow-[var(--shadow-soft)]">
-                <div className="grid h-10 w-10 place-items-center rounded-lg bg-primary text-primary-foreground"><pillar.icon className="h-5 w-5" /></div>
-                <h3 className="mt-4 font-bold text-abm-navy">{pillar.title}</h3>
-                <p className="mt-2 text-sm leading-relaxed text-muted-foreground">{pillar.text}</p>
-              </div>
-            ))}
-          </div>
-        </div>
-      </div>
-    </section>
-  );
 }
 
 /* ---------------- Why ABM ---------------- */
@@ -922,7 +879,7 @@ function Contact() {
             {[
               { i: Phone, t: "Commercial desk", s: "Barranquilla, Colombia" },
               { i: Mail, t: "Corporate email", s: "contact@abm-bpo.com" },
-              { i: MessageSquare, t: "Digital channels", s: "Voice · Chat · Email · Social" },
+              { i: MessageSquare, t: "Digital channels", s: "Email · WhatsApp Business" },
             ].map((c) => (
               <div key={c.t} className="flex items-center gap-4 rounded-2xl bg-card border border-border p-4 shadow-[var(--shadow-soft)]">
                 <div className="grid h-11 w-11 place-items-center rounded-xl text-white" style={{ backgroundImage: "var(--gradient-brand)" }}>
@@ -1154,10 +1111,15 @@ function Footer() {
               We connect people. We power businesses. Specialized Customer Service and Sales & Marketing solutions for the beauty industry.
             </p>
             <div className="mt-6 flex gap-3">
-              {["in", "ig", "fb", "tw"].map((s) => (
-                <div key={s} className="grid h-9 w-9 place-items-center rounded-full glass-dark text-xs font-bold uppercase text-white/80 hover:text-white cursor-pointer transition-colors">
+              {[
+                { s: "in", href: "https://www.linkedin.com/" },
+                { s: "ig", href: "https://www.instagram.com/" },
+                { s: "fb", href: "https://www.facebook.com/" },
+                { s: "tw", href: "https://x.com/" },
+              ].map(({ s, href }) => (
+                <a key={s} href={href} target="_blank" rel="noreferrer" aria-label={`ABM BPO on ${s}`} className="grid h-9 w-9 place-items-center rounded-full glass-dark text-xs font-bold uppercase text-white/80 hover:text-white transition-colors">
                   {s}
-                </div>
+                </a>
               ))}
             </div>
           </div>
@@ -1180,7 +1142,7 @@ function Footer() {
         </div>
         <div className="mt-14 pt-6 border-t border-white/10 flex flex-wrap items-center justify-between gap-4 text-xs text-white/50">
           <div>© 2026 Apex Business Matrix. All rights reserved.</div>
-          <div>Barranquilla, Colombia · SENA academic project</div>
+          <div>Barranquilla, Colombia · Customer Service & Sales and Marketing</div>
         </div>
       </div>
     </footer>
