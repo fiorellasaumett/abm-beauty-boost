@@ -701,7 +701,7 @@ function ProjectDepth() {
           <div className="flex flex-wrap items-end justify-between gap-4"><div><SectionEyebrow>Leadership</SectionEyebrow><h3 className="mt-4 text-3xl font-extrabold text-abm-navy" style={{ fontFamily: "var(--font-display)" }}>The team behind ABM</h3></div><p className="max-w-xl text-sm leading-relaxed text-muted-foreground">A specialized structure connects executive direction, operations, finance and campaign leadership.</p></div>
           <div className="mt-8 grid gap-3 sm:grid-cols-2 lg:grid-cols-5">
             {[
-              ["Mabel Rodriguez", "CEO"], ["Jesus Martinez", "Operations Manager"], ["Valentina Fuentes", "Finance Director"], ["Fiorella Saumett", "Sales & Marketing Lead"], ["Juan Esteban Guzman", "Customer Service Lead"],
+              ["Mabel Rodriguez", "CEO"], ["Jesus Martinez", "Operations Manager"], ["Valentina Fuentes", "Finance Director"], ["Fiorella Saumett Romero", "Sales & Marketing Lead"], ["Juan Esteban Guzman", "Customer Service Lead"],
             ].map(([name, role]) => <div key={name} className="rounded-lg border border-border bg-card p-5"><div className="text-xs font-semibold uppercase tracking-wider text-primary">{role}</div><div className="mt-2 font-bold text-abm-navy">{name}</div></div>)}
           </div>
         </div>
@@ -1111,10 +1111,15 @@ function Footer() {
               We connect people. We power businesses. Specialized Customer Service and Sales & Marketing solutions for the beauty industry.
             </p>
             <div className="mt-6 flex gap-3">
-              {["in", "ig", "fb", "tw"].map((s) => (
-                <div key={s} className="grid h-9 w-9 place-items-center rounded-full glass-dark text-xs font-bold uppercase text-white/80 hover:text-white cursor-pointer transition-colors">
+              {[
+                { s: "in", href: "https://www.linkedin.com/" },
+                { s: "ig", href: "https://www.instagram.com/" },
+                { s: "fb", href: "https://www.facebook.com/" },
+                { s: "tw", href: "https://x.com/" },
+              ].map(({ s, href }) => (
+                <a key={s} href={href} target="_blank" rel="noreferrer" aria-label={`ABM BPO on ${s}`} className="grid h-9 w-9 place-items-center rounded-full glass-dark text-xs font-bold uppercase text-white/80 hover:text-white transition-colors">
                   {s}
-                </div>
+                </a>
               ))}
             </div>
           </div>
