@@ -19,6 +19,7 @@ import montocFluffy from "@/assets/montoc-fluffy.jpg.asset.json";
 import { ProcessRoutes } from "@/components/ProcessRoutes";
 import { FlowCharts } from "@/components/FlowCharts";
 import { CampaignBriefs, OrgChart } from "@/components/OrgChart";
+import { CampaignKpis } from "@/components/CampaignKpis";
 import { Button } from "@/components/ui/button";
 import { Input } from "@/components/ui/input";
 import { Textarea } from "@/components/ui/textarea";
@@ -50,6 +51,7 @@ const NAV = [
   { href: "#flow-charts", label: "Flow charts" },
   { href: "#org-chart", label: "Org chart" },
   { href: "#briefs", label: "Briefs" },
+  { href: "#kpis", label: "KPIs" },
   { href: "#resultados", label: "Results" },
   { href: "#operations", label: "Operations" },
   { href: "#people", label: "People" },
@@ -70,6 +72,7 @@ function Index() {
       <FlowCharts />
       <OrgChart />
       <CampaignBriefs />
+      <CampaignKpis />
       <Results />
       <ProjectDepth />
       <PeopleCulture />
