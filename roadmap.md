@@ -1,5 +1,7 @@
 # Roadmap
 
+- [ ] Simplify the corporate opening and introduce the three sections without numbering or button lists
+
 - [x] Logo-first hero, slogan, values, Who We Are (mission/vision)
 - [x] Briefs rebuilt in site palette with approved details
 - [x] KPIs section (MONTOC campaign, CS + Sales)
