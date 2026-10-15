@@ -43,58 +43,37 @@ export const Route = createFileRoute("/")({
 });
 
 const NAV = [
-  { href: "#inicio", label: "1. Introduction" },
-  { href: "#market-research", label: "2. Market Research" },
-  { href: "#service-offer", label: "3. Service Offer" },
+  { href: "#introduction", label: "Introduction" },
+  { href: "#market-research", label: "Market Research" },
+  { href: "#service-offer", label: "Service Offer" },
   { href: "#pqr", label: "PQR" },
   { href: "#contacto", label: "Contact" },
 ];
 
 const PARTS = {
   introduction: {
-    n: "01", title: "Introduction",
-    items: [
-      { href: "#inicio", label: "Name, logo, slogan & corporate page" },
-      { href: "#nosotros", label: "Mission, vision & core values" },
-      { href: "#org-chart", label: "Organization chart" },
-      { href: "#servicios", label: "Service characteristics" },
-      { href: "#process-routes", label: "Protocols & scripts" },
-      { href: "#flow-charts", label: "Flow charts" },
-    ],
+    title: "Introduction",
+    description: "Meet Apex Business Matrix: our identity, mission, vision and corporate values. Discover how our team is organized and how our Customer Service and Sales & Marketing operations work, from service characteristics to protocols and flow charts.",
   },
   "market-research": {
-    n: "02", title: "Market Research",
-    items: [
-      { href: "#montoc", label: "Corporate client: MONTOC" },
-      { href: "#swot", label: "SWOT analysis" },
-    ],
+    title: "Market Research",
+    description: "Explore MONTOC, our corporate client, and the beauty market in which it operates. The SWOT analysis examines strengths, weaknesses, opportunities and threats to understand where our BPO services can add value.",
   },
   "service-offer": {
-    n: "03", title: "Service Offer",
-    items: [
-      { href: "#briefs", label: "Brief & service target" },
-      { href: "#operations", label: "Quality assurance" },
-      { href: "#kpis", label: "KPIs" },
-      { href: "#assessment", label: "Assessment board (CX)" },
-      { href: "#resultados", label: "Dashboard" },
-    ],
+    title: "Service Offer",
+    description: "Review the proposed MONTOC campaigns, their briefs and service targets. This section brings together quality assurance, performance indicators, customer experience assessment and the results dashboard.",
   },
 } as const;
 
 function PartHeader({ id }: { id: keyof typeof PARTS }) {
-  const p = PARTS[id];
+  const section = PARTS[id];
   return (
-    <div id={id} className="scroll-mt-20 relative overflow-hidden py-16 lg:py-20" style={{ backgroundImage: "var(--gradient-brand)" }}>
-      <div className="mx-auto max-w-7xl px-4 sm:px-6 text-primary-foreground">
-        <div className="text-sm font-semibold tracking-[0.3em] opacity-80">PART {p.n}</div>
-        <h2 className="mt-2 text-4xl lg:text-6xl font-bold" style={{ fontFamily: "var(--font-display)" }}>{p.title}</h2>
-        <div className="mt-6 flex flex-wrap gap-2">
-          {p.items.map((i) => (
-            <a key={i.href} href={i.href} className="rounded-full border border-primary-foreground/40 bg-primary-foreground/10 px-4 py-1.5 text-sm hover:bg-primary-foreground/20 transition-colors">{i.label}</a>
-          ))}
-        </div>
+    <section id={id} className="scroll-mt-24 border-y border-border bg-secondary py-12 lg:py-16">
+      <div className="mx-auto max-w-7xl px-4 sm:px-6">
+        <h2 className="text-3xl font-bold text-abm-navy sm:text-4xl" style={{ fontFamily: "var(--font-display)" }}>{section.title}</h2>
+        <p className="mt-5 max-w-4xl text-base leading-relaxed text-muted-foreground sm:text-lg">{section.description}</p>
       </div>
-    </div>
+    </section>
   );
 }
 
@@ -116,6 +95,7 @@ function Index() {
       {/* PART 1 — INTRODUCTION */}
       <Hero />
       <PartHeader id="introduction" />
+      <BrandIdentity />
       <About />
       <OrgChart />
       <Services />
@@ -157,7 +137,7 @@ function Navbar() {
   return (
     <header className={`fixed inset-x-0 top-0 z-50 transition-all ${scrolled ? "py-2" : "py-4"}`}>
       <div className={`mx-auto max-w-7xl px-4 sm:px-6 transition-all ${scrolled ? "" : ""}`}>
-        <div className={`flex items-center justify-between gap-4 rounded-2xl px-4 sm:px-6 py-3 transition-all ${scrolled ? "glass-card shadow-[var(--shadow-soft)]" : "bg-transparent"}`}>
+        <div className={`flex items-center justify-between gap-4 rounded-lg border border-border bg-background px-4 sm:px-6 py-3 transition-all ${scrolled ? "shadow-[var(--shadow-soft)]" : ""}`}>
           <a href="#inicio" className="flex items-center gap-2 min-w-0">
             <Logo />
             <div className="hidden sm:block leading-tight">
@@ -174,12 +154,9 @@ function Navbar() {
             ))}
           </nav>
           <div className="flex items-center gap-2">
-            <a href="#contacto" className="hidden md:inline-flex items-center gap-2 rounded-full px-5 py-2.5 text-sm font-semibold text-white shadow-[var(--shadow-glow)] transition-transform hover:scale-[1.03]" style={{ backgroundImage: "var(--gradient-brand)" }}>
-              Request a consultation <ArrowRight className="h-4 w-4" />
-            </a>
-            <button onClick={() => setOpen((v) => !v)} className="lg:hidden shrink-0 rounded-lg p-2 text-abm-navy" aria-label="Menu">
+            <Button variant="ghost" size="icon" onClick={() => setOpen((v) => !v)} className="lg:hidden shrink-0 text-abm-navy" aria-label={open ? "Close menu" : "Open menu"} aria-expanded={open}>
               {open ? <X className="h-5 w-5" /> : <Menu className="h-5 w-5" />}
-            </button>
+            </Button>
           </div>
         </div>
         {open && (
@@ -190,9 +167,6 @@ function Navbar() {
                   {n.label}
                 </a>
               ))}
-              <a href="#contacto" onClick={() => setOpen(false)} className="mt-2 inline-flex items-center justify-center gap-2 rounded-full px-4 py-3 text-sm font-semibold text-white" style={{ backgroundImage: "var(--gradient-brand)" }}>
-                Request a consultation <ArrowRight className="h-4 w-4" />
-              </a>
             </div>
           </div>
         )}
@@ -209,45 +183,40 @@ function Logo() {
 
 /* ---------------- Hero ---------------- */
 function Hero() {
+  return (
+    <section id="inicio" className="scroll-mt-24 bg-background pb-12 pt-28 lg:pb-16 lg:pt-32">
+      <div className="mx-auto max-w-7xl px-4 text-center sm:px-6">
+        <img src={abmLogo.url} alt="Apex Business Matrix globe logo" className="mx-auto h-32 w-32 rounded-lg object-cover sm:h-36 sm:w-36" />
+        <h1 className="mx-auto mt-6 max-w-4xl text-3xl font-bold leading-tight text-abm-navy sm:text-4xl lg:text-5xl" style={{ fontFamily: "var(--font-display)" }}>
+          Apex Business Matrix
+        </h1>
+        <p className="mt-3 text-sm font-semibold text-abm-purple">ABM BPO · Customer Service & Sales & Marketing</p>
+        <p className="mx-auto mt-6 max-w-3xl text-lg leading-relaxed text-foreground sm:text-xl">
+          “More than outsourcing processes, we build connections that generate results.”
+        </p>
+      </div>
+    </section>
+  );
+}
+
+function BrandIdentity() {
   const logoElements = [
     { icon: Globe2, title: "The globe", text: "Expresses our commitment to growth, a forward-looking vision and the future of the services we deliver." },
     { icon: Waypoints, title: "Lines and nodes", text: "Represent continuous client-company communication, seamless integration and the local and international clients we seek to serve." },
     { icon: Palette, title: "Colors and 3D design", text: "Blue means trust; green means growth; purple means creativity and technology; yellow means optimism and teamwork. The 3D finish reflects a modern, innovative BPO." },
   ];
   return (
-    <section id="inicio" className="relative overflow-hidden pt-28 pb-20 lg:pt-36 lg:pb-24" style={{ backgroundImage: "var(--gradient-hero)" }}>
-      <div className="absolute inset-0 bg-grid opacity-40" />
-      <div className="relative mx-auto max-w-7xl px-4 sm:px-6 text-center text-white">
-        <div className="animate-fade-up">
-          <img src={abmLogo.url} alt="Apex Business Matrix globe logo" className="mx-auto h-44 w-44 sm:h-56 sm:w-56 rounded-2xl object-cover shadow-[var(--shadow-glow)] ring-1 ring-white/20" />
-          <div className="mt-7 inline-flex items-center gap-2 rounded-full glass-dark px-4 py-1.5 text-xs font-medium tracking-wide">
-            <Sparkles className="h-3.5 w-3.5 text-abm-blue" />
-            Customer Service · Sales & Marketing
-          </div>
-          <h1 className="mx-auto mt-5 max-w-5xl text-4xl sm:text-5xl lg:text-6xl font-extrabold leading-[1.08]" style={{ fontFamily: "var(--font-display)" }}>
-            Apex Business Matrix <span className="text-gradient-brand">(ABM BPO)</span>
-          </h1>
-          <p className="mx-auto mt-5 max-w-3xl text-xl sm:text-2xl font-semibold text-white/90">
-            “More than outsourcing processes, we build connections that generate results.”
-          </p>
-          <p className="mx-auto mt-4 max-w-2xl text-base text-white/70 leading-relaxed">
-            We chose this logo because it brings our purpose into one image: global ambition, connected service, human relationships and technology working together.
-          </p>
-          <div className="mt-8 flex flex-wrap justify-center gap-3">
-            <a href="#nosotros" className="inline-flex items-center gap-2 rounded-full px-6 py-3.5 text-sm font-semibold text-abm-navy bg-white hover:bg-white/90 transition-transform hover:scale-[1.03] shadow-[var(--shadow-soft)]">
-              Who we are <ArrowRight className="h-4 w-4" />
-            </a>
-            <a href="#servicios" className="inline-flex items-center gap-2 rounded-full px-6 py-3.5 text-sm font-semibold text-abm-navy bg-white hover:bg-white/90 transition-transform hover:scale-[1.03] shadow-[var(--shadow-soft)]">
-              Explore our services
-            </a>
-          </div>
-        </div>
-        <div className="mt-14 grid gap-4 text-left md:grid-cols-3">
+    <section className="py-12 lg:py-16">
+      <div className="mx-auto max-w-7xl px-4 sm:px-6">
+        <SectionEyebrow>Our identity</SectionEyebrow>
+        <h2 className="mt-4 text-3xl font-bold text-abm-navy" style={{ fontFamily: "var(--font-display)" }}>The meaning behind our logo</h2>
+        <p className="mt-5 max-w-3xl text-base leading-relaxed text-muted-foreground">We chose this logo because it brings our purpose into one image: global ambition, connected service, human relationships and technology working together.</p>
+        <div className="mt-8 grid gap-8 md:grid-cols-3">
           {logoElements.map((item) => (
-            <div key={item.title} className="rounded-xl border border-white/15 bg-white/10 p-6 backdrop-blur-sm">
-              <item.icon className="h-6 w-6 text-abm-blue" />
-              <h2 className="mt-4 text-lg font-bold">{item.title}</h2>
-              <p className="mt-2 text-sm leading-relaxed text-white/70">{item.text}</p>
+            <div key={item.title} className="border-t border-border pt-5">
+              <item.icon className="h-6 w-6 text-abm-purple" />
+              <h3 className="mt-4 text-lg font-bold text-abm-navy">{item.title}</h3>
+              <p className="mt-2 text-sm leading-relaxed text-muted-foreground">{item.text}</p>
             </div>
           ))}
         </div>
