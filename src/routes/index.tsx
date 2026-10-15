@@ -43,50 +43,99 @@ export const Route = createFileRoute("/")({
 });
 
 const NAV = [
-  { href: "#inicio", label: "Home" },
-  { href: "#nosotros", label: "Who we are" },
-  { href: "#org-chart", label: "Org chart" },
-  { href: "#servicios", label: "Services" },
-  { href: "#process-routes", label: "Process routes" },
-  { href: "#flow-charts", label: "Flow charts" },
-  { href: "#montoc", label: "MONTOC" },
-  { href: "#swot", label: "SWOT" },
-  { href: "#briefs", label: "Briefs" },
-  { href: "#kpis", label: "KPIs" },
-  { href: "#resultados", label: "Results" },
-  { href: "#operations", label: "Operations" },
+  { href: "#introduction", label: "1. Introduction" },
+  { href: "#market-research", label: "2. Market Research" },
+  { href: "#service-offer", label: "3. Service Offer" },
   { href: "#pqr", label: "PQR" },
   { href: "#contacto", label: "Contact" },
 ];
+
+const PARTS = {
+  introduction: {
+    n: "01", title: "Introduction",
+    items: [
+      { href: "#inicio", label: "Name, logo, slogan & corporate page" },
+      { href: "#nosotros", label: "Mission, vision & core values" },
+      { href: "#org-chart", label: "Organization chart" },
+      { href: "#servicios", label: "Service characteristics" },
+      { href: "#process-routes", label: "Protocols & scripts" },
+      { href: "#flow-charts", label: "Flow charts" },
+    ],
+  },
+  "market-research": {
+    n: "02", title: "Market Research",
+    items: [
+      { href: "#montoc", label: "Corporate client: MONTOC" },
+      { href: "#swot", label: "SWOT analysis" },
+    ],
+  },
+  "service-offer": {
+    n: "03", title: "Service Offer",
+    items: [
+      { href: "#briefs", label: "Brief & service target" },
+      { href: "#operations", label: "Quality assurance" },
+      { href: "#kpis", label: "KPIs" },
+      { href: "#assessment", label: "Assessment board (CX)" },
+      { href: "#resultados", label: "Dashboard" },
+    ],
+  },
+} as const;
+
+function PartHeader({ id }: { id: keyof typeof PARTS }) {
+  const p = PARTS[id];
+  return (
+    <div id={id} className="scroll-mt-20 relative overflow-hidden py-16 lg:py-20" style={{ backgroundImage: "var(--gradient-brand)" }}>
+      <div className="mx-auto max-w-7xl px-4 sm:px-6 text-primary-foreground">
+        <div className="text-sm font-semibold tracking-[0.3em] opacity-80">PART {p.n}</div>
+        <h2 className="mt-2 text-4xl lg:text-6xl font-bold" style={{ fontFamily: "var(--font-display)" }}>{p.title}</h2>
+        <div className="mt-6 flex flex-wrap gap-2">
+          {p.items.map((i) => (
+            <a key={i.href} href={i.href} className="rounded-full border border-primary-foreground/40 bg-primary-foreground/10 px-4 py-1.5 text-sm hover:bg-primary-foreground/20 transition-colors">{i.label}</a>
+          ))}
+        </div>
+      </div>
+    </div>
+  );
+}
+
+function AssessmentPlaceholder() {
+  return (
+    <section id="assessment" className="scroll-mt-20 py-20">
+      <div className="mx-auto max-w-7xl px-4 sm:px-6">
+        <SectionEyebrow>Assessment board (CX)</SectionEyebrow>
+        <div className="mt-6 rounded-3xl glass-card p-10 text-center text-muted-foreground">Customer experience assessment board — content coming soon.</div>
+      </div>
+    </section>
+  );
+}
 
 function Index() {
   return (
     <div className="min-h-screen bg-background font-sans text-foreground" style={{ fontFamily: "var(--font-sans)" }}>
       <Navbar />
-      {/* 1. BPO introduction: name, logo, slogan */}
+      {/* PART 1 — INTRODUCTION */}
       <Hero />
-      {/* 2. Mission, vision and core values */}
+      <PartHeader id="introduction" />
       <About />
-      {/* 3. Organization chart (BPO roles) */}
       <OrgChart />
-      {/* 4. Service characteristics */}
       <Services />
       <BeautyFocus />
-      {/* 5. Flow charts, protocols and scripts */}
+      <WhyAbm />
+      <TechStack />
       <ProcessRoutes />
       <FlowCharts />
-      {/* 6. Market research: corporate client + SWOT */}
+      {/* PART 2 — MARKET RESEARCH */}
+      <PartHeader id="market-research" />
       <Montoc />
       <Swot />
-      {/* 7. Service offer: briefs and service targets */}
+      {/* PART 3 — SERVICE OFFER */}
+      <PartHeader id="service-offer" />
       <CampaignBriefs />
-      {/* 8. Quality assurance: KPIs, CX assessment and metrics dashboard */}
-      <CampaignKpis />
-      <Results />
       <ProjectDepth />
-      <WhyAbm />
       <Process />
-      <TechStack />
+      <CampaignKpis />
+      <AssessmentPlaceholder />
+      <Results />
       <CtaBanner />
       <Contact />
       <PQR />
