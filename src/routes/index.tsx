@@ -45,11 +45,12 @@ export const Route = createFileRoute("/")({
 const NAV = [
   { href: "#inicio", label: "Home" },
   { href: "#nosotros", label: "Who we are" },
+  { href: "#org-chart", label: "Org chart" },
   { href: "#servicios", label: "Services" },
-  { href: "#montoc", label: "MONTOC" },
   { href: "#process-routes", label: "Process routes" },
   { href: "#flow-charts", label: "Flow charts" },
-  { href: "#org-chart", label: "Org chart" },
+  { href: "#montoc", label: "MONTOC" },
+  { href: "#swot", label: "SWOT" },
   { href: "#briefs", label: "Briefs" },
   { href: "#kpis", label: "KPIs" },
   { href: "#resultados", label: "Results" },
@@ -62,15 +63,24 @@ function Index() {
   return (
     <div className="min-h-screen bg-background font-sans text-foreground" style={{ fontFamily: "var(--font-sans)" }}>
       <Navbar />
+      {/* 1. BPO introduction: name, logo, slogan */}
       <Hero />
+      {/* 2. Mission, vision and core values */}
       <About />
+      {/* 3. Organization chart (BPO roles) */}
+      <OrgChart />
+      {/* 4. Service characteristics */}
       <Services />
       <BeautyFocus />
-      <Montoc />
+      {/* 5. Flow charts, protocols and scripts */}
       <ProcessRoutes />
       <FlowCharts />
-      <OrgChart />
+      {/* 6. Market research: corporate client + SWOT */}
+      <Montoc />
+      <Swot />
+      {/* 7. Service offer: briefs and service targets */}
       <CampaignBriefs />
+      {/* 8. Quality assurance: KPIs, CX assessment and metrics dashboard */}
       <CampaignKpis />
       <Results />
       <ProjectDepth />
@@ -518,6 +528,82 @@ function Montoc() {
               See full strategy <ArrowRight className="h-4 w-4" />
             </a>
           </div>
+        </div>
+      </div>
+    </section>
+  );
+}
+
+/* ---------------- SWOT analysis ---------------- */
+function Swot() {
+  const quadrants = [
+    {
+      key: "S", title: "Strengths", tone: "internal", color: "var(--abm-blue)",
+      items: [
+        "Own product line with more than 250 references and a loyal customer base of 20,000+ buyers.",
+        "Strong brand identity in practical, functional beauty tools at accessible prices.",
+        "Direct digital sales channel through its official online store.",
+      ],
+    },
+    {
+      key: "W", title: "Weaknesses", tone: "internal", color: "var(--abm-purple)",
+      items: [
+        "Growing contact volume that exceeds the capacity of an in-house team.",
+        "No specialized customer service or consultative sales structure.",
+        "Limited visibility of service metrics such as response time and satisfaction.",
+      ],
+    },
+    {
+      key: "O", title: "Opportunities", tone: "external", color: "var(--abm-blue)",
+      items: [
+        "Rising demand for beauty and skincare products in the Colombian e-commerce market.",
+        "WhatsApp Business as a high-reach channel for fast, personalized attention.",
+        "Outsourcing with ABM converts service conversations into measurable sales growth.",
+      ],
+    },
+    {
+      key: "T", title: "Threats", tone: "external", color: "var(--abm-purple)",
+      items: [
+        "Strong competition from national and international beauty brands.",
+        "Customers abandon purchases when they do not receive immediate product guidance.",
+        "Data protection obligations (Law 1581 of 2012) require disciplined information handling.",
+      ],
+    },
+  ];
+  return (
+    <section id="swot" className="relative py-24 lg:py-32">
+      <div className="mx-auto max-w-7xl px-4 sm:px-6">
+        <div className="mx-auto max-w-3xl text-center">
+          <SectionEyebrow>Market research</SectionEyebrow>
+          <h2 className="mt-4 text-3xl sm:text-4xl lg:text-5xl font-extrabold tracking-tight text-abm-navy" style={{ fontFamily: "var(--font-display)" }}>
+            SWOT analysis: <span className="text-gradient-brand">MONTOC</span> and the ABM service.
+          </h2>
+          <p className="mt-5 text-lg leading-relaxed text-muted-foreground">
+            The diagnosis behind the service offer: where MONTOC stands today and how the ABM operation responds.
+          </p>
+        </div>
+        <div className="mt-12 grid gap-5 md:grid-cols-2">
+          {quadrants.map((q) => (
+            <div key={q.key} className="rounded-3xl border border-border bg-card p-7 shadow-[var(--shadow-soft)]">
+              <div className="flex items-center gap-3">
+                <div className="grid h-12 w-12 place-items-center rounded-2xl text-lg font-extrabold text-white" style={{ backgroundColor: q.color }}>
+                  {q.key}
+                </div>
+                <div>
+                  <h3 className="text-xl font-extrabold text-abm-navy" style={{ fontFamily: "var(--font-display)" }}>{q.title}</h3>
+                  <div className="text-[10px] font-bold uppercase tracking-[0.25em] text-muted-foreground">{q.tone === "internal" ? "Internal factors" : "External factors"}</div>
+                </div>
+              </div>
+              <ul className="mt-5 space-y-3">
+                {q.items.map((item) => (
+                  <li key={item} className="flex items-start gap-2.5 text-sm leading-relaxed text-foreground/80">
+                    <CheckCircle2 className="mt-0.5 h-4 w-4 shrink-0" style={{ color: q.color }} />
+                    <span>{item}</span>
+                  </li>
+                ))}
+              </ul>
+            </div>
+          ))}
         </div>
       </div>
     </section>

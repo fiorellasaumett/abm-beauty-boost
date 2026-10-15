@@ -93,7 +93,7 @@ const BRANCHES: { key: string; label: string; icon: React.ComponentType<{ classN
     label: "Corporate Affairs",
     icon: ShieldCheck,
     chain: [
-      [{ title: "Corp. Affairs Director", name: "Fiorella Saumett" }],
+      [{ title: "Corp. Affairs Director", name: "Fiorella Saumett Romero" }],
       [{ title: "HR & Talent Team", name: "Valeria García" }],
       [{ title: "Compliance Team", name: "Julián Rivas" }],
       [{ title: "Accounting Team", name: "Paula Mora" }],
