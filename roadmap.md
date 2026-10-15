@@ -7,4 +7,4 @@
 - [x] Remove People section (covered by org chart)
 - [x] Reorganize page per teacher's SUSTENTACIÓN structure
 - [x] Add SWOT section (MONTOC + ABM service)
-- [ ] Verify build + visual check (Playwright)
+- [x] Verify build + visual check (Playwright)
