@@ -45,11 +45,12 @@ export const Route = createFileRoute("/")({
 const NAV = [
   { href: "#inicio", label: "Home" },
   { href: "#nosotros", label: "Who we are" },
+  { href: "#org-chart", label: "Org chart" },
   { href: "#servicios", label: "Services" },
-  { href: "#montoc", label: "MONTOC" },
   { href: "#process-routes", label: "Process routes" },
   { href: "#flow-charts", label: "Flow charts" },
-  { href: "#org-chart", label: "Org chart" },
+  { href: "#montoc", label: "MONTOC" },
+  { href: "#swot", label: "SWOT" },
   { href: "#briefs", label: "Briefs" },
   { href: "#kpis", label: "KPIs" },
   { href: "#resultados", label: "Results" },
@@ -62,15 +63,24 @@ function Index() {
   return (
     <div className="min-h-screen bg-background font-sans text-foreground" style={{ fontFamily: "var(--font-sans)" }}>
       <Navbar />
+      {/* 1. BPO introduction: name, logo, slogan */}
       <Hero />
+      {/* 2. Mission, vision and core values */}
       <About />
+      {/* 3. Organization chart (BPO roles) */}
+      <OrgChart />
+      {/* 4. Service characteristics */}
       <Services />
       <BeautyFocus />
-      <Montoc />
+      {/* 5. Flow charts, protocols and scripts */}
       <ProcessRoutes />
       <FlowCharts />
-      <OrgChart />
+      {/* 6. Market research: corporate client + SWOT */}
+      <Montoc />
+      <Swot />
+      {/* 7. Service offer: briefs and service targets */}
       <CampaignBriefs />
+      {/* 8. Quality assurance: KPIs, CX assessment and metrics dashboard */}
       <CampaignKpis />
       <Results />
       <ProjectDepth />
