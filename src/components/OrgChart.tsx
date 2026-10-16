@@ -111,7 +111,7 @@ export function OrgChart() {
         const mid = y1 + (y2 - y1) / 2;
         const siblings = Array.from(chart.querySelectorAll<HTMLElement>(`[data-org-parent="${child.dataset.orgParent}"]`));
         if (child.dataset.orgParent === "cio-2-0") {
-          const side = Math.min(a.left, b.left) - root.left - 22;
+          const side = Math.min(a.left, b.left) - root.left + 12;
           next.push(`M ${x1} ${y1} V ${y1 + 12} H ${side} V ${y2 - 12} H ${x2} V ${y2}`);
         } else if (siblings.length > 1 && child.dataset.orgParent !== "ceo") {
           const first = siblings[0]?.getBoundingClientRect();
