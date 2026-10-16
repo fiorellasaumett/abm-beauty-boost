@@ -1,0 +1,58 @@
+export const CUSTOMER_CRITERIA = [
+  ["Communication & Professionalism", 20, "Greeting, tone, empathy, active listening, and clear language."],
+  ["Customer Service Protocol", 20, "Following required steps and approved procedures."],
+  ["Needs Identification & Resolution", 20, "Understanding the inquiry, providing guidance, and escalating when necessary."],
+  ["Information Accuracy", 15, "Providing correct, current information from authorized sources."],
+  ["Data Protection & Confidentiality", 15, "Identity verification and secure handling of personal information."],
+  ["CRM Documentation & Closing", 10, "Accurate case registration, outcome recording, and professional closing."],
+] as const;
+export const SALES_CRITERIA = [
+  ["Quality Assurance (QA Score)", 20, "Compliance with quality standards, correct information and adherence to procedures."],
+  ["Customer Satisfaction (CSAT)", 15, "Positive feedback and service experience."],
+  ["Average Handle Time (AHT)", 10, "Efficient handling within 6 minutes per interaction."],
+  ["Schedule Adherence", 10, "Adherence to schedule and consistency in available time."],
+  ["Sales Conversion Rate", 15, "Conversion of contacts into sales at a minimum of 12%."],
+  ["Revenue", 15, "Contribution to the campaign target of COP 250,000,000."],
+  ["New Customers", 15, "Acquisition of 200 new customers across the campaign."],
+] as const;
+export const CUSTOMER_ROWS = [
+ [1920,98.5,93.2,86.7,"80/20","5:18",98.4,96.8],
+ [1845,97.8,91.6,84.3,"80/20","5:24",97.6,95.8],
+ [2010,96.9,94.8,87.9,"80/20","5:12",96.8,97.2],
+ [1760,97.6,92.7,85.6,"80/20","5:26",97.9,94.9],
+ [1980,98.1,95.4,88.4,"80/20","5:20",98.7,98.7],
+ [1865,97.3,93.8,86.2,"80/20","5:28",96.5,96.1],
+ [1920,98.7,92.1,87.1,"80/20","5:17",97.2,95.8],
+ [1775,96.8,94.5,84.8,"80/20","5:23",98.1,97.3],
+ [1830,97.5,91.9,88.5,"80/20","5:29",96.9,96.9],
+ [1960,98.2,96.2,89.5,"80/20","5:15",98.5,96.2],
+ [1910,96.7,92.8,87.6,"80/20","5:27",97.1,95.8],
+ [1840,97.9,94.6,86.4,"80/20","5:22",96.8,96.4],
+ [1995,98.4,95.1,88.9,"80/20","5:16",97.5,95.2],
+ [1720,97.2,93.6,85.7,"80/20","5:21",98.2,96.1],
+ [1965,98.0,94.7,88.0,"80/20","5:25",97.6,97.3],
+ [1780,96.5,92.5,87.5,"80/20","5:19",96.7,95.8],
+ [1875,97.7,94.1,88.6,"80/20","5:14",98.9,96.7],
+ [1805,96.9,93.4,86.8,"80/20","5:26",97.0,96.0],
+] as const;
+export const SALES_ROWS = [
+ [2420,98.2,94.8,14.6,"5:28",97.2,17500000,18],
+ [2300,97.6,92.7,13.9,"5:42",96.8,16800000,16],
+ [2280,96.9,93.6,13.5,"5:36",97.5,16200000,15],
+ [2150,97.8,95.1,14.2,"5:31",98.0,15700000,14],
+ [2050,98.1,93.9,13.1,"5:47",96.6,15100000,13],
+ [1980,97.4,94.2,12.8,"5:32",97.7,14600000,12],
+ [2140,96.7,92.1,13.6,"5:41",96.3,14400000,12],
+ [2260,97.9,95.6,14.7,"5:33",97.9,15800000,15],
+ [2120,98.4,93.8,13.0,"5:48",96.9,14900000,13],
+ [1960,97.1,94.5,14.1,"5:37",97.4,14300000,12],
+ [2000,96.8,92.9,13.7,"5:44",96.2,14000000,11],
+ [2320,97.5,94.7,14.3,"5:29",97.1,16700000,16],
+ [2260,98.0,95.2,13.2,"5:46",96.7,15900000,14],
+ [2200,97.7,93.4,14.8,"5:38",97.6,15000000,13],
+ [2160,96.5,94.1,13.9,"5:50",96.8,15100000,12],
+] as const;
+export const INDIVIDUAL_KPIS = {
+ customer: [["QA","> 96%","98%"],["CSAT","> 90%","92%"],["FCR","> 80%","85%"],["SLA","80/20","85/20"],["AHT","≤ 5:30","5:20"],["Schedule adherence","≥ 95%","98%"]],
+ sales: [["QA","> 96%","98%"],["CSAT","> 90%","93%"],["Conversion","≥ 12%","14.8%"],["AHT","≤ 6:00","5:45"],["Schedule adherence","≥ 95%","97%"],["Revenue (campaign context)","COP 250,000,000","COP 255,000,000"],["New customers (campaign context)","200","205"]],
+} as const;

@@ -67,7 +67,7 @@ const CAMPAIGNS: Record<
       {
         icon: Star,
         name: "Quality Assurance Score",
-        target: ">= 95%",
+        target: "> 96%",
       },
       {
         icon: PhoneCall,
@@ -106,7 +106,7 @@ const CAMPAIGNS: Record<
       {
         icon: Star,
         name: "Quality Assurance Score",
-        target: ">= 95%",
+        target: "> 96%",
       },
       {
         icon: CalendarCheck,

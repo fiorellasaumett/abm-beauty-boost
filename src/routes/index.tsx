@@ -19,6 +19,7 @@ import montocFluffy from "@/assets/montoc-fluffy.jpg.asset.json";
 import { ProcessRoutes } from "@/components/ProcessRoutes";
 import { FlowCharts } from "@/components/FlowCharts";
 import { CampaignBriefs, OrgChart } from "@/components/OrgChart";
+import { AssessmentBoards, TeamPerformance } from "@/components/AssessmentBoards";
 import { CampaignKpis } from "@/components/CampaignKpis";
 import { Button } from "@/components/ui/button";
 import { Input } from "@/components/ui/input";
@@ -77,17 +78,6 @@ function PartHeader({ id }: { id: keyof typeof PARTS }) {
   );
 }
 
-function AssessmentPlaceholder() {
-  return (
-    <section id="assessment" className="scroll-mt-20 py-20">
-      <div className="mx-auto max-w-7xl px-4 sm:px-6">
-        <SectionEyebrow>Assessment board (CX)</SectionEyebrow>
-        <div className="mt-6 rounded-3xl glass-card p-10 text-center text-muted-foreground">Customer experience assessment board — content coming soon.</div>
-      </div>
-    </section>
-  );
-}
-
 function Index() {
   return (
     <div className="min-h-screen bg-background font-sans text-foreground" style={{ fontFamily: "var(--font-sans)" }}>
@@ -114,8 +104,9 @@ function Index() {
       <ProjectDepth />
       <Process />
       <CampaignKpis />
-      <AssessmentPlaceholder />
+      <AssessmentBoards />
       <Results />
+      <TeamPerformance />
       <CtaBanner />
       <Contact />
       <PQR />
@@ -190,7 +181,7 @@ function Hero() {
         <h1 className="mx-auto mt-6 max-w-4xl text-3xl font-bold leading-tight text-abm-navy sm:text-4xl lg:text-5xl" style={{ fontFamily: "var(--font-display)" }}>
           Apex Business Matrix
         </h1>
-        <p className="mt-3 text-sm font-semibold text-abm-purple">ABM BPO · Customer Service & Sales & Marketing</p>
+        <p className="mt-3 text-sm font-semibold text-abm-purple">ABM BPO · Customer Service · Sales & Marketing</p>
         <p className="mx-auto mt-6 max-w-3xl text-lg leading-relaxed text-foreground sm:text-xl">
           “More than outsourcing processes, we build connections that generate results.”
         </p>
@@ -558,33 +549,36 @@ function Swot() {
     {
       key: "S", title: "Strengths", tone: "internal", color: "var(--abm-blue)",
       items: [
-        "Own product line with more than 250 references and a loyal customer base of 20,000+ buyers.",
-        "Strong brand identity in practical, functional beauty tools at accessible prices.",
-        "Direct digital sales channel through its official online store.",
+        "Bilingual Colombian talent.",
+        "Omnichannel service and CRM.",
+        "Flexible operations.",
+        "Knowledge of the cosmetics market.",
       ],
     },
     {
       key: "W", title: "Weaknesses", tone: "internal", color: "var(--abm-purple)",
       items: [
-        "Growing contact volume that exceeds the capacity of an in-house team.",
-        "No specialized customer service or consultative sales structure.",
-        "Limited visibility of service metrics such as response time and satisfaction.",
+        "Limited capacity: 26 positions (SWOT planning baseline).",
+        "Analytics department in development.",
+        "B2B positioning still growing.",
       ],
     },
     {
       key: "O", title: "Opportunities", tone: "external", color: "var(--abm-blue)",
       items: [
-        "Rising demand for beauty and skincare products in the Colombian e-commerce market.",
-        "WhatsApp Business as a high-reach channel for fast, personalized attention.",
-        "Outsourcing with ABM converts service conversations into measurable sales growth.",
+        "AI and chatbot integration.",
+        "Use of MONTOC data.",
+        "New B2B clients.",
+        "Nearshoring expansion.",
       ],
     },
     {
       key: "T", title: "Threats", tone: "external", color: "var(--abm-purple)",
       items: [
-        "Strong competition from national and international beauty brands.",
-        "Customers abandon purchases when they do not receive immediate product guidance.",
-        "Data protection obligations (Law 1581 of 2012) require disciplined information handling.",
+        "Regulatory and cybersecurity risks.",
+        "Staff turnover.",
+        "Rising operational costs.",
+        "Dependence on MONTOC’s sales volume.",
       ],
     },
   ];
@@ -597,7 +591,7 @@ function Swot() {
             SWOT analysis: <span className="text-gradient-brand">MONTOC</span> and the ABM service.
           </h2>
           <p className="mt-5 text-lg leading-relaxed text-muted-foreground">
-            The diagnosis behind the service offer: where MONTOC stands today and how the ABM operation responds.
+            The supplied SWOT evaluates ABM and MONTOC together. Its 26-position capacity baseline is distinct from the staffing figures in the campaign briefs.
           </p>
         </div>
         <div className="mt-12 grid gap-5 md:grid-cols-2">
@@ -713,7 +707,7 @@ function Results() {
 
 /* ---------------- Academic project framework ---------------- */
 function ProjectDepth() {
-  const [active, setActive] = useState("objectives");
+  const [active, setActive] = useState("quality");
   useEffect(() => {
     const selectLinkedCampaign = () => {
       if (window.location.hash === "#customer-service-campaign") setActive("customerService");
@@ -751,8 +745,8 @@ function ProjectDepth() {
     quality: {
       title: "Quality & compliance",
       icon: BadgeCheck,
-      intro: "Weekly QA reviews cover recorded calls, chat, email and CRM cases, protecting both experience and regulatory compliance.",
-      points: ["QA score and schedule adherence targets of 95%+", "Law 1581 of 2012 data privacy controls", "Professional greetings, verification and active listening", "Product knowledge, accurate workflows and complete CRM logging"],
+      intro: "Weekly QA reviews cover WhatsApp Business, email and CRM cases, protecting both experience and regulatory compliance.",
+      points: ["QA score target >96%; schedule adherence ≥95%", "Law 1581 of 2012 data privacy controls", "Professional greetings, verification and active listening", "Product knowledge, accurate workflows and complete CRM logging"],
     },
     finance: {
       title: "Sustainable financial model",
@@ -777,7 +771,7 @@ function ProjectDepth() {
   return (
     <section id="operations" className="py-24 lg:py-32" style={{ backgroundImage: "var(--gradient-soft)" }}>
       <div className="mx-auto max-w-7xl px-4 sm:px-6">
-        <SectionEyebrow>Project framework</SectionEyebrow>
+        <SectionEyebrow>Quality assurance & operations</SectionEyebrow>
         <div className="mt-4 grid gap-6 lg:grid-cols-[1fr_1.1fr] lg:items-end">
           <h2 className="text-3xl sm:text-4xl lg:text-5xl font-extrabold tracking-tight text-abm-navy" style={{ fontFamily: "var(--font-display)" }}>Built to operate with <span className="text-gradient-brand">discipline and proof</span>.</h2>
           <p className="text-muted-foreground leading-relaxed">The academic model combines measurable goals, workforce planning, rigorous quality controls and a financially sustainable delivery structure.</p>
@@ -785,7 +779,7 @@ function ProjectDepth() {
         <div className="mt-12 grid gap-5 lg:grid-cols-[0.72fr_1.28fr]">
           <div className="grid grid-cols-2 gap-3 lg:grid-cols-1">
             {Object.entries(panels).map(([key, item]) => (
-              <Button id={key === "customerService" ? "customer-service-campaign" : key === "sales" ? "sales-campaign" : undefined} key={key} variant="outline" onClick={() => setActive(key)} className={`h-auto justify-start gap-3 rounded-lg p-4 text-left ${active === key ? "border-primary bg-accent text-primary" : "bg-card"}`}>
+              <Button id={key === "customerService" ? "customer-service-campaign" : key === "sales" ? "sales-campaign" : undefined} key={key} variant="outline" onClick={() => setActive(key)} className={`h-auto justify-start gap-3 rounded-lg p-4 text-left whitespace-normal ${active === key ? "border-primary bg-accent text-primary" : "bg-card"}`}>
                 <item.icon className="h-5 w-5 shrink-0" /><span>{item.title}</span>
               </Button>
             ))}
