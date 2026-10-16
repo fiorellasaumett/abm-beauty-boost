@@ -1,4 +1,4 @@
-import { useState } from "react";
+import { createContext, useContext, useState } from "react";
 import {
   ArrowDown,
   ArrowRight,
@@ -13,6 +13,16 @@ import {
 } from "lucide-react";
 import { Button } from "@/components/ui/button";
 
+import { Dialog, DialogContent, DialogHeader, DialogTitle, DialogDescription } from "@/components/ui/dialog";
+import { CUSTOMER_SERVICE, SALES, type Touchpoint } from "@/lib/process-protocols";
+
+const ProtocolContext = createContext<(index: number, label: string) => void>(() => {});
+
+function ProtocolNode({ index, label, className, children }: { index: number; label: string; className: string; children: React.ReactNode }) {
+  const open = useContext(ProtocolContext);
+  return <Button type="button" variant="ghost" onClick={() => open(index, label)} aria-label={`View protocol: ${label}`} className={`h-auto whitespace-normal ${className}`}>{children}</Button>;
+}
+
 type Service = "customer" | "sales";
 
 function FlowArrow({ label }: { label?: string }) {
@@ -25,43 +35,43 @@ function FlowArrow({ label }: { label?: string }) {
 }
 
 
-function Terminator({ children, end = false }: { children: React.ReactNode; end?: boolean }) {
+function Terminator({ children, end = false, step = 0 }: { children: React.ReactNode; end?: boolean; step?: number }) {
   return (
-    <div
+    <ProtocolNode index={step} label={String(children)}
       className={`mx-auto flex min-h-14 w-full max-w-sm items-center justify-center rounded-full border-2 px-6 py-3 text-center text-sm font-bold shadow-[var(--shadow-soft)] ${
         end ? "border-abm-purple bg-accent text-abm-purple" : "border-abm-blue bg-card text-abm-navy"
       }`}
     >
       {children}
-    </div>
+    </ProtocolNode>
   );
 }
 
-function Activity({ title, owner }: { title: string; owner: string }) {
+function Activity({ title, owner, step }: { title: string; owner: string; step: number }) {
   return (
-    <div className="mx-auto w-full max-w-sm rounded-xl border-2 border-abm-blue bg-card px-5 py-4 text-center shadow-[var(--shadow-soft)]">
+    <ProtocolNode index={step} label={title} className="mx-auto flex w-full max-w-sm flex-col rounded-xl border-2 border-abm-blue bg-card px-5 py-4 text-center shadow-[var(--shadow-soft)]">
       <p className="text-sm font-bold text-abm-navy">{title}</p>
       <p className="mt-1 text-[11px] font-semibold uppercase text-muted-foreground">Responsible: {owner}</p>
-    </div>
+    </ProtocolNode>
   );
 }
 
-function Decision({ children }: { children: React.ReactNode }) {
+function Decision({ children, step }: { children: React.ReactNode; step: number }) {
   return (
-    <div className="mx-auto my-6 flex h-40 w-40 rotate-45 items-center justify-center border-2 border-abm-purple bg-accent shadow-[var(--shadow-soft)]">
+    <ProtocolNode index={step} label={String(children)} className="mx-auto my-6 flex h-40 w-40 rotate-45 items-center justify-center border-2 border-abm-purple bg-accent shadow-[var(--shadow-soft)]">
       <p className="w-28 -rotate-45 text-center text-sm font-bold leading-snug text-abm-purple">{children}</p>
-    </div>
+    </ProtocolNode>
   );
 }
 
-function BranchCard({ label, children }: { label: string; children: React.ReactNode }) {
+function BranchCard({ label, children, step }: { label: string; children: React.ReactNode; step: number }) {
   return (
-    <div className="relative min-w-0 rounded-xl border border-border bg-card p-4 shadow-[var(--shadow-soft)]">
+    <ProtocolNode index={step} label={`${label}: ${String(children)}`} className="relative block min-w-0 rounded-xl border border-border bg-card p-4 shadow-[var(--shadow-soft)]">
       <span className="absolute -top-3 left-1/2 -translate-x-1/2 rounded-full bg-abm-purple px-3 py-1 text-[10px] font-bold uppercase text-primary-foreground">
         {label}
       </span>
       <div className="pt-2 text-center text-sm font-semibold leading-relaxed text-abm-navy">{children}</div>
-    </div>
+    </ProtocolNode>
   );
 }
 
@@ -70,32 +80,32 @@ function CustomerServiceChart() {
     <div aria-label="Customer Service flow chart" className="mx-auto max-w-4xl">
       <Terminator>Customer contacts MONTOC on WhatsApp Business</Terminator>
       <FlowArrow />
-      <Activity title="Receive, greet and record the contact" owner="Customer Service agent" />
+      <Activity step={0} title="Receive, greet and record the contact" owner="Customer Service agent" />
       <FlowArrow />
-      <Decision>What type of case is it?</Decision>
+      <Decision step={1}>What type of case is it?</Decision>
       <div className="grid gap-5 md:grid-cols-3">
-        <BranchCard label="Inquiry">Check the catalog or system and provide accurate information.</BranchCard>
-        <BranchCard label="Request">Validate the details and complete or route the requested action.</BranchCard>
-        <BranchCard label="Claim">Show empathy, collect evidence and formally register the claim.</BranchCard>
+        <BranchCard step={1} label="Inquiry">Check the catalog or system and provide accurate information.</BranchCard>
+        <BranchCard step={1} label="Request">Validate the details and complete or route the requested action.</BranchCard>
+        <BranchCard step={1} label="Claim">Show empathy, collect evidence and formally register the claim.</BranchCard>
       </div>
       <FlowArrow />
-      <Activity title="Provide the answer or proposed solution" owner="Customer Service agent" />
+      <Activity step={2} title="Provide the answer or proposed solution" owner="Customer Service agent" />
       <FlowArrow />
-      <Decision>Can the agent resolve it?</Decision>
+      <Decision step={2}>Can the agent resolve it?</Decision>
       <div className="grid gap-5 md:grid-cols-2">
-        <BranchCard label="Yes">Confirm the solution with the customer and document the result.</BranchCard>
-        <BranchCard label="No">Escalate the case to the appropriate specialist or support area.</BranchCard>
+        <BranchCard step={2} label="Yes">Confirm the solution with the customer and document the result.</BranchCard>
+        <BranchCard step={2} label="No">Escalate the case to the appropriate specialist or support area.</BranchCard>
       </div>
       <FlowArrow />
-      <Activity title="Follow up on any pending commitment" owner="Agent / support area" />
+      <Activity step={3} title="Follow up on any pending commitment" owner="Agent / support area" />
       <FlowArrow />
-      <Decision>Is the customer satisfied?</Decision>
+      <Decision step={3}>Is the customer satisfied?</Decision>
       <div className="grid gap-5 md:grid-cols-2">
-        <BranchCard label="Yes">Close the interaction and record the final outcome.</BranchCard>
-        <BranchCard label="No">Reopen, reassess and escalate the case for a new solution.</BranchCard>
+        <BranchCard step={3} label="Yes">Close the interaction and record the final outcome.</BranchCard>
+        <BranchCard step={3} label="No">Reopen, reassess and escalate the case for a new solution.</BranchCard>
       </div>
       <FlowArrow />
-      <Terminator end>Case resolved, documented and closed</Terminator>
+      <Terminator end step={3}>Case resolved, documented and closed</Terminator>
     </div>
   );
 }
@@ -105,33 +115,33 @@ function SalesChart() {
     <div aria-label="Sales and Marketing flow chart" className="mx-auto max-w-4xl">
       <Terminator>Potential customer contacts MONTOC on WhatsApp Business</Terminator>
       <FlowArrow />
-      <Activity title="Greet and identify the product of interest" owner="Sales advisor" />
+      <Activity step={0} title="Greet and identify the product of interest" owner="Sales advisor" />
       <FlowArrow />
-      <Activity title="Qualify profile, need, quantity, budget and intended use" owner="Sales advisor" />
+      <Activity step={1} title="Qualify profile, need, quantity, budget and intended use" owner="Sales advisor" />
       <FlowArrow />
-      <Decision>Is there a suitable product?</Decision>
+      <Decision step={2}>Is there a suitable product?</Decision>
       <div className="grid gap-5 md:grid-cols-2">
-        <BranchCard label="Yes">Present authorized photos, price, benefits, availability and delivery time.</BranchCard>
-        <BranchCard label="No">Offer a relevant alternative or record the need for future follow-up.</BranchCard>
+        <BranchCard step={2} label="Yes">Present authorized photos, price, benefits, availability and delivery time.</BranchCard>
+        <BranchCard step={2} label="No">Offer a relevant alternative or record the need for future follow-up.</BranchCard>
       </div>
       <FlowArrow />
-      <Activity title="Send the personalized offer or quotation" owner="Sales advisor" />
+      <Activity step={2} title="Send the personalized offer or quotation" owner="Sales advisor" />
       <FlowArrow />
-      <Decision>Does the customer accept?</Decision>
+      <Decision step={3}>Does the customer accept?</Decision>
       <div className="grid gap-5 md:grid-cols-2">
-        <BranchCard label="Yes">Confirm product, quantity, total, delivery details and payment method.</BranchCard>
-        <BranchCard label="No">Clarify objections once and request permission for relevant follow-up.</BranchCard>
+        <BranchCard step={3} label="Yes">Confirm product, quantity, total, delivery details and payment method.</BranchCard>
+        <BranchCard step={3} label="No">Clarify objections once and request permission for relevant follow-up.</BranchCard>
       </div>
       <FlowArrow />
-      <Decision>Was an order confirmed?</Decision>
+      <Decision step={3}>Was an order confirmed?</Decision>
       <div className="grid gap-5 md:grid-cols-2">
-        <BranchCard label="Yes">Register the order and send confirmation to the customer.</BranchCard>
-        <BranchCard label="No">Record the opportunity and close the conversation respectfully.</BranchCard>
+        <BranchCard step={3} label="Yes">Register the order and send confirmation to the customer.</BranchCard>
+        <BranchCard step={3} label="No">Record the opportunity and close the conversation respectfully.</BranchCard>
       </div>
       <FlowArrow />
-      <Activity title="Confirm delivery, product condition and satisfaction" owner="Sales advisor" />
+      <Activity step={4} title="Confirm delivery, product condition and satisfaction" owner="Sales advisor" />
       <FlowArrow />
-      <Terminator end>Sale completed or opportunity documented for follow-up</Terminator>
+      <Terminator end step={4}>Sale completed or opportunity documented for follow-up</Terminator>
     </div>
   );
 }
@@ -146,6 +156,11 @@ const LEGEND = [
 
 export function FlowCharts() {
   const [service, setService] = useState<Service>("customer");
+  const [selected, setSelected] = useState<{ protocol: Touchpoint; label: string } | null>(null);
+  const openProtocol = (index: number, label: string) => {
+    const protocol = (service === "customer" ? CUSTOMER_SERVICE : SALES)[index];
+    if (protocol) setSelected({ protocol, label });
+  };
 
   return (
     <section id="flow-charts" className="relative overflow-hidden py-24 lg:py-32">
@@ -210,9 +225,24 @@ export function FlowCharts() {
             </div>
           </div>
 
-          {service === "customer" ? <CustomerServiceChart /> : <SalesChart />}
+          <ProtocolContext.Provider value={openProtocol}>
+            {service === "customer" ? <CustomerServiceChart /> : <SalesChart />}
+          </ProtocolContext.Provider>
         </div>
       </div>
+      <Dialog open={selected !== null} onOpenChange={(open) => { if (!open) setSelected(null); }}>
+        <DialogContent className="max-h-[85dvh] w-[calc(100%-2rem)] max-w-2xl overflow-y-auto rounded-lg">
+          <DialogHeader>
+            <DialogTitle className="pr-6 text-abm-navy">{selected?.protocol.title}</DialogTitle>
+            <DialogDescription>{selected?.label}</DialogDescription>
+          </DialogHeader>
+          {selected && <div className="space-y-6">
+            <div><h3 className="font-bold text-abm-blue">What</h3><p className="mt-2 text-sm text-muted-foreground">{selected.protocol.what}</p></div>
+            <div><h3 className="font-bold text-abm-purple">How — Protocols</h3><ul className="mt-2 list-disc space-y-2 pl-5 text-sm text-muted-foreground">{selected.protocol.how.map(item => <li key={item}>{item}</li>)}</ul></div>
+            <div><h3 className="font-bold text-abm-blue">Expected result</h3><ul className="mt-2 list-disc space-y-2 pl-5 text-sm text-muted-foreground">{selected.protocol.result.map(item => <li key={item}>{item}</li>)}</ul></div>
+          </div>}
+        </DialogContent>
+      </Dialog>
     </section>
   );
 }

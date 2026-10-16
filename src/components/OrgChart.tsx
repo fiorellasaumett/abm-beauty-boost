@@ -1,3 +1,4 @@
+import { useEffect, useRef, useState } from "react";
 import {
   Calendar,
   CalendarX,
@@ -22,9 +23,9 @@ type Node = {
   detail?: string;
 };
 
-function OrgNode({ node, small = false }: { node: Node; small?: boolean }) {
+function OrgNode({ node, small = false, id, parent }: { node: Node; small?: boolean; id: string; parent: string }) {
   return (
-    <div
+    <div data-org-id={id} data-org-parent={parent}
       className={`rounded-xl border-2 border-abm-blue/50 bg-card text-center shadow-[var(--shadow-soft)] ${
         small ? "px-3 py-2.5" : "px-4 py-3"
       }`}
@@ -32,15 +33,6 @@ function OrgNode({ node, small = false }: { node: Node; small?: boolean }) {
       <p className={`font-extrabold uppercase tracking-wide text-abm-navy ${small ? "text-[11px]" : "text-xs"}`}>{node.title}</p>
       {node.name && <p className={`mt-0.5 font-bold text-abm-purple ${small ? "text-xs" : "text-sm"}`}>{node.name}</p>}
       {node.detail && <p className="mt-0.5 text-[10px] font-semibold text-muted-foreground">{node.detail}</p>}
-    </div>
-  );
-}
-
-function Link_down() {
-  return (
-    <div className="mx-auto flex flex-col items-center py-1" aria-hidden="true">
-      <span className="h-4 w-px bg-abm-blue" />
-      <span className="-mt-1 h-2 w-2 rotate-45 border-b-2 border-r-2 border-abm-blue" />
     </div>
   );
 }
@@ -102,6 +94,43 @@ const BRANCHES: { key: string; label: string; icon: React.ComponentType<{ classN
 ];
 
 export function OrgChart() {
+  const chartRef = useRef<HTMLDivElement>(null);
+  const [paths, setPaths] = useState<string[]>([]);
+  useEffect(() => {
+    const chart = chartRef.current;
+    if (!chart) return;
+    const measure = () => {
+      const root = chart.getBoundingClientRect();
+      const next: string[] = [];
+      chart.querySelectorAll<HTMLElement>("[data-org-parent]").forEach(child => {
+        const parent = chart.querySelector<HTMLElement>(`[data-org-id="${child.dataset.orgParent}"]`);
+        if (!parent) return;
+        const a = parent.getBoundingClientRect(), b = child.getBoundingClientRect();
+        const x1 = a.left + a.width / 2 - root.left, y1 = a.bottom - root.top;
+        const x2 = b.left + b.width / 2 - root.left, y2 = b.top - root.top - 3;
+        const mid = y1 + (y2 - y1) / 2;
+        const siblings = Array.from(chart.querySelectorAll<HTMLElement>(`[data-org-parent="${child.dataset.orgParent}"]`));
+        if (child.dataset.orgParent === "cio-2-0") {
+          const side = Math.min(a.left, b.left) - root.left + 12;
+          next.push(`M ${x1} ${y1} V ${y1 + 12} H ${side} V ${y2 - 12} H ${x2} V ${y2}`);
+        } else if (siblings.length > 1 && child.dataset.orgParent !== "ceo") {
+          const first = siblings[0]?.getBoundingClientRect();
+          const firstY = first ? first.top - root.top : y2;
+          const side = Math.min(...siblings.map(node => node.getBoundingClientRect().left - root.left)) - 12;
+          const joint = y1 + Math.max(12, (firstY - y1) / 2);
+          next.push(`M ${x1} ${y1} V ${joint} H ${side} V ${y2 - 12} H ${x2} V ${y2}`);
+        } else {
+          next.push(`M ${x1} ${y1} V ${mid} H ${x2} V ${y2}`);
+        }
+      });
+      setPaths(next);
+    };
+    const observer = new ResizeObserver(measure);
+    observer.observe(chart);
+    chart.querySelectorAll<HTMLElement>("[data-org-id]").forEach(node => observer.observe(node));
+    measure();
+    return () => observer.disconnect();
+  }, []);
   return (
     <section id="org-chart" className="relative overflow-hidden py-24 lg:py-32" style={{ backgroundImage: "var(--gradient-soft)" }}>
       <div className="mx-auto max-w-7xl px-4 sm:px-6">
@@ -118,7 +147,11 @@ export function OrgChart() {
         </div>
 
         <div className="mx-auto mt-14 overflow-x-auto rounded-3xl border border-border bg-card p-5 shadow-[var(--shadow-card)] sm:p-8">
-          <div className="min-w-[980px]">
+          <div ref={chartRef} className="relative min-w-[1120px]">
+            <svg className="pointer-events-none absolute inset-0 h-full w-full overflow-visible text-abm-blue" aria-label="Reporting connections">
+              <defs><marker id="org-arrow" viewBox="0 0 10 10" refX="9" refY="5" markerWidth="6" markerHeight="6" orient="auto-start-reverse"><path d="M 0 0 L 10 5 L 0 10 z" fill="currentColor" /></marker></defs>
+              {paths.map((d, i) => <path key={i} d={d} fill="none" stroke="currentColor" strokeWidth="1.5" markerEnd="url(#org-arrow)" />)}
+            </svg>
             <div className="inline-flex rounded-xl border-2 border-abm-purple px-5 py-2 text-sm font-bold uppercase tracking-[0.2em] text-abm-purple">
               Organization chart
             </div>
@@ -128,7 +161,7 @@ export function OrgChart() {
 
             {/* CEO */}
             <div
-              className="mx-auto mt-5 w-fit rounded-xl px-8 py-4 text-center shadow-[var(--shadow-soft)]"
+              data-org-id="ceo" className="relative mx-auto mt-5 w-fit rounded-xl px-8 py-4 text-center shadow-[var(--shadow-soft)]"
               style={{ backgroundImage: "var(--gradient-brand)" }}
             >
               <div className="mx-auto grid h-9 w-9 place-items-center rounded-full bg-primary-foreground/20">
@@ -140,37 +173,21 @@ export function OrgChart() {
               <p className="text-sm font-bold text-primary-foreground">Mabel Rodriguez</p>
             </div>
 
-            {/* Connector: CEO -> four directions */}
-            <div className="relative mx-auto h-11 w-[86%]" aria-hidden="true">
-              <div className="absolute left-1/2 top-0 h-5 w-px -translate-x-1/2 bg-abm-blue" />
-              <div className="absolute left-[12.5%] right-[12.5%] top-5 h-px bg-abm-blue" />
-              {["12.5%", "37.5%", "62.5%", "87.5%"].map((left) => (
-                <div
-                  key={left}
-                  className="absolute top-5 flex -translate-x-1/2 flex-col items-center"
-                  style={{ left }}
-                >
-                  <span className="h-4 w-px bg-abm-blue" />
-                  <span className="-mt-1 h-2 w-2 rotate-45 border-b-2 border-r-2 border-abm-blue" />
-                </div>
-              ))}
-            </div>
-
             {/* Four directions side by side */}
-            <div className="grid grid-cols-4 gap-4">
+            <div className="mt-14 grid grid-cols-4 gap-6">
               {BRANCHES.map((b) => (
                 <div key={b.key} className="flex flex-col">
-                  <div className="rounded-xl border-2 border-abm-blue py-3 text-center text-[11px] font-bold uppercase tracking-wider text-abm-blue">
+                  <div data-org-id={`${b.key}-direction`} data-org-parent="ceo" className="relative rounded-xl border-2 border-abm-blue bg-card py-3 text-center text-[11px] font-bold uppercase tracking-wider text-abm-blue">
                     {b.label}
                   </div>
                   {b.chain.map((level, i) => (
-                    <div key={i}>
-                      {i > 0 && <Link_down />}
-                      <div className={`grid gap-2 ${level.length > 1 ? "grid-cols-2" : "grid-cols-1"}`}>
-                        {level.map((node) => (
-                          <OrgNode key={node.title} node={node} small={level.length > 1} />
-                        ))}
-                      </div>
+                    <div key={i} className="mt-10 grid gap-x-4 gap-y-10">
+                      {level.map((node, j) => {
+                        const parent = i === 0 ? `${b.key}-direction` : b.key === "cio" && i === 3 ? "cio-2-0" : `${b.key}-${i - 1}-0`;
+                        return <div key={node.title} className={level.length > 1 ? "ml-8" : ""}>
+                          <OrgNode node={node} id={`${b.key}-${i}-${j}`} parent={parent} small={level.length > 1} />
+                        </div>;
+                      })}
                     </div>
                   ))}
                 </div>
