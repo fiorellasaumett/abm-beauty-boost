@@ -10,3 +10,6 @@
 <!-- LOVABLE:END -->
 
 - Keep section introductions separate from the opening identity presentation so the three content groups remain clearly organized.
+- Share browser-safe protocol data between Process Routes and flow-chart dialogs so both views display the same instructions.
+- Draw organization-chart connections from explicit node-parent identifiers and measured positions so every reporting relationship has an arrow.
+- Keep supplied assessment samples separate from verified results and compute row totals independently so inconsistent document summaries remain transparent.
